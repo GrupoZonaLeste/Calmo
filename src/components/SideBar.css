@@ -48,3 +48,6 @@ li:hover{
     cursor: pointer;
 }
 
+p{
+    margin-top: 0.1vw;
+}
