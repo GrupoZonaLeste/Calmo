@@ -1,4 +1,3 @@
-import React from 'react'
 import Ianotacao from '../assets/icons/anotacao.png'
 import Imusica from '../assets/icons/musica.png'
 import Ileitura from '../assets/icons/leitura.png'
@@ -33,7 +32,7 @@ const SideBar = () => {
             </li>
             <li>
                 <img src={Isair} alt="Icon Sair" />
-                <p>Sair</p>
+                <p style={{color : '#F56A6A'}}>Sair</p>
             </li>
         </ul>
         
