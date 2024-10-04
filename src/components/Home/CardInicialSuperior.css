@@ -1,0 +1,26 @@
+.CardTopo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #3A3A3A;
+    color: #FFFFFF;
+    padding: 2vw;
+    height: 10vw;
+    border-radius: 2vw;
+    box-shadow: 0px 0px 10px 0px rgba(56, 56, 56, 0.596);
+}
+
+.p-texto{
+    font-weight: 200;
+}
+
+.p-destaque{
+    font-weight: 500;
+    text-decoration: underline;
+    transition: 0.2s;
+}
+
+.p-destaque:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}

@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color: #212121;
+    height: 100vh;
+}
+
+.DivCentral{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 3vw;
+    padding: 3vw;
+}
+
+.titleUsuario{
+    color: #FFFFFF;
+    font-size: 3vw;
+}
+
+.DivRecomendacoes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 25vw;
+}
