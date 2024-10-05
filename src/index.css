@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 * {
     font-family: 'montserrat-Regular';
 }
-
 
 @font-face {
     font-family: 'montserrat-Black';
@@ -35,10 +33,4 @@
 @font-face {
     font-family: 'montserrat-Thin';
     src: url('./assets/fonts/Montserrat-Thin.ttf') format('opentype');
-=======
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-*{
-    font-family: "Montserrat", sans-serif;
->>>>>>> 49ab60e997c2ba197baf4e649bb3b271b02ff589
 }

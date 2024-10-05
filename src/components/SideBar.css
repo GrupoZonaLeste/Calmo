@@ -36,12 +36,10 @@ li{
     background-color: aqua;
     width: 0vw;
 }
-
 img{
     height: 3vw;
     width: 3vw;
 }
-
 li:hover{
     opacity: 0.5;
     transition: 0.5 all;
