@@ -1,5 +1,4 @@
 import React from 'react'
-
 import './LandingPage.css'
 import Header from "../components/LandingPage/Header"
 import DivHero from "../components/LandingPage/DivHero"

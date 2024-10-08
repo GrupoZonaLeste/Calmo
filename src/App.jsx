@@ -25,6 +25,7 @@ function App() {
         <Route path="resetar-senha" element={<ResetPassword/>} />
       </Routes>
     </BrowserRouter>
+
   )
 }
 
