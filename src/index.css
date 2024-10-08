@@ -1,5 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    font-family: 'montserrat-Regular';
+}
 
-*{
-    font-family: "Montserrat", sans-serif;
+@font-face {
+    font-family: 'montserrat-Black';
+    src: url('./assets/fonts/Montserrat-Black.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-ExtraBold';
+    src: url('./assets/fonts/Montserrat-ExtraBold.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-Bold';
+    src: url('./assets/fonts/Montserrat-Bold.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-SemiBold';
+    src: url('./assets/fonts/Montserrat-SemiBold.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-Medium';
+    src: url('./assets/fonts/Montserrat-Medium.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-Regular';
+    src: url('./assets/fonts/Montserrat-Regular.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-ExtraLight';
+    src: url('./assets/fonts/Montserrat-ExtraLight.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'montserrat-Thin';
+    src: url('./assets/fonts/Montserrat-Thin.ttf') format('opentype');
 }

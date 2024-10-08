@@ -1,3 +1,4 @@
+import React from 'react'
 import './CardRecomendacaoMusica.css'
 
 const CardRecomendacaoMusica = () => {

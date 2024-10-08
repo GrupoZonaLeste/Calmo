@@ -1,4 +1,4 @@
-import SideBar from '../components/SideBar'
+import SideBar from '../components/Sidebar/SideBar'
 import CardTopo from '../components/Home/CardInicialSuperior'
 import CardMusica from '../components/Home/CardRecomendacaoMusica'
 import CardLivro from '../components/Home/CardRecomendacaoLivro'

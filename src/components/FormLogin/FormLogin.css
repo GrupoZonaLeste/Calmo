@@ -1,0 +1,101 @@
+.bodyLogin {
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-box {
+    background-color: #2b2b2b;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 350px;
+    position: relative;
+}
+
+/* Seta na parte superior esquerda */
+.back-button {
+    position: absolute;
+    top: 10px; /* Ajuste a posição vertical se necessário */
+    left: 10px; /* Ajuste a posição horizontal se necessário */
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.login-box h1 {
+    color: white;
+    margin: 25px 0; /* Ajuste a margem para o título */
+    font-size: 24px;
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"] {
+    width: calc(100% - 20px); /* Subtrai um pouco para compensar o espaço */
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    margin-left: 10px; /* Adiciona uma margem à esquerda */
+}
+
+/* Espaço extra entre email e senha */
+.login-box input[type="password"] {
+    margin-top: 25px;
+}
+
+/* Botão Entrar */
+.login-box button {
+    width: 129px; /* Largura especificada */
+    height: 56px; /* Altura especificada */
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Leve arredondamento */
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 20px 0 20px 0; /* Margem superior e inferior para separação */
+}
+
+.login-box button:hover {
+    background-color: #1c86ee;
+}
+
+/* Links abaixo do botão */
+.login-box a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Linha divisória */
+.divider {
+    border-bottom: 1px solid #555;
+    margin: 20px 0;
+    position: relative;
+}
+
+/* Cores nos links */
+.login-box a.red span {
+    color: #ff4040;
+    font-weight: bold;
+}
+
+.login-box a.blue span {
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}

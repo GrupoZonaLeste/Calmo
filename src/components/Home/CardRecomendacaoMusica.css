@@ -12,5 +12,6 @@
 }
 
 .CardMusica > p {
+    margin: 1.2vh;
     font-weight: 200;
 }

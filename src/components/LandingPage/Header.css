@@ -1,0 +1,43 @@
+body {
+    background-color: #212121;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin: 2vh 0;
+    background-color: #3A3A3A;
+    color: #F9F9F9;
+    border-radius: 1vw;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.932);
+    position: sticky;
+    top: 1vh;
+    transition: all 0.3s ease-in-out
+}
+
+p {
+    font-size:larger;
+}
+
+#menuEntrarCadastro {
+    display: flex;
+    gap: 1.5vw;
+}
+
+#icon-calmo-white {
+    width: 15vw;
+}
+
+.btn_Header {
+    color: #F9F9F9;
+    align-self: center;    
+}
+.btn_Header:visited {
+    color: #F9F9F9;
+}
+.btn_Header:hover {
+    font-size: 105%;
+}

@@ -1,3 +1,4 @@
+import React from 'react'
 import './CardInicialSuperior.css'
 
 const CardInicialSuperior = () => {

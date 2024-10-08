@@ -1,4 +1,4 @@
-import SideBar from '../components/SideBar'
+import SideBar from '../components/Sidebar/SideBar'
 import Form from '../components/EditPerfil/Form'
 import './EditPerfil.css'
 
