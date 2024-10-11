@@ -28,11 +28,13 @@
 .liClass{
     display: flex;
     flex-direction:column;
+    justify-content: center;
     align-items: center;
     list-style: none;
     transition: 0.5 all;
     background-color: aqua;
     width: 0vw;
+    height: 0px;
 }
 
 .imgClass{

@@ -1,3 +1,10 @@
+.container_editPerfil{
+    display: flex;
+    flex-direction: row;
+    background-color: #212121;
+    height: 100vh;
+}
+
 .DivEdtPerfil{
     padding: 3vw;
     background-color: aqua;

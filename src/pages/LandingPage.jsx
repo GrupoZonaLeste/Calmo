@@ -9,10 +9,12 @@ import Footer from "../components/LandingPage/Footer"
 const LandingPage = () => {
     return (
         <>
+        <div className='body_landing'>
             <Header/>
             <DivHero />
             <DivSobre/>
             <Footer/>
+        </div>
         </>
     )
 }

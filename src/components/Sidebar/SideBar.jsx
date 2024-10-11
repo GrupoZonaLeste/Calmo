@@ -34,7 +34,7 @@ const SideBar = () => {
             <Link to={"/"} className='btnSair_sidebar'>
                 <li className='liClass'>
                     <img className='imgClass'src={Isair} alt="Icon Sair" />
-                    <p style={{color : '#F56A6A'}}>Sair</p>
+                    <p style={{color : '#F56A6A', margin:'0px'}}>Sair</p>
                 </li>
             </Link>
         </ul>

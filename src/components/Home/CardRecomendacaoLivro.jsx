@@ -4,10 +4,10 @@ import './CardRecomendacaoLivro.css'
 const CardRecomendacaoLivro = () => {
   return (
     <div className='CardLeitura'>
-        <h3>CONTINUA A SUA LEITURA</h3>
-        <p>Código Da Vinci</p>
-        <p>Página Lidas: 30</p>
-        <p>Porcentagem: 2%</p>
+        <h3 style={{margin: '0'}}>CONTINUA A SUA LEITURA</h3>
+        <p style={{margin: '0'}}>Código Da Vinci</p>
+        <p style={{margin: '0'}}>Página Lidas: 30</p>
+        <p style={{margin: '0'}}>Porcentagem: 2%</p>
     </div>
   )
 }

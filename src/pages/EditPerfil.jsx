@@ -4,7 +4,7 @@ import './EditPerfil.css'
 
 const EditPerfil = () => {
   return (
-    <div className='container'>
+    <div className='container_editPerfil'>
         <SideBar />
         <div className="DivEdtPerfil">
           <Form />
