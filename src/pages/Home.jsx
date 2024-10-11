@@ -10,7 +10,7 @@ const Home = () => {
     <div className='container_home'>
         <SideBar />
         <div className='DivCentral'>
-          <h1 className='titleUsuario'>Olá Usuário!</h1>
+          <h1 className='titleUsuario' style={{marginBottom: '0'}}>Olá Usuário!</h1>
           <CardTopo />
           <div className='DivRecomendacoes'>
               <CardMusica />
