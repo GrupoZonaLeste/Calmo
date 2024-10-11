@@ -10,10 +10,16 @@
     border-radius: 2vw;
     width: 14vw;
     box-shadow: 0px 0px 10px 0px rgba(56, 56, 56, 0.596);
+    transition: 0.2s all;
 }
 
 .CardPerfil > p {
     font-weight: 200;
+}
+
+.CardPerfil:hover{
+    box-shadow: 0px 0px 10px 0px #6ABDF5;
+
 }
 
 .ImgPerfil {
