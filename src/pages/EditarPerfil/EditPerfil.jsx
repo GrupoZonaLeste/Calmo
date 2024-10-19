@@ -1,10 +1,10 @@
-import SideBar from '../components/Sidebar/SideBar'
-import Form from '../components/EditPerfil/Form'
+import SideBar from '../../components/Sidebar/SideBar'
+import Form from '../../components/EditPerfil/Form'
 import './EditPerfil.css'
 
 const EditPerfil = () => {
   return (
-    <div className='container'>
+    <div className='container_modos'>
         <SideBar />
         <div className="DivEdtPerfil">
           <Form />

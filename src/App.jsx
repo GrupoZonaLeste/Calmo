@@ -1,13 +1,18 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"
-import EditPerfil from "./pages/EditPerfil"
-import LandingPage from "./pages/LandingPage"
+import Home from "./pages/Home/Home"
+import EditPerfil from "./pages/EditarPerfil/EditPerfil"
+import LandingPage from "./pages/LandingPage/LandingPage"
 import FormLogin from "./components/FormLogin/FormLogin";
 import ForgotPassword from "./components/EsqueceuSenha/ForgotPassword";
 import VerifyCode from "./components/EsqueceuSenha/VerifyCode"
 import ResetPassword from "./components/EsqueceuSenha/ResetPassword"
 import Cadastro from "./components/Cadastro/Cadastro";
+import Anotacoes from "./pages/ModoAnotações/Anotacoes";
+import Musica from "./pages/ModoMusica/Musica";
+import Leitura from "./pages/ModoLeitura/Leitura";
+import Fitness from "./pages/ModoFitness/Fitness";
+import Agenda from "./pages/ModoAgenda/Agenda"
 
 function App() {
   
@@ -23,6 +28,12 @@ function App() {
         <Route path="esqueci_senha" element={<ForgotPassword/>} />
         <Route path="verify-code" element={<VerifyCode/>} />
         <Route path="resetar-senha" element={<ResetPassword/>} />
+        <Route path="anotacoes" element={<Anotacoes/>}/>
+        <Route path="musicas" element={<Musica/>}/>
+        <Route path="leitura" element={<Leitura/>}/>
+        <Route path="fitness" element={<Fitness/>}/>
+        <Route path="agenda" element={<Agenda/>}/>
+        
       </Routes>
     </BrowserRouter>
 

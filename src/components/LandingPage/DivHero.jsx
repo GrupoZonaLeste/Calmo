@@ -9,7 +9,7 @@ const DivHero = () => {
           <div id='divBlackBG'>
             <h1>Está Estressado?</h1>
           </div>
-            <img alt='Logo Calmô!' src='src\assets\icons\calmo-logos\Logo-black.png' className='imgHero'/>
+            <img alt='Logo Calmô!' src='src\assets\images\Logo-black.png' className='imgHero'/>
         </div>
         <div id='LinhaDivHero'></div>
     </>

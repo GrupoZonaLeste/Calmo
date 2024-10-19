@@ -5,18 +5,25 @@
     justify-content: space-between;
     background-color: #3A3A3A;
     color: #FFFFFF;
-    padding: 3vw;
+    padding: 2vw;
+    height: 75%;
     border-radius: 2vw;
-    height: 12vw;
     width: 14vw;
     box-shadow: 0px 0px 10px 0px rgba(56, 56, 56, 0.596);
+    transition: 0.2s all;
 }
 
 .CardPerfil > p {
     font-weight: 200;
 }
 
+.CardPerfil:hover{
+    box-shadow: 0px 0px 10px 0px #6ABDF5;
+
+}
+
 .ImgPerfil {
     height: 8vw;
     width: 8vw;
+    margin-bottom: 3vw;
 }

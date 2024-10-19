@@ -1,8 +1,4 @@
-body {
-    background-color: #212121;
-}
-
-header {
+.header_Header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,6 +21,23 @@ p {
 #menuEntrarCadastro {
     display: flex;
     gap: 1.5vw;
+    width: 15vw;
+    padding: 0.5vw;
+}
+
+.div_p_btnEntrar{
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_p_btnCadastrar{
+    width: 12vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #icon-calmo-white {
@@ -33,11 +46,17 @@ p {
 
 .btn_Header {
     color: #F9F9F9;
-    align-self: center;    
+    align-self: center;   
+    text-decoration: none;
+   transition: 0.1s all;
 }
 .btn_Header:visited {
     color: #F9F9F9;
 }
 .btn_Header:hover {
-    font-size: 105%;
+    color: #6ABDF5;
+    border-bottom: solid 0.1vw #6ABDF5;
+    padding: 0.2vw;
+    font-weight: 400;
+    font-size: 107%;
 }

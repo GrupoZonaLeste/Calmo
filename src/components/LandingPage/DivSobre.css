@@ -8,9 +8,8 @@ p {
 }
 
 .liSobre {
-
     font-family: 'montserrat-Medium';
-    font-size: 1.8vw;
+    font-size: 1.6vw;
     margin-bottom: 0.8em;
 }
 
@@ -37,15 +36,21 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    font-size: larger;
 }
 
 .SobreCard1 {
+    text-align: justify;
     grid-area: 1 / 1 / 3 / 3;
 }
 .SobreCard2 {
+    text-align: justify;
     grid-area: 3 / 1 / 5 / 3;
 }
 .SobreCard3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     grid-area: 1 / 3 / 4 / 4;
 }
 .SobreCard4 {
@@ -57,4 +62,47 @@ p {
 
 .SobreCard4 > p {
     text-decoration:underline;
+}
+
+.btn_pv_Landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 5vw;
+}
+
+.btn_primeiravez_Landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    border: none;
+    font-weight: 600;
+    color: #f9f9f9;
+    height: 2vw;
+    width: 20vw;
+    font-size: 0.8vw;
+    text-decoration: none;
+    
+    background: linear-gradient(271deg, #2e88c5, #014a7b);
+    background-size: 600% 600%;
+    animation: AnimationName 4s ease infinite;
+
+    transition: 0.10s all;
+
+}
+
+.btn_primeiravez_Landing:hover{
+    cursor: pointer;
+    height: 2.5vw;
+    width: 22vw;
+    /*font-size: 0.9vw;*/
+}
+
+@keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
 }

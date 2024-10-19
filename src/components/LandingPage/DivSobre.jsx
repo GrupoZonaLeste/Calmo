@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './DivSobre.css'
 import '../../index.css'
 
@@ -8,7 +9,7 @@ const DivSobre = () => {
             <div className='divSobre'>
                 <div className='divSobreGrid'>
                     <div className='cards SobreCard1'>
-                        <h2>Sobre o Camô!✋</h2>
+                        <h2>Sobre o Calmô!✋</h2>
                         <p>
                         Na correria do dia a dia, é fácil se perder em um turbilhão de tarefas e responsabilidades. O Calmô te ajuda a encontrar o equilíbrio perfeito entre produtividade e bem-estar. Com nossas ferramentas e técnicas personalizadas, você aprenderá a gerenciar seu tempo de forma eficiente, reduzir o estresse e aumentar sua criatividade. Desenvolva hábitos saudáveis e alcance seus objetivos com mais calma e foco.
                         <br></br>
@@ -35,8 +36,10 @@ const DivSobre = () => {
                         </ul>
                     </div>
                     <div className='cards SobreCard4'>
-                        <h2>Primeira Vez?</h2>
-                        <p>Clique aqui para criar uma conta</p>
+                        <h2>Primeira Vez? 🤩</h2>
+                        <div className="btn_pv_Landing">
+                            <Link to="/cadastro" className='btn_primeiravez_Landing'><p>CLIQUE AQUI PARA CRIAR UMA CONTA</p></Link>
+                        </div>
                     </div>
                 </div>
             </div>

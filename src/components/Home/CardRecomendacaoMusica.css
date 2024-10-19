@@ -5,13 +5,18 @@
     justify-content: space-between;
     background-color: #3A3A3A;
     color: #FFFFFF;
-    padding: 3vw;
+    padding: 2vw;
+    height: 75%;
     border-radius: 2vw;
-    height: 12vw;
     box-shadow: 0px 0px 10px 0px rgba(56, 56, 56, 0.596);
+    transition: 0.2s all;
 }
 
 .CardMusica > p {
     margin: 1.2vh;
     font-weight: 200;
+}
+
+.CardMusica:hover{
+    box-shadow: 0px 0px 10px 0px #6ABDF5;
 }

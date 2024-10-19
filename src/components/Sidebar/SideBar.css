@@ -1,4 +1,3 @@
-
 .navClass{
     display: flex;
     flex-direction: column;
@@ -6,15 +5,21 @@
     align-items: center;
     text-align: center;
     padding: 1vw;
-    width: 7vw;
+    width: 5vw;
     height: 45vw;
     margin: 2vw;
     background-color: #3A3A3A;
     color: #FFFFFF;
     border-radius: 1vw;
-
 }
-
+.navClass:hover {
+    width: 7vw;
+    transition: 0.3s all;
+}
+.navClass:not(:hover){
+    width: 5vw;
+    transition: 0.3s all;
+}
 .ulClass{
     display: flex;
     flex-direction: column;
@@ -23,16 +28,19 @@
     width: 100%;
     height: 100%;
     padding: 0;
+    
 }
 
 .liClass{
     display: flex;
     flex-direction:column;
+    justify-content: center;
     align-items: center;
     list-style: none;
     transition: 0.5 all;
     background-color: aqua;
     width: 0vw;
+    height: 0px;
 }
 
 .imgClass{
@@ -47,8 +55,23 @@
 }
 .pClass{
     margin-top: 0.1vw;
+    font-weight: 500;
+    color: #F9F9F9;
+    text-decoration: none;
 }
-
+a:link { 
+    text-decoration: none; 
+  } 
+a:visited { 
+    text-decoration: none; 
+  } 
+a:hover { 
+    text-decoration: none; 
+  } 
+a:active { 
+    text-decoration: none; 
+  }
 .btnSair_sidebar {
     text-decoration: none;
+    font-weight: 600;
 }
