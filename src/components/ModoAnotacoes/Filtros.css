@@ -1,0 +1,55 @@
+.containerFiltros {
+    padding: 0.5vw;
+}
+.boxFiltros{
+    padding: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 20vw;
+    height: 50vh;
+    background-color: #3A3A3A;
+    border-radius: 1vw;
+}
+
+.boxFiltros > h3 {
+    color: #6ABDF5;
+    font-size: xx-large;
+    margin: 0;
+}
+
+.inputFiltrosAnotacoes {
+    background-color: transparent;
+    border: 1px solid #f9f9f9;
+    color: #f9f9f9;
+    width: 80%;
+    height: 6%;
+    border-radius: 0.5vw;
+    margin-top: 1.3vh;
+    padding-left: 0.5vw;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    color: #f9f9f9;
+}
+
+#btnPesquisarFiltros {
+    background-color: #6ABDF5;
+    border: none;
+    height: 4vh;
+    width: 8vw;
+    font-weight: bold;
+    border-radius: 1vw;
+    transition: all 0.1s;
+}
+#btnPesquisarFiltros:hover {
+    border: 1px solid #f9f9f9;
+    cursor: pointer;
+    width: 8.5vw;
+    font-size: 90%;
+    transition: all 0.2s;
+
+}

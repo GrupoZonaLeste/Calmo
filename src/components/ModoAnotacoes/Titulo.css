@@ -1,0 +1,42 @@
+.titulo-anotacoes {
+    font-size: 3vw;
+    font-family: "montserrat-Bold";
+    color: #f9f9f9;
+    margin-bottom: 0;
+}
+
+.subtitulo-anotacoes {
+    margin-top: 0;
+    font-family: "montserrat-Thin";
+    font-style: italic;
+    color: #f9f9f9;
+}
+
+.containerTituloAnotacaoes{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    align-items: center;
+    padding: 0.5vw;
+    margin-bottom: 4vh;
+}
+
+#btn_novaAnotacao {
+    width: 3vw;
+    height: 6vh;
+    font-size: 1.8vw;
+    background-color: transparent;
+    border: 1px solid #f9f9f9b9;
+    color: #f9f9f9b9;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+#btn_novaAnotacao:hover {
+    border: 1px solid #f9f9f9;
+    color: #f9f9f9;
+    font-size: 2vw;
+    width: 3.2vw;
+    height: 6.4vh;
+}

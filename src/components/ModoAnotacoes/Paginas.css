@@ -1,0 +1,28 @@
+.tituloPaginas {
+    color: #f9f9f9;
+}
+
+.containerPaginas {
+    padding: 0.5vw;
+}
+
+.ListaPaginas{
+    background-color: #3A3A3A;
+    width: 50vw;
+    height: 65vh;
+    border-radius: 1vw;
+    overflow-y: scroll;
+}
+
+.ListaPaginas::-webkit-scrollbar {
+    background: #616262; 
+    border-radius: 0 1vw 1vw 0 ;
+}
+.ListaPaginas::-webkit-scrollbar-thumb {
+    background: #6ABDF5;
+    border-radius: 0 1vw 1vw 0 ;
+}
+
+.ListaPaginas::-webkit-scrollbar-track {
+    background: transparent; 
+}

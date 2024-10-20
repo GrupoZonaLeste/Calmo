@@ -1,0 +1,8 @@
+.checkboxTags label{
+    font-family: "montserrat-Thin";
+    font-style: italic;
+}
+
+.checkboxTags input:hover {
+    cursor: pointer;
+}

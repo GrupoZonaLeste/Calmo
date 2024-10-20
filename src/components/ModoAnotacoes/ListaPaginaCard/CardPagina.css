@@ -1,0 +1,47 @@
+.cardPagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5vw 2vw 1vw 2vw;
+    margin: 0.8vw;
+    height: 7.5vh;
+    background-color: #535353;
+    color: #f9f9f9;
+    border-radius: 1vw;
+    transition: all 0.2s;
+}
+
+.cardPagina:hover{
+    border: 1px solid #f9f9f9;
+    cursor: pointer;
+    height: 10vh;
+    transition: all 0.2s;
+}
+
+.subpaginas {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.3s;
+}
+
+.subpaginas:hover {
+    cursor: pointer;
+    background-color: #3a3a3a85;
+    border-radius: 2vw;
+    padding-inline: 0.9vw;
+    transition: all 0.1s;
+}
+
+.remMargin{
+    margin: 0;
+}
+
+.italicFont {
+    font-style: italic;
+}
+
+.setaBaixo-cardPagina {
+    width: 1.5vw;
+    margin-left: 0.5vw;
+}
