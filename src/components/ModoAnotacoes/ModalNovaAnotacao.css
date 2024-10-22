@@ -1,0 +1,77 @@
+.bg-modalNovaAnotacao{
+    background: rgb(33,33,33);
+    background: linear-gradient(90deg, rgba(33,33,33,0.404) 0%, rgba(0,0,0,0.404) 30%, rgba(0, 0, 0, 0.404) 100%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    padding-left: 10%;
+}
+
+.formNovaAnotacao {
+    color: #f9f9f9;
+    width: 50%;
+    height: 50vh;
+    background-color: #3A3A3A;
+    border-radius: 1.5vw;
+    box-shadow: 0px 4px 30.299999237060547px 14px rgba(0, 0, 0, 0.473);
+    padding: 0 3vh 3vh 3vh;
+    height: max-content;
+}
+
+.camposNovaAnotacao > input {
+    background-color: transparent;
+    border: 1px solid #f9f9f9;
+    color: #f9f9f9;
+    width: 80%;
+    height: 4vh;
+    border-radius: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+.btnCriarAnotacao{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.btnCriarAnotacao > button {
+    background-color: #6ABDF5;
+    border: none;
+    height: 4vh;
+    width: 8vw;
+    font-weight: bold;
+    border-radius: 1vw;
+    transition: all 0.1s;
+    margin-top: 5vh;
+}
+.btnCriarAnotacao > button:hover {
+    border: 1px solid #f9f9f9;
+    cursor: pointer;
+    width: 8.5vw;
+    font-size: 90%;
+    transition: all 0.2s;
+
+}
+
+.primeiraLinha-NovaAnotacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.primeiraLinha-NovaAnotacao > button {
+    background-color: transparent;
+    border: none;
+    color: #f9f9f9;
+    font-size: 1.5vw;
+    margin-top: 2vh;
+}
+.primeiraLinha-NovaAnotacao > button:hover {
+    color: #f9f9f9;
+    cursor: pointer;
+    background-color: #29282885;
+    border-radius: 2vw;
+    transition: all 0.1s;
+}
