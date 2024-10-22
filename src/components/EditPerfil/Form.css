@@ -1,6 +1,146 @@
-.DivPerfil{
+.container_EditPerfil{
     display: flex;
     justify-content: center;
     height: 100%;
     background-color: #3A3A3A;
+    border-radius: 2vw;
+}
+
+
+.form_EditPerfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+    margin-top: 3vw;
+    align-items: center;
+}
+
+.BtnVoltar_EditPerfil{
+    position: relative;
+    height: 2.5vw;
+    width: 1.5vw;
+    left: 4vw;
+    top: 2vw;
+    margin: 0;
+}
+
+.BtnVoltar_EditPerfil:hover{
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.input_FotoPerfil{
+    display: none;
+}
+
+.picture_FotoPerfil{
+    width: 10vw;
+    height: 10vw;
+    background-color: #616262;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: 0.3s all;
+    border: 2px dashed currentColor;
+    padding: 0.5vw;
+}
+
+.picture_imgFotoPerfil{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    border-radius: 100%;
+}
+
+.picture_FotoPerfil:hover{
+    color: #3A3A3A;
+    cursor: pointer;
+}
+
+.Span_picture_FotoPerfil{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.input_nomeEditPerfil{
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    pointer-events: none;
+    border: none;
+    cursor: auto;
+    width: 35vw;
+}
+
+.input_emailEditPerfil{
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    pointer-events: none;
+    border: none;
+    cursor: auto;
+    width: 45vw;
+}
+
+.input_telEditPerfil{
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    pointer-events: none;
+    border: none;
+    cursor: auto;
+    width: 25vw;
+}
+
+.input_nomeEditPerfil::placeholder,
+.input_emailEditPerfil::placeholder,
+.input_telEditPerfil::placeholder{
+    color: #fff;
+}
+
+.input_nomeEditPerfil.editable,
+.input_emailEditPerfil.editable,
+.input_telEditPerfil.editable{
+    border: 1px solid #fff;
+    border-radius: 1vw;
+    pointer-events: auto;
+}
+
+.input_nomeEditPerfil.editable:focus,
+.input_emailEditPerfil.editable:focus,
+.input_telEditPerfil.editable:focus{
+    border: 1px solid #fff;
+}
+
+.BtnEditar_EditPerfil{
+    background-color: transparent;
+    border: none;
+}
+
+.Linha{
+    display: flex;
+}
+
+.Img_LapisEdit{
+    height: 2vw;
+    width: 2vw;
 }
