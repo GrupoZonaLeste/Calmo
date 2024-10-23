@@ -1,0 +1,68 @@
+.container_Pagina {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.setaVoltar {
+    color: #f9f9f9;
+    font-size: 4vw;
+    margin-right: 1vw;
+}
+
+.setaVoltar:hover{
+    color: #c2c1c1;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.tituloAnotacao{
+    color: #f9f9f9;
+    display: flex;
+}
+
+.containerSubPaginas {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    width: 100%;
+    background-color: #3A3A3A;
+    border-radius: 1vw;
+}
+.containerSubPaginas > p{
+    color: #f9f9f9;
+    text-decoration: underline;
+    font-family: "montserrat-Regular";
+    margin-left: 4vh;
+}
+
+.containerSubPaginas > p:hover {
+    cursor: pointer;
+    color: #c2c1c1;
+}
+
+.textAreaAnotacao {
+    width: 99%;
+    height: 100%;
+    margin-top: 2vh;
+    background-color: transparent;
+    color: #f9f9f9;
+    font-size: 1.3vw;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.textAreaAnotacao::-webkit-scrollbar {
+    background: #616262; 
+    border-radius: 0 1vw 1vw 0 ;
+}
+.textAreaAnotacao::-webkit-scrollbar-thumb {
+    background: #6ABDF5;
+    border-radius: 0 1vw 1vw 0 ;
+}
+
+.textAreaAnotacao::-webkit-scrollbar-track {
+    background: transparent; 
+}

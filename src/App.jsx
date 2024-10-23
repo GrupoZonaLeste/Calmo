@@ -13,6 +13,7 @@ import Musica from "./pages/ModoMusica/Musica";
 import Leitura from "./pages/ModoLeitura/Leitura";
 import Fitness from "./pages/ModoFitness/Fitness";
 import Agenda from "./pages/ModoAgenda/Agenda"
+import PaginaAnotacoes from "./components/ModoAnotacoes/PaginaAnotacoes/PaginaAnotacoes";
 
 function App() {
   
@@ -33,7 +34,7 @@ function App() {
         <Route path="leitura" element={<Leitura/>}/>
         <Route path="fitness" element={<Fitness/>}/>
         <Route path="agenda" element={<Agenda/>}/>
-        
+        <Route path="pagina_teste" element={<PaginaAnotacoes/>}/>
       </Routes>
     </BrowserRouter>
 

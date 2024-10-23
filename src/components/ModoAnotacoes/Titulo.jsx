@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Titulo.css'
 import './ModalNovaAnotacao.css'
+import { Link } from 'react-router-dom'
 
 const Titulo = () => {
   const [statusModal, setstatusModal] = useState(true)
@@ -25,9 +26,11 @@ const Titulo = () => {
             <h3>Tags</h3>
             <input />
           </div>
+          <Link to="/pagina_teste">
           <div className='btnCriarAnotacao'>
             <button>Criar Anotação</button>
           </div>
+          </Link>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 .bg-modalNovaAnotacao{
     background: rgb(33,33,33);
-    background: linear-gradient(90deg, rgba(33,33,33,0.404) 0%, rgba(0,0,0,0.404) 30%, rgba(0, 0, 0, 0.404) 100%);
+    background: linear-gradient(90deg, rgba(33,33,33,0.505) 0%, rgba(0,0,0,0.505) 30%, rgba(0, 0, 0, 0.505) 100%);
     width: 100vw;
     height: 100vh;
     display: flex;
