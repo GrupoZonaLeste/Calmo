@@ -1,0 +1,16 @@
+.logoutSpotify {
+    background-color: rgba(0, 0, 0, 0.139);
+    border: 1px solid rgb(245, 106, 106);
+    color: rgb(245, 106, 106);
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+    margin-top: 3vh;
+}
+
+.logoutSpotify:hover {
+    cursor: pointer;
+    border: 2px solid rgb(243, 25, 25);
+    color: rgb(243, 25, 25);
+    font-weight: bolder;
+    transition: all 0.1s;
+}
