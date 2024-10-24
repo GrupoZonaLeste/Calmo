@@ -103,7 +103,7 @@ const Form = () => {
               <img src={BtnEditar} alt="" className='Img_LapisEdit'/>
             </button>
           </div>
-          <button type="submit">SALVAR</button>
+          <button type="submit" className='btnSalvar_EditPerfil'>SALVAR</button>
         </form>
     </div>
   )

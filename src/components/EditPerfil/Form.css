@@ -144,3 +144,20 @@
     height: 2vw;
     width: 2vw;
 }
+
+.btnSalvar_EditPerfil{
+    background-color: #6ABDF5;
+    color: black;
+    border: none;
+    padding: 1vw;
+    font-size: 1vw;
+    font-weight: 900;
+    border-radius: 1.5vw;
+    width: 10vw;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.btnSalvar_EditPerfil:hover{
+    opacity: 0.3;
+}
