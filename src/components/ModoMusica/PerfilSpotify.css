@@ -1,0 +1,45 @@
+.perfilSpotify {
+    color: #f9f9f9;
+}
+.perfilSpotify > h2 {
+    margin: 0
+}
+
+.usuarioSpotify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usuarioSpotify > img {
+    width: 20%;
+    margin: 0;
+}
+.usuarioSpotify > h3 {
+    font-size: 180%;
+}
+
+.perfilSpotify-Tops {
+    display: flex;
+    justify-content: space-around;
+    gap: 2vw;
+}
+
+.topArtMus-PerfilSpotify {
+    background-color: #535353;
+    padding-inline: 1vh;
+    border-radius: 1vh;
+    width: 100%;
+}
+
+.topArtMus-PerfilSpotify > h3 {
+    color: #6ABDF5;
+    text-align: center;
+}
+
+.topArtMus-PerfilSpotify > ol > li {
+    font-size: x-large;
+    font-family: 'montserrat-Thin';
+    font-style: italic;
+    margin: 1vh 0;
+}
