@@ -8,6 +8,7 @@
     align-items: center;
     position: absolute;
     padding-left: 10%;
+    z-index: 9999;
 }
 
 .formNovaAnotacao {
@@ -41,7 +42,7 @@
     background-color: #6ABDF5;
     border: none;
     height: 4vh;
-    width: 8vw;
+    width: max-content;
     font-weight: bold;
     border-radius: 1vw;
     transition: all 0.1s;
@@ -50,7 +51,6 @@
 .btnCriarAnotacao > button:hover {
     border: 1px solid #f9f9f9;
     cursor: pointer;
-    width: 8.5vw;
     font-size: 90%;
     transition: all 0.2s;
 

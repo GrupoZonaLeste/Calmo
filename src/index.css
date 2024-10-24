@@ -43,3 +43,12 @@
     background-color: #212121;
     height: 100vh;
 }
+
+.resetLinks {
+    color: #f9f9f9;
+    text-decoration: none;
+}
+.resetLinks:visited {
+    color: #f9f9f9;
+    text-decoration: none;
+}

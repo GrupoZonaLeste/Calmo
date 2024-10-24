@@ -1,20 +1,24 @@
-.cardPagina {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5vw 2vw 1vw 2vw;
-    margin: 0.8vw;
-    height: 7.5vh;
+.containerCardPagina {
     background-color: #535353;
-    color: #f9f9f9;
+    padding: 0.8vw 2vw 1vw 2vw;
     border-radius: 1vw;
+    margin: 0.8vw;
+    height: max-content;
     transition: all 0.2s;
 }
 
-.cardPagina:hover{
+.cardPagina {
+    height: 7.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #f9f9f9;
+    transition: all 0.2s;
+}
+
+.containerCardPagina:hover{
     border: 1px solid #f9f9f9;
     cursor: pointer;
-    height: 10vh;
     transition: all 0.2s;
 }
 
@@ -23,6 +27,7 @@
     align-items: center;
     justify-content: space-evenly;
     transition: all 0.3s;
+    z-index: 30;
 }
 
 .subpaginas:hover {
@@ -33,6 +38,43 @@
     transition: all 0.1s;
 }
 
+
+.dadosCardPaginas {
+    display: none;
+}
+.dadosCardPaginas > div> div > ul > li {
+    font-family: 'montserrat-Thin';
+    color: #f9f9f9;
+    font-style: italic;
+}
+.dadosCardPaginas > div > div > h3 {
+    font-family: 'montserrat-Thin';
+    color: #f9f9f9;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.dadosCardPaginas > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dadosCardPaginas > button {
+    background-color: rgba(0, 0, 0, 0.139);
+    border: 1px solid rgb(245, 106, 106);
+    color: rgb(245, 106, 106);
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+    margin-top: 3vh;
+}
+
+.dadosCardPaginas > button:hover {
+    cursor: pointer;
+    border: 2px solid rgb(243, 25, 25);
+    color: rgb(243, 25, 25);
+    font-weight: bolder;
+    transition: all 0.1s;
+}
 .remMargin{
     margin: 0;
 }

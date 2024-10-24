@@ -23,7 +23,7 @@ const PaginaAnotacoes = () => {
                     <p>SubPagina2</p>
                     <p>SubPagina3</p>
                 </div>
-                <textarea className='textAreaAnotacao'></textarea>
+                <textarea className='textAreaAnotacao' placeholder='Faça suas anotações...'></textarea>
             </div>
         </div>
     )

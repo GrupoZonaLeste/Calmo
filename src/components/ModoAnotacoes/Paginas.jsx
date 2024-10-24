@@ -8,9 +8,7 @@ const Paginas = () => {
     <div className='containerPaginas'>
         <h3 className='tituloPaginas'>Páginas</h3>
         <div className='ListaPaginas'>
-          <Link to="/pagina_teste">
             <CardPagina/>
-          </Link>
             <CardPagina/>
             <CardPagina/>
             <CardPagina/>
