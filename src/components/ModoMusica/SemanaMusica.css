@@ -11,7 +11,7 @@
     height: 65vh;
     width: 30vw;
     border-radius: 1vw;
-    padding: 2vh;
+    padding: 2vh 2vh 0 2vh;
 }
 .container_SemanaMusica > h2{
     margin: 0;

@@ -3,7 +3,7 @@ import SideBar from '../../components/Sidebar/SideBar'
 import './Musica.css'
 import Titulo from '../../components/ModoMusica/Titulo'
 import SemanaMusica from '../../components/ModoMusica/SemanaMusica'
-import PerfilSpotify from '../../components/ModoMusica/PerfilSpotify'
+import EscutarAgora from '../../components/ModoMusica/EscutarAgora'
 
 
 const Musica = () => {
@@ -14,7 +14,7 @@ const Musica = () => {
           <Titulo/>
           <div className='mainModoMusica'>
             <SemanaMusica/>
-            <PerfilSpotify/>
+            <EscutarAgora/>
           </div>
         </div>
     </div>

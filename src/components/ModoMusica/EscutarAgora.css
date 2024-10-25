@@ -1,0 +1,112 @@
+.container_EscutarAgora {
+    background-color: #3A3A3A;
+    height: 65vh;
+    width: 30vw;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.container_EscutarAgora > h2{
+    margin: 0;
+}
+
+
+.perfilSpotify {
+    color: #f9f9f9;
+}
+.perfilSpotify > h2 {
+    margin: 0
+}
+
+.pesquisarMusicas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #535353;
+    border-radius: 1vw 1vw 0 0;
+    padding: 2vh 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 25%);
+    z-index: 3;
+}
+
+.inputPesquisarMusicas {
+    background-color: transparent;
+    border: 1px solid #f9f9f9;
+    color: #f9f9f9;
+    width: 80%;
+    height: 4vh;
+    border-radius: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+.listaMusicas {
+    height: 100%;
+    overflow-y: scroll; 
+}
+
+.listaMusicas > p:nth-child(even) {
+    background-color: #3A3A3A;
+    padding: 2vh 1vh ;
+    margin: 0;
+}
+
+.listaMusicas > p:nth-child(odd) {
+    background-color: #535353;
+    margin: 0;
+    padding: 2vh 1vh;
+}
+
+.listaMusicas::-webkit-scrollbar {
+    background: #616262; 
+}
+.listaMusicas::-webkit-scrollbar-thumb {
+    background: #6ABDF5;
+}
+
+.listaMusicas::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.tocandoAgora {
+    background-color: #535353;
+    padding: 1vh 2vh;
+    border-radius: 0 0 1vw 1vw;
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5vh;
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 25%);
+}
+
+.tocandoAgora > div > h3 {
+    margin: 0;
+} 
+
+.infoMusicaTocandoAgora {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} 
+
+.infoMusicaTocandoAgora > button {
+    color: #f9f9f9;
+    background-color: transparent;
+    border: 1px solid #f9f9f9;
+    border-radius: 0.8vh;
+    width: max-content;
+    padding: 0.5vh 1vh;
+    font-weight: bolder;
+}
+
+.infoMusicaTocandoAgora > button:hover {
+    color: #bbbaba;
+    border: 1px solid #bbbaba;
+    cursor: pointer;
+}
+
+.capaAlbumTeste {
+    width: 8.5vh;
+    height: 8.5vh;
+    background-color: black;
+}
