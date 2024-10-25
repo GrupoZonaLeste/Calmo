@@ -13,6 +13,7 @@ import Musica from "./pages/ModoMusica/Musica";
 import Leitura from "./pages/ModoLeitura/Leitura";
 import Fitness from "./pages/ModoFitness/Fitness";
 import Agenda from "./pages/ModoAgenda/Agenda"
+import Grifos from "./pages/ModoLeitura/Grifos";
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
         <Route path="anotacoes" element={<Anotacoes/>}/>
         <Route path="musicas" element={<Musica/>}/>
         <Route path="leitura" element={<Leitura/>}/>
+        <Route path="meus_grifos" element={<Grifos/>}/>
         <Route path="fitness" element={<Fitness/>}/>
         <Route path="agenda" element={<Agenda/>}/>
         

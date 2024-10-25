@@ -1,0 +1,166 @@
+.container_calendarLeitura{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30vw;
+    background-color: #2a2a2a;
+    padding: 2vw;
+    border-radius: 1vw;
+    color: #fff;
+    transition: 0.3s all;
+}
+
+.container_calendarLeitura:hover{
+    box-shadow: 0px 0px 10px 1px #5daeff9c;
+}
+
+.react-calendar{
+    width: 100%;
+    background-color: #2a2a2a;
+    border: none;
+}
+
+
+.title_frequenciaLeitura{
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    margin: 0;
+    margin-bottom: 1vw;
+    color: #5daeff;
+    font-weight: 600;
+    font-size: 1.8vw;
+}
+
+.react-calendar__navigation{
+    display: flex;
+    gap: 1vw;
+}
+
+.react-calendar__navigation button{
+    color: #fff;
+    background-color: #333;
+    pointer-events: none;   
+    border: 1px solid #a0a0a0;
+    border-radius: 10px;
+    padding: 7px;
+    font-size: 1vw;
+}
+
+.react-calendar__navigation button:disabled{
+    background-color: transparent;
+}
+
+
+abbr{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: 100;
+}
+
+.react-calendar__month-view__weekdays{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #5daeff;
+    padding: 0;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+.react-calendar__tile{
+    background-color: #4f4f4f;
+    color: #fff;
+    border-radius: 100%;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3vw;
+    height: 3vw;
+    transition: 0.1s all;
+}
+
+.react-calendar__tile:hover{
+    opacity: 0.3;
+}
+
+.react-calendar__tile--now{
+    background-color: #5daeff;
+    border: 1px solid #2c7ac9;
+    color: #fff;
+    width: 3vw;
+    height: 3vw;
+}
+
+.react-calendar__tile--active{
+    color: #fff;
+}
+
+.react-calendar__tile--highlight{
+    background-color: #4CAF50;
+    color: #fff;
+    width: 3vw;
+    height: 3vw;
+}
+
+.react-calendar__month-view__days {
+    display: grid !important; 
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5vw;
+    justify-items: center;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth{
+    display: grid !important;
+    color: #a0a0a0;
+    background-color: #333;
+    border: solid 1px rgba(255, 255, 255, 0.411);
+    width: 3vw;
+    height: 3vw;
+    pointer-events: none;
+}
+
+.container_Leitura{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.MeusGrifos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    background-color: #2a2a2a;
+    padding: 2vw;
+    border-radius: 1vw;
+    color: #fff;
+    transition: 0.3s all;
+    cursor: pointer;
+}
+
+.MeusGrifos:hover{
+    box-shadow: 0px 0px 10px 1px #5daeff9c;
+}
+
+.title_meusGrifos{
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    margin: 0;
+    margin-bottom: 1vw;
+    color: #5daeff;
+    font-weight: 600;
+    font-size: 1.8vw;
+    width: 15vw;
+}
+
+.MeusGrifos > p{
+    display: flex;
+    text-align: end;
+    margin: 0;
+}
