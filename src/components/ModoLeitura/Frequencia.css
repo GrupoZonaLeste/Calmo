@@ -40,7 +40,7 @@
 .react-calendar__navigation button{
     color: #fff;
     background-color: #333;
-    pointer-events: none;   
+    /*pointer-events: none;*/
     border: 1px solid #a0a0a0;
     border-radius: 10px;
     padding: 7px;
