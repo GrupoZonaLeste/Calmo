@@ -1,0 +1,167 @@
+.container_Preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    width: 90%;
+    height: 80vh;
+}
+
+.Livros_Adicionados{
+    text-align: center;
+    width: 80%;
+    border: 0.1vw solid #fff;
+    border-radius: 2vw;
+    padding: 1vw;
+    transition: 0.3s all;
+}
+
+
+.BtnAdd_leitura{
+    background-color: transparent;
+    color: #fff;
+    border: solid 0.1vw #fff;
+    height: 18vw;
+    width: 15vw;
+    font-size: 1vw;
+    cursor: pointer;
+    transition: 0.3s all; 
+    border-radius: 1vw;
+}
+
+.BtnAdd_leitura:hover{
+    opacity: 0.3;
+    background-color: #3b3b3b;
+}
+
+.btnAdd_leitura{
+    margin: 0;
+    width: 2vw;
+}
+
+.modalAddLivro_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(33, 33, 33, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalAddLivro_conteudo{
+    height: 40vw;
+    background-color: #333;
+    padding: 2vw;
+    border-radius: 2vw;
+    width: 40vw;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.title_addLivro{
+    margin-top: -4vw;
+    font-size: 1.5vw;
+    margin-bottom: 0;
+}
+
+.conteudo_Livro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.Label_AddLivro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vw;
+    width: 15vw;
+    border: solid 0.1vw #fff;
+    transition: 0.2s all;
+    cursor: pointer;
+    border-radius: 1vw;
+    overflow: hidden;
+}
+
+.Label_AddLivro:hover{
+    opacity: 0.3;
+}
+
+.Btnmais_Livro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    width: 3vw;
+    height: 3vw;
+}
+
+.input_addLivro{
+    display: none;
+}
+
+.inputs_AddLivro{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1vw;
+}
+
+.input_tituloAddLivro, .input_autorAddLivro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    width: 100%;
+} 
+
+.input_tituloLivro, .input_autorLivro{
+    padding: 0.5vw;
+    font-size: 1vw;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 0.5vw;
+    width: 50%;
+}
+
+.BtnFechar_modalAddLivro{
+    position: relative;
+    left: 18vw;
+    font-size: 2vw;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.BtnFechar_modalAddLivro:hover{
+    opacity: 0.3;
+}
+
+.BtnAdd_livro{
+    padding: 0.7vw;
+    width: 10vw;
+    background-color: #5daeff;
+    font-size: 1vw;
+    font-weight: bold;
+    border-radius: 2vw;
+    border: none;
+    transition: 0.2s all;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 1px #5daeff9c;
+}
+
+.BtnAdd_livro:hover{
+    opacity: 0.3;
+}
