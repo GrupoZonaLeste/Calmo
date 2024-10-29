@@ -13,7 +13,9 @@ import Fitness from "./pages/ModoFitness/Fitness";
 import Agenda from "./pages/ModoAgenda/Agenda"
 import Grifos from "./pages/ModoLeitura/Grifos";
 import PaginaAnotacoes from "./components/ModoAnotacoes/PaginaAnotacoes/PaginaAnotacoes";
-
+import DietaPage from "./pages/ModoFitness/Dieta";
+import RotinaPage from "./pages/ModoFitness/Rotina";
+import TreinoPage from "./pages/ModoFitness/Treinos"
 function App() {
   
 
@@ -33,6 +35,9 @@ function App() {
         <Route path="fitness" element={<Fitness/>}/>
         <Route path="agenda" element={<Agenda/>}/>
         <Route path="pagina_teste" element={<PaginaAnotacoes/>}/>
+        <Route path="dieta" element={<DietaPage/>}/>
+        <Route path="rotinas" element={<RotinaPage/>}/>
+        <Route path="treinos" element={<TreinoPage/>}/>
       </Routes>
     </BrowserRouter>
 
