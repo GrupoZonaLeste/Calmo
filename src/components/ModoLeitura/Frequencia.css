@@ -164,3 +164,27 @@ abbr{
     text-align: end;
     margin: 0;
 }
+
+@media (max-width: 768px) {
+    .container_calendarLeitura {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .title_frequenciaLeitura {
+        font-size: 3vw;
+    }
+
+    .react-calendar__navigation button {
+        font-size: 3vw;
+    }
+
+    
+}
+
+@media (max-width: 470px) {
+    .react-calendar__tile {
+        width: 8vw;
+        height: 8vw;
+    }
+}

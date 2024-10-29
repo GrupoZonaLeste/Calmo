@@ -43,3 +43,19 @@ img {
     height: 1vh;
     border-radius: 1vw;
 }
+
+@media (max-width: 768px) {
+    .divHero {
+        padding: 5vh 2vw;
+        height: auto;
+    }
+
+    #divBlackBG {
+        font-size: 5vw;
+        padding: 4vw;
+    }
+
+    .imgHero {
+        width: 80vw;
+    }
+}

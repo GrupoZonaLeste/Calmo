@@ -56,3 +56,13 @@
     transition: all 0.2s;
 
 }
+
+@media (max-width: 768px) {
+    .boxFiltros{
+        width: 100%;
+    }
+
+    #btnPesquisarFiltros{
+        padding: 1.5vw;
+    }
+}

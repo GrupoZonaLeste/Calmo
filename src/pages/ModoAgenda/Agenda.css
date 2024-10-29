@@ -209,3 +209,32 @@
   border-color: #4285f4; /* Cor ao focar */
   box-shadow: 0 0 5px rgba(66, 133, 244, 0.5); /* Sombra ao focar */
 }
+
+@media (max-width: 470px) {
+  .mainAgenda {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5vw;
+  }
+
+  .modoagenda{
+    height: 100%;
+  }
+
+  .modoagenda > h1 {
+    font-size: 8vw;
+    text-align: center;
+  }
+
+  .modoagenda > p {
+    text-align: center;
+  }
+
+  .react-calendar {
+    padding: 3vw;
+    border-radius: 2vw;
+  }
+}

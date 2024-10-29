@@ -40,3 +40,12 @@
 .subtitle_grifos{
     font-weight: 500;
 }
+
+@media (max-width: 470px) {
+    .BtnVoltar_meusGrifos {
+        position: absolute;
+        height: 7vw;
+        width: 6vw;
+        font-size: 2.3vw;
+    }
+}

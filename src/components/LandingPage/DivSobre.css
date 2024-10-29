@@ -106,3 +106,103 @@ p {
     50%{background-position:100% 50%}
     100%{background-position:0% 51%}
 }
+
+@media (max-width: 920px) {
+    .divSobreGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .SobreCard3 {
+        grid-area: auto;
+    }
+
+    .SobreCard4 {
+        grid-area: auto;
+    }
+
+    .liSobre{
+        font-size: 2vw;
+    }
+
+    h2{
+        font-size: 3vw;
+    }
+
+    .btn_pv_Landing{
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn_primeiravez_Landing{
+        height: 6vw;
+        width: 30vw;
+        font-size: 1.2vw;
+    }
+
+    .btn_primeiravez_Landing:hover{
+        height: 8vw;
+        width: 34vw;
+        font-size: 1.4vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .divSobreGrid {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    .cards {
+        font-size: 4vw;
+        padding: 5vw;
+    }
+
+    .btn_primeiravez_Landing {
+        width: 50%;
+        font-size: 1vw;
+    }
+
+    .btn_primeiravez_Landing:hover{
+        width: 90%;
+    }
+
+    h2{
+        font-size: 5vw;
+    }
+
+    p{
+        font-size: 4vw;
+    }
+
+    .liSobre{
+        font-size: 3vw;
+    }
+
+    .btn_primeiravez_Landing > p{
+        font-size: 2vw;
+    }
+
+    @media (max-width: 480px) {
+        p{
+            font-size: 5vw;
+        }
+
+        h2{
+            font-size: 6vw;
+        }
+
+        .liSobre{
+            font-size: 4vw;
+        }
+
+        .btn_primeiravez_Landing{
+            width: 80%;
+        }
+
+        .btn_primeiravez_Landing > p{
+            font-size: 3vw;
+        }
+    }
+
+}

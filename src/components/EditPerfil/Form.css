@@ -136,7 +136,15 @@
     border: none;
 }
 
+.Linha-Down{
+    display: flex;
+}
+
 .Linha{
+    display: flex;
+}
+
+.Linha2, .Linha3{
     display: flex;
 }
 
@@ -160,4 +168,102 @@
 
 .btnSalvar_EditPerfil:hover{
     opacity: 0.3;
+}
+
+@media (max-width: 900px) {
+    .picture_FotoPerfil{
+        width: 20vw;
+        height: 20vw;
+    }
+
+    .Linha-Down{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .BtnVoltar_EditPerfil{
+        height: 3.5vw;
+        width: 2.5vw;
+        left: 0vw;
+        top: 3vw;
+    }
+    .input_nomeEditPerfil{
+        font-size: 4.5vw;
+        width: 45vw;
+    }
+
+    .Img_LapisEdit{
+        height: 4vw;
+        width: 4vw;
+    }
+
+    .input_emailEditPerfil{
+        font-size: 4.5vw;
+        width: 60vw;
+    }
+
+    .input_telEditPerfil{
+        font-size: 4.5vw;
+        width: 44vw;
+    }
+
+    .Linha3{
+        margin-top: 4vw;
+    }
+
+    .Linha{
+        margin-bottom: -6vw;
+
+    }
+
+    .btnSalvar_EditPerfil{
+        width: 18vw;
+        height: 7vw;
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 470px) {
+    .container_EditPerfil{
+        height: 86vh;
+    }
+
+    .picture_FotoPerfil{
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .input_nomeEditPerfil {
+        font-size: 6.5vw;
+        width: 60vw;
+    }
+
+    .Img_LapisEdit {
+        height: 6vw;
+        width: 6vw;
+    }
+
+    .input_telEditPerfil {
+        font-size: 5.5vw;
+        width: 60vw;
+    }
+
+    .BtnVoltar_EditPerfil {
+        height: 5.5vw;
+        width: 3.5vw;
+    }
+
+    .Linha {
+        margin-bottom: -15vw;
+    }
+
+    .form_EditPerfil{
+        height: 95%;
+    }
+
+    .btnSalvar_EditPerfil {
+        width: 30vw;
+        height: 10vw;
+        font-size: 4vw;
+    }
 }

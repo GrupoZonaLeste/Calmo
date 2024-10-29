@@ -60,6 +60,12 @@
     color: #F9F9F9;
     text-decoration: none;
 }
+
+.pSair{
+    color : #F56A6A;
+    margin: 0px;
+}
+
 a:link { 
     text-decoration: none; 
   } 
@@ -75,4 +81,80 @@ a:active {
 .btnSair_sidebar {
     text-decoration: none;
     font-weight: 600;
+}
+
+@media (max-width: 1250px) {
+    .navClass{
+        height: 85%;
+        padding: 3vw;
+    }
+}
+
+@media (max-width: 1170px) {
+    .navClass{
+        height: 100%;
+        padding: 3vw;
+    }
+
+    .imgClass{
+        height: 4vw;
+        width: 4vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .navClass{
+        padding: 4vw;
+        height: 85%;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .navClass {
+        width: 12vw;
+        height: auto;
+        margin: 1vw 0;
+    }
+    .navClass:hover{
+        width: 12vw;
+    }
+    .navClass:not(:hover){
+        width: 12vw;
+    }
+
+    .imgClass {
+        height: 6vw;
+        width: 6vw;
+    }
+
+    .pClass{
+        font-size: 2.5vw;
+    }
+
+    .pSair{
+        font-size: 2.5vw
+    }
+}
+
+@media (max-width: 470px) {
+    .navClass{
+        flex-direction: row;
+        width: 90%;
+    }
+
+    .ulClass{
+        flex-direction: row;
+        width: 90%;
+    }
+    .navClass:hover{
+        width: 90%;
+    }
+    .navClass:not(:hover){
+        width: 90%;
+    }
+    .imgClass{
+        height: 8vw;
+        width: 8vw;
+    }
 }

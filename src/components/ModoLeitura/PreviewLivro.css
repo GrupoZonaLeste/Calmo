@@ -165,3 +165,18 @@
 .BtnAdd_livro:hover{
     opacity: 0.3;
 }
+
+@media (max-width: 768px) {
+    .BtnAdd_leitura {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .BtnFechar_modalAddLivro {
+        font-size: 4vw;
+    }
+
+    .title_addLivro {
+        font-size: 4vw;
+    }
+}

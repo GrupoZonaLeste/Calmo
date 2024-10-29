@@ -13,3 +13,116 @@
     color: #f9f9f9;
     margin-bottom: 0;
 }
+
+.Div-Central{
+    display: flex; 
+    flex-Direction: row;
+}
+
+@media (max-width: 1024px) {
+
+    .Div_leftLeitura, .Div_rightLeitura {
+        width: 100%;
+    }
+
+    .title_mdLeitura {
+        font-size: 5vw;
+    }
+}
+
+@media (max-width: 764px) {
+    .Div-Central{
+        flex-direction: column;
+    }
+    p{
+        font-size: 3vw;
+    }
+    .BtnAdd_leitura {
+        height: 35vw;
+        width: 30vw;
+    }
+    .container_Leitura{
+        height: 60vh;
+        width: 90%;
+        margin-left: 2vw;
+    }
+    span{
+        font-size: 2vw;
+    }
+
+    .react-calendar__navigation{
+        font-size: 2vw;
+    }
+    .MeusGrifos{
+        width: 100%;
+    }
+    .title_meusGrifos{
+        width: 100%;
+        font-size: 2.8vw;
+    }
+
+    .modalAddLivro_conteudo{
+        height: 77vw;
+
+    width: 62vw;
+    }
+    .title_addLivro {
+        font-size: 3vw;
+    }
+
+    .input_tituloLivro, .input_autorLivro {
+        padding: 0.5vw;
+    font-size: 2vw;
+    } 
+
+    .BtnAdd_livro{
+        padding: 2.7vw;
+    font-size: 2vw;
+    width: auto;
+    }
+
+}
+
+@media (max-width: 470px) {
+    .title_mdLeitura {
+        font-size: 8vw;
+    }
+
+    .BtnAdd_leitura {
+        height: 70vw;
+        width: 53vw;
+    }
+    .btnAdd_leitura {
+        margin: 0;
+        width: 10vw;
+    }
+    p{
+        font-size: 4vw;
+    }
+
+    .Div-Central{
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+
+    .react-calendar__tile {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .title_frequenciaLeitura {
+        font-size: 5vw;
+    }
+
+    span {
+        font-size: 4vw;
+    }
+
+    .MeusGrifos{
+        padding: 3vw;
+    }
+
+    .title_meusGrifos{
+        font-size: 4.8vw;
+    }
+}

@@ -2,3 +2,26 @@
     display: flex;
     justify-content: space-around;
 }
+
+@media (max-width: 768px) {
+    .mainModoMusica {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2vw;
+    }
+
+}
+
+@media (max-width:470px){
+    .container_modos {
+        display: flex;
+        flex-direction: column-reverse;
+        background-color: #212121;
+    }
+
+    .topArtistasSemana {
+        margin-bottom: 5vw;
+    }
+
+}

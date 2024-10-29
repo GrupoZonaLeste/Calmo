@@ -14,3 +14,30 @@
     font-weight: bolder;
     transition: all 0.1s;
 }
+
+@media (max-width: 768px) {
+
+    .titulo-anotacoes {
+        font-size: 6vw;
+    }
+    .subtitulo-anotacoes {
+        font-size: 3vw;
+    }
+    .logoutSpotify {
+        padding: 2vw;
+        font-size: 2vw;
+    }
+    .containerTituloAnotacaoes > div{
+        margin-left: 4vw;
+        width: 73%;
+    }
+
+    .semanamusica{
+        margin-left: 4vw;
+    }
+
+    .container_SemanaMusica {
+        width: 88%;
+        padding: 3vw;
+    }
+}

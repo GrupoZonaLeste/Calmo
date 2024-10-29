@@ -26,3 +26,9 @@
 .ListaPaginas::-webkit-scrollbar-track {
     background: transparent; 
 }
+
+@media (max-width: 768px) {
+    .ListaPaginas{
+        width: 100%;
+    }
+}

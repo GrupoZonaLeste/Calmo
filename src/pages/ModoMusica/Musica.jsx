@@ -10,7 +10,7 @@ const Musica = () => {
     return (
     <div className='container_modos'>
         <SideBar/>
-        <div>
+        <div className='DivCentral'>
           <Titulo/>
           <div className='mainModoMusica'>
             <SemanaMusica/>

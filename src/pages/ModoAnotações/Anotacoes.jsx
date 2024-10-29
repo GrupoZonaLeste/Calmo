@@ -10,7 +10,7 @@ const Anotacoes = () => {
     <>
     <div className='container_modos'>
       <SideBar/>
-      <div>
+      <div className='DivCentral'>
         <Titulo/>
         <div className='mainAnotacoes'>
           <Paginas/>
