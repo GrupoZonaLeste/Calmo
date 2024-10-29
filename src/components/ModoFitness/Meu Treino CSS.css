@@ -1,0 +1,120 @@
+/* Estilos gerais */
+.meutreino-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1E1E1E; /* Fundo escuro */
+    color: white;
+}
+
+.meutreino-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barra lateral */
+.meutreino-sidebar {
+    width: 15%;
+    background-color: #292929;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.meutreino-sidebar h2 {
+    color: #8AC;
+}
+
+.meutreino-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.meutreino-sidebar ul li {
+    margin: 10px 0;
+}
+
+.meutreino-sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Conteúdo principal */
+.meutreino-content {
+    width: 85%;
+    padding: 20px;
+    text-align: center;
+}
+
+.meutreino-h1 {
+    margin-bottom: 20px;
+    color: #8AC;
+}
+
+/* Tabela de Treino */
+.meutreino-workout-table {
+    margin-bottom: 40px;
+}
+
+.meutreino-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meutreino-thead th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.meutreino-tbody td {
+    background-color: #444;
+    padding: 10px;
+    text-align: center;
+}
+
+.meutreino-table th, table td {
+    border: 1px solid #555;
+}
+
+.meutreino-input[type="checkbox"] {
+    transform: scale(1.5);
+}
+
+/* Estatísticas */
+.meutreino-statistics {
+    margin-bottom: 40px;
+}
+
+.meutreino-progress {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.meutreino-progress {
+    width: 100%;
+    height: 20px;
+}
+
+/* Personalização */
+.meutreino-customization {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#colorPicker {
+    margin-right: 10px;
+}
+
+.meutreino-button {
+    background-color: #8AC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.meutreino-button:hover {
+    background-color: #5A8;
+}

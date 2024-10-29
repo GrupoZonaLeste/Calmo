@@ -1,0 +1,426 @@
+/* Estilos gerais */
+
+.modofitness-body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background-color: #212121; /* Fundo escuro */
+
+    color: white;
+
+}
+
+
+
+.modofitness-container {
+
+    display: flex;
+
+    height: 100vh;
+
+}
+
+
+
+/* Barra lateral */
+
+.modofitness-sidebar {
+
+    width: 80px;
+
+    background-color: #2E2E2E;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 20px;
+
+}
+
+
+
+.modofitness-menu-item {
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+}
+
+
+
+.modofitness-menu-item img {
+
+    width: 30px;
+
+    margin-bottom: 5px;
+
+}
+
+
+
+.modofitness-menu-item span {
+
+    font-size: 12px;
+
+}
+
+
+
+/* Conteúdo principal */
+
+.modofitness-content {
+
+    flex-grow: 1;
+
+    padding: 20px;
+
+    width: 80vw;
+
+}
+
+
+
+modofitness-h1, h2 {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+/* Seção de criação de rotina */
+
+.modofitness-create-routine {
+
+    margin-bottom: 40px;
+
+}
+
+
+
+.modofitness-routine-options {
+
+    display: flex;
+
+    justify-content:center;
+
+}
+
+
+
+.modofitness-routine-option {
+
+    background-color: #333;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: white;
+
+    text-decoration: none;
+
+    width: 250px;  /* Largura definida */
+
+    height: 150px; /* Altura definida */
+
+    display: flex;
+
+    flex-direction:column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: 10px 10px;
+
+    border: 0px;
+
+}
+
+.modofitness-routine-option:hover{
+    background-color: transparent;
+    border: 1px solid #ccc;
+    opacity: 0.8;
+    transition: 0.2s all; 
+    cursor: pointer;
+}
+
+
+
+.modofitness-plus-container {
+
+    background-color: #444;
+
+    border-radius: 50%;
+
+    width: 40px;
+
+    height: 40px;
+
+    margin: 20px auto 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.modofitness-plus-sign {
+
+    font-size: 24px;
+
+    color: white;
+
+}
+
+
+
+/* Carrossel de rotinas */
+
+.modofitness-routine-section {
+
+    display: flex;
+
+    justify-content: center; /* Centraliza horizontalmente */
+
+    align-items: center;
+
+    margin-top: 20px; /* Espaçamento superior para a seção */
+
+    
+}
+
+@media (max-width: 500px) {
+    .modofitness-routine-section {
+        flex-direction: column; /* Disposição vertical */
+        height: 50vh;
+        align-items: center;
+    }
+}
+
+.modofitness-arrow-left, .arrow-right {
+
+    cursor: pointer;
+
+    font-size: 24px;
+
+    user-select: none;
+
+    margin: 0 20px; /* Espaçamento entre as setas e o conteúdo */
+
+}
+
+
+
+.modofitness-routine-carousel {
+
+    display: flex;
+
+    justify-content: center; /* Centraliza os itens dentro do carrossel */
+
+    overflow-x: auto;
+
+    scroll-behavior: smooth;
+
+
+}
+@media (max-width: 500px) {
+    .modofitness-routine-carousel {
+        flex-direction: column; 
+        overflow-y: auto;   
+        overflow-x: hidden;     
+        height: 80vh;                
+    }
+}
+
+
+.modofitness-routine-card {
+
+    background-color: #444;
+
+    border-radius: 10px;
+
+    width: 150px;
+
+    text-align: center;
+
+    margin: 0 10px;
+
+    padding: 10px;
+
+}
+
+
+
+/* Modal */
+
+.modofitness-modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.5);
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+
+.modofitness-modal-content {
+
+    background-color: #2E2E2E; /* Fundo escuro, consistente com o protótipo */
+
+    border-radius: 15px;
+
+    width: 500px;
+
+    padding: 20px;
+
+    position: relative;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
+
+    color: white
+
+}
+
+
+
+.modofitness-modal-content h2 {
+
+    font-size: 28px; /* Ajustar tamanho do título */
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.modofitness-modal-content form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+
+.modofitness-modal-content input[type="text"], .modal-content select, .modal-content input[type="file"] {
+
+    background-color: #4D4D4D; /* Fundo escuro para os inputs */
+
+    border: 1px solid #888;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    font-size: 16px;
+
+    color: #fff;
+
+}
+
+
+
+.modofitness-modal-content input::placeholder {
+
+    color: #ccc; /* Placeholder em cinza claro */
+
+}
+
+
+
+.modofitness-modal-content button {
+
+    background-color: #007BFF;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s;
+
+}
+
+
+
+.modofitness-modal-content button:hover {
+
+    background-color: #0056b3;
+
+}
+
+
+
+/* Botão de fechar modal (X) */
+
+.modofitness-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    font-size: 24px;
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    float: right;
+
+}
+
+.modofitness-close:hover {
+
+    color: #fff; /* Branco ao passar o mouse */
+
+}
+
+.texto-link{
+    color: #fff;
+}
