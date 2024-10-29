@@ -1,0 +1,46 @@
+.container-EsqueceuSenha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    
+  }
+  
+  .card-EsqueceuSenha {
+    color: #fff;
+    background-color: #2b2b2b;;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    text-align: center;
+  }
+  
+  .title-EsqueceuSenha {
+    margin-bottom: 20px;
+  }
+  
+  .input-EsqueceuSenha {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border:0px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .button-EsqueceuSenha {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1c86ee;;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .link-EsqueceuSenha {
+    color: #1c86ee;;
+    text-decoration: none;
+  }
+  
