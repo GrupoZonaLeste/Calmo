@@ -1,7 +1,6 @@
 .body_landing{
     margin: 0 2vw !important;
 }
-
 /* Ajustes gerais para telas menores */
 @media (max-width: 768px) {
     .body_landing {

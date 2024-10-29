@@ -1,0 +1,35 @@
+.container-alterarSenha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    color: #fff;
+  }
+.card-alterarSenha {
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius : 10px;
+    box-shadow : 0 4px 20px rgba(0, 0, 0, 0.5);
+    width : 400px;
+    text-align: center;
+  }
+  .title-alterarSenha {
+    margin-bottom: 20px;
+  }
+  .input-alterarSenha {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 0;
+    width: 90%;
+    background-color: #333;
+    color: #fff;
+  }
+  .button-alterarSenha {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1c86ee;
+    color: white;
+    cursor: pointer;
+  }
