@@ -10,7 +10,7 @@ const Grifos = () => {
     <div className='container_modos'>
       <SideBar/>
 
-      <Link to={"/leitura"}>
+      <Link to={"/leitura"} >
         <button className='BtnVoltar_meusGrifos'>
           <img src={BtnVoltar} alt="botão voltar" className='img_btnVoltar'/>
           VOLTAR

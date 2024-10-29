@@ -60,3 +60,42 @@ p {
     font-weight: 400;
     font-size: 107%;
 }
+
+@media (max-width: 920px) {
+    #menuEntrarCadastro {
+        width: 20vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .header_Header {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .div_p_btnEntrar, .div_p_btnCadastrar {
+        width: auto;
+    }
+
+    .btn_Header {
+        font-size: 3vw;
+    }
+
+    #menuEntrarCadastro {
+        width: 34vw;
+    }
+
+    #icon-calmo-white {
+        width: 22vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #icon-calmo-white {
+        width: 30vw;
+    }
+
+    #menuEntrarCadastro {
+        flex-direction: row;
+    }
+}

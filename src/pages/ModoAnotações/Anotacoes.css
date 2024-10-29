@@ -2,3 +2,23 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+    .mainAnotacoes{
+        flex-direction: column-reverse;
+    }
+
+    .primeiraLinha-NovaAnotacao > button{
+        font-size: 5.5vw;
+    }
+
+    h2{
+        font-size: 5vw;
+    }
+}
+
+@media (max-width: 470px) {
+    .remMargin {
+        font-size: 4vw;
+    }
+}

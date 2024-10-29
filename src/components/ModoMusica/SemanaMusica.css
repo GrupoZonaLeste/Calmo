@@ -11,7 +11,7 @@
     height: 65vh;
     width: 30vw;
     border-radius: 1vw;
-    padding: 2vh 2vh 0 2vh;
+    padding: 2vw;
 }
 .container_SemanaMusica > h2{
     margin: 0;
@@ -69,7 +69,6 @@
 
 .recomendacoesMusicas {
     background-color: #535353;
-    width: 100%;
     height: max-content;
     border-radius: 1vh;
     padding: 0.5vh;
@@ -88,4 +87,40 @@
     font-size:  150%;
     font-weight: bolder;
     font-family: 'montserrat-Bold';
+}
+
+@media (max-width: 900px) {
+    .container_SemanaMusica{
+        width: 44vw;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container_SemanaMusica {
+        width: 88%;
+        padding: 3vw;
+        height: auto;
+    }
+
+    .topArtistasSemana, .topMusicasSemana {
+        padding: 3vw;
+    }
+}
+
+@media (max-width: 470px) {
+    .row1Semanamusica {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topArtistasSemana{
+        width: 90%;
+        margin-bottom: 4vw;
+    }
+
+    .topMusicasSemana{
+        width: 90%;
+    }
+
 }

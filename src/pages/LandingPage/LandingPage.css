@@ -2,3 +2,62 @@
     margin: 0 2vw !important;
 }
 
+/* Ajustes gerais para telas menores */
+@media (max-width: 768px) {
+    .body_landing {
+        margin: 0 1vw !important;
+    }
+    /* Ajustar espaçamento e tamanhos dos elementos */
+    .header_Header {
+        padding-left: 1vw;
+        padding-right: 1vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    #icon-calmo-white {
+        width: 12vw;
+    }
+
+    .footerLandingPage {
+        padding: 2vh 1vw;
+        font-size: 3vw;
+    }
+}
+
+/* Ajustes para telas menores que 480px (celulares) */
+@media (max-width: 480px) {
+    .divHero {
+        height: auto;
+        padding: 3vw;
+    }
+
+    .header_Header {
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+
+    #icon-calmo-white {
+        width: 20vw;
+    }
+
+    #divBlackBG {
+        padding: 5vw;
+        font-size: 4vw;
+    }
+
+    img {
+        width: 80%;
+    }
+
+    #menuEntrarCadastro {
+        flex-direction: column;
+    }
+
+    .btn_primeiravez_Landing {
+        width: 90%;
+        font-size: 3.5vw;
+        padding: 4vw;
+    }
+}

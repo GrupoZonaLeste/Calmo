@@ -110,3 +110,21 @@
     height: 8.5vh;
     background-color: black;
 }
+
+@media (max-width: 768px) {
+    .inputPesquisarMusicas {
+        font-size: 4vw;
+    }
+
+    .perfilSpotify{
+        width: 90%;
+    }
+
+    .pesquisarMusicas{
+        width: 100%;
+    }
+
+    .container_EscutarAgora{
+        width: 100%;
+    }
+}

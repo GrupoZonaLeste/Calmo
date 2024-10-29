@@ -87,3 +87,13 @@
     width: 1.5vw;
     margin-left: 0.5vw;
 }
+
+@media (max-width: 768px) {
+    .cardPagina{
+        height: 12.5vh;
+    }
+
+    .remMargin{
+        font-size: 3vw;
+    }
+}

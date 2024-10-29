@@ -40,3 +40,67 @@
     width: 3.2vw;
     height: 6.4vh;
 }
+
+@media (max-width: 768px) {
+    .containerTituloAnotacaoes {
+        width: 90%;
+    }
+
+    .containerTituloAnotacaoes > div > h1 {
+        font-size: 5vw;
+    }
+
+    #btn_novaAnotacao,
+    #btn_novaAnotacao:hover{
+        width: 6vw;
+        font-size: 3.8vw;
+        height: 6.4vh;
+    }
+
+    .container_Pagina{
+        width: 100%;
+    }
+
+
+    .containerSubPaginas > p{
+        margin: 0;
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 470px) {
+    .container_Pagina{
+        height: 100%;
+    }
+    .textAreaAnotacao {
+         font-size: 4.5vw;
+    }
+
+    .containerTituloAnotacaoes > div{
+        justify-content: space-around;
+    }
+    .containerTituloAnotacaoes > div > h1 {
+        font-size: 7vw;
+    }
+    .subtitulo-anotacoes{
+        font-size: 4vw;
+    }
+    #btn_novaAnotacao, #btn_novaAnotacao:hover{
+        width: 8vw;
+        font-size: 6.8vw;
+        height: 5.4vh;
+    }
+
+    .textAreaAnotacao {
+        font-size: 4.5vw;
+    }
+
+    .containerSubPaginas p {
+        font-size: 3vw;
+    }
+    .setaVoltar{
+        font-size: 6vw;
+        margin-right: 0vw;
+    }
+
+}

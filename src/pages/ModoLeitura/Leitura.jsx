@@ -12,6 +12,9 @@ const readingDays = [1, 5, 7, 10, 15, 22];
   return (
     <div className='container_modos'>
         <SideBar/>
+
+        <div className="Div-Central">
+            
         <div className='Div_leftLeitura'>
         <h1 className='title_mdLeitura'>Modo Leitura</h1>
           <PreviewLivro />
@@ -19,6 +22,8 @@ const readingDays = [1, 5, 7, 10, 15, 22];
         <div className='Div_rightLeitura'>
           <Frequencia readingDays={readingDays}/>
         </div>
+
+        </div> 
     </div>
   )
 }

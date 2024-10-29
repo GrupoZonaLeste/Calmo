@@ -22,3 +22,20 @@ footer {
     background-color: #616262;
     width: 100%;
 }
+
+@media (max-width: 768px) {
+    .footerLandingPage {
+        flex-direction: column;
+        padding: 3vh 2vw;
+    }
+
+    #equipeNomes {
+        grid-template-columns: 1fr;
+        gap: 1vh;
+    }
+
+    #direitosFooter {
+        font-size: 3vw;
+    }
+}
+

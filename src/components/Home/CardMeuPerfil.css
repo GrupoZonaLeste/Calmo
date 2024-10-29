@@ -13,6 +13,15 @@
     transition: 0.2s all;
 }
 
+.Div_CardPerfil{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .CardPerfil > p {
     font-weight: 200;
 }
@@ -26,4 +35,16 @@
     height: 8vw;
     width: 8vw;
     margin-bottom: 3vw;
+}
+
+@media (max-width: 768px) {
+    .CardPerfil {
+        width: 30vw;
+        padding: 4vw;
+    }
+
+    .ImgPerfil {
+        height: 16vw;
+        width: 16vw;
+    }
 }

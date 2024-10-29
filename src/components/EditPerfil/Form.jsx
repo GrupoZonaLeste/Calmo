@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import ImgPerfil from '../../assets/images/imagePerfil.png'
 import BtnEditar from '../../assets/images/btn_Edit.png'
 import BtnVoltar from '../../assets/images/btn_voltar.png'
+import { Link } from 'react-router-dom'
 import './Form.css'
 
 const Form = () => {
@@ -65,7 +66,9 @@ const Form = () => {
   return (
 
     <div className='container_EditPerfil'>
-      <img src={BtnVoltar} alt="" className='BtnVoltar_EditPerfil' />
+      <Link to={"/home"}>
+        <img src={BtnVoltar} alt="" className='BtnVoltar_EditPerfil' />
+      </Link>
         <form action="" className='form_EditPerfil'>
           <label className='picture_FotoPerfil'>
             <input type="file" id="input_FotoPerfil" 
@@ -86,15 +89,19 @@ const Form = () => {
               <img src={BtnEditar} alt="" className='Img_LapisEdit'/>
             </button>
           </div>
-            
-          <div className="Linha">
+
+          <div className="Linha-Down">
+              
+          <div className="Linha2">
             <input type="email" name="" id="" placeholder='UsuarioNovo@gmail.com'
              className={`input_emailEditPerfil ${isEditableEmail ? 'editable' : ''}`}
              value={email} onChange={(e) => setEmail(e.target.value)} readOnly={!isEditableEmail} onBlur={handleBlurEmail}/>
             <button type='button' className='BtnEditar_EditPerfil' onClick={toggleEditableEmail}>
               <img src={BtnEditar} alt="" className='Img_LapisEdit'/>
             </button>
-              
+          </div> 
+
+          <div className="Linha3">   
             <input type="tel" name="" id="" placeholder='+55 (11) 91919-1919' 
             className={`input_telEditPerfil ${isEditableTel ? 'editable' : ''}`}
             value={telefone} onChange={(e) => setTelefone(e.target.value)} readOnly={!isEditableTel}
@@ -103,6 +110,8 @@ const Form = () => {
               <img src={BtnEditar} alt="" className='Img_LapisEdit'/>
             </button>
           </div>
+          </div>
+
           <button type="submit" className='btnSalvar_EditPerfil'>SALVAR</button>
         </form>
     </div>
