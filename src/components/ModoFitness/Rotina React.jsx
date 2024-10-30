@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import './Rotina.css';
 
 const CriarRotina = () => {
-  const [meals, setMeals] = useState([{ nome: '', descricao: '' }]);
-  const [workouts, setWorkouts] = useState([{ nome: '', descricao: '' }]);
+
 
   return (
     <div className="rotina-body">
@@ -11,28 +10,30 @@ const CriarRotina = () => {
         {/* Conteúdo principal */}
         <div className="rotina-content">
           <h1 className="rotina-h1"><i>Criar Nova Rotina</i></h1>
-
           <form id="routineForm">
             <div className="rotina-form-section">
               <h2>Adicionar Refeição</h2>
               <div id="mealContainer">
-                {meals.map((meal, index) => (
-                  <div className="meal-entry" key={index}>
+                  <div className="meal-entry">
+                    <div className="label-rotina-div">
+                    <label htmlFor="nome_refeicao" className="rotina-label"> Nome da refeição</label>
+                    </div>
                     <input
+                      id = "nome_refeicao"
                       type="text"
                       className="rotina-input"
                       placeholder="Nome da Refeição"
-                      value={meal.nome}
-                      
+
                     />
+                    <div className="label-rotina-div">
+                    <label htmlFor="descricao_refeicao" className="rotina-label"> Descrição</label>
+                    </div>
                     <textarea
+                      id = "descricao_refeicao"
                       className="rotina-input"
                       placeholder="Descrição (ex: 1 banana + iogurte)"
-                      value={meal.descricao}
-                      
                     />
                   </div>
-                ))}
               </div>
               <button type="button" id="addMealBtn" className="rotina-button" >
                 Adicionar Refeição
@@ -42,23 +43,26 @@ const CriarRotina = () => {
             <div className="rotina-form-section">
               <h2>Adicionar Treino</h2>
               <div id="workoutContainer">
-                {workouts.map((workout, index) => (
-                  <div className="workout-entry" key={index}>
+                  <div className="workout-entry">
+                    <div className="label-rotina-div">
+                    <label htmlFor="nome_treino" className="rotina-label"> Nome do treino</label>
+                    </div>
                     <input
+                      id = "nome_treino"
                       type="text"
                       className="rotina-input"
                       placeholder="Nome do Treino"
-                      value={workout.nome}
                     
                     />
+                    <div className="label-rotina-div">
+                    <label htmlFor="descricao_treino" className="rotina-label"> Descrição</label>
+                    </div>
                     <textarea
+                      id = "descricao_treino"
                       className="rotina-input"
                       placeholder="Descrição (ex: 3 séries de 10 agachamentos)"
-                      value={workout.descricao}
-                     
                     />
                   </div>
-                ))}
               </div>
               <button type="button" id="addWorkoutBtn" className="rotina-button">
                 Adicionar Treino

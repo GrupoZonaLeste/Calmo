@@ -1,6 +1,6 @@
 /* Estilos gerais */
 .rotina-body {
-    margin: 5vw 5vw;
+    margin: 1vw 1vw;
     font-family: Arial, sans-serif;
     color: white;
     height: 80vh;
@@ -36,6 +36,7 @@
     background-color: #333;
     border: none;
     color: white;
+    resize: none;
 }
 
 .rotina-button {
@@ -56,4 +57,23 @@
 
 #addMealBtn:hover, #addWorkoutBtn:hover {
     background-color: #218838;
+}
+.rotina-input::placeholder{
+    color: #fff;
+    opacity: 0.8;
+}
+.rotina-label{
+    text-align: left;
+    font-size: 14px;
+}
+.label-rotina-div{
+    text-align: left;
+    margin-left: 2.5vw;
+    width: 90%;
+}
+.meal-entry{
+    width: 100%;
+}
+.workout-entry{
+    width: 100%;
 }
