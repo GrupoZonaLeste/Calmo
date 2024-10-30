@@ -121,13 +121,13 @@ const ModoFitness = () => {
                   <p>Minhas Dietas</p>
                 </div>
               </a>
+              <Link to="/rotinas">
               <button  className="modofitness-routine-option">
                 <div className="modofitness-routine-card">
-                <Link to="/rotinas"s>
                 <p className='texto-link'>Nova Rotina (+)</p>
-                </Link>
                 </div>
               </button>
+              </Link>
             </div>
             <div className="modofitness-arrow-right" onClick={scrollRight}>▶</div>
           </div>
