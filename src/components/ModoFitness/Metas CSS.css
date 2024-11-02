@@ -1,0 +1,127 @@
+/* Estilos gerais */
+.metas-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1E1E1E;
+    color: white;
+}
+
+.metas-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barra lateral */
+.metas-sidebar {
+    width: 15%;
+    background-color: #292929;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.metas-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.metas-sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.metas-sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.metas-sidebar ul li a:hover {
+    color: #1DB954;
+}
+
+/* Conteúdo principal */
+.metas-content {
+    width: 85%;
+    padding: 20px;
+}
+
+metas-h1 {
+    text-align: center;
+    color: #00ADEF;
+    font-size: 36px;
+}
+
+.metas-progress-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.metas-progress-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(#00ADEF 0% 60%, #444 60% 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.metas-list {
+    width: 50%;
+}
+
+.metas-list h2 {
+    text-align: left;
+    color: white;
+    font-size: 24px;
+}
+
+.metas-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.metas-list li {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.metas-list span {
+    margin-right: 10px;
+}
+
+.metas-done {
+    color: #00FF00;
+}
+
+.metas-not-done {
+    color: #FF0000;
+}
+
+/* Seção de calendário */
+.metas-calendar-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.metas-calendar {
+    margin-top: 10px;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Seção de dieta */
+.metas-dieta-section {
+    margin: 40px 0;
+}
+
+.metas-dieta-section h2 {
+    color: white;
+}
+
+.metas-dieta-section p {
+    font-size: 18px;
+}

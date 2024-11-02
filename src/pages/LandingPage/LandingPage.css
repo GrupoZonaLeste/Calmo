@@ -1,6 +1,10 @@
 .body_landing{
     margin: 0 2vw !important;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 /* Ajustes gerais para telas menores */
 @media (max-width: 768px) {
     .body_landing {
@@ -59,4 +63,9 @@
         font-size: 3.5vw;
         padding: 4vw;
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> main

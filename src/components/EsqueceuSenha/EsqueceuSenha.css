@@ -5,27 +5,27 @@
     height: 30vh;
     
   }
-  
   .card-EsqueceuSenha {
     color: #fff;
     background-color: #2b2b2b;;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    width: 400px;
+    width: 350px;
     text-align: center;
   }
   
   .title-EsqueceuSenha {
+    font-size: 24px;
     margin-bottom: 20px;
   }
   
   .input-EsqueceuSenha {
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 10px;
     border-radius: 5px;
     border:0px;
-    width: 100%;
+    width: 200px;
     background-color: #333;
     color: #fff;
   }
