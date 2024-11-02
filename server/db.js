@@ -1,18 +1,21 @@
 require("dotenv").config()
-const {MongoClient} = require("mongodb")
+const { MongoClient } = require('mongodb');
 
-let singleton
+let db
 
 async function connect(){
-    if(singleton) return singleton
+    if(db) return db
 
     const client = new MongoClient(process.env.MONGO_CONN)
-    await client.connect()
-    singleton = client.db(process.env.DATABASE)
-    return singleton
+    db = client.db(process.env.DATABASE)
+    return db
 }
 
 async function insert(coll, obj) {
     const db = await connect()
     return db.collection(coll).insertOne(obj)
+}
+
+module.exports = {
+    insert
 }
