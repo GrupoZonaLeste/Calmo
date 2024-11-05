@@ -1,7 +1,7 @@
 import React from 'react'
 import './Login.css'
 import FormLogin from "../../components/FormLogin/FormLogin"
-
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 const Cadastro = () => {
     return (
         <>
