@@ -2,14 +2,40 @@ import React, { useState } from 'react'
 import './Titulo.css'
 import './ModalNovaAnotacao.css'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
 const Titulo = () => {
   const [statusModal, setstatusModal] = useState(true)
   const [displayModal, setdisplayModal] = useState("none")
-
+  const [dataNovaPagina, setDataNovaPagina] = useState ({titulo: "", tags: []})
   function abrirFecharModal(){
     setstatusModal(!statusModal)
     setdisplayModal(statusModal ? "flex" : "none")
+  }
+  
+  
+  function updateNome(){
+    setDataNovaPagina(previousState => {
+      return { ...previousState, titulo: event.target.value }
+    });
+  }
+  function updateTags(){
+    setDataNovaPagina(previousState => {
+      return { ...previousState, tags: [event.target.value]}
+    });
+  }
+  
+  async function criarPagina(){
+    if (dataNovaPagina.titulo == ""){
+      alert("Preencha os campos")
+      return
+    }
+    await Axios.request({
+      method: "POST",
+      url: `${import.meta.env.VITE_URL_SERVER}/criar_pagina`,
+      data: dataNovaPagina
+    })
+
   }
 
   return (
@@ -22,13 +48,13 @@ const Titulo = () => {
           </div>
           <div className='camposNovaAnotacao'>
             <h3>Título</h3>
-            <input />
+            <input onChange={updateNome}/>
             <h3>Tags</h3>
-            <input />
+            <input onChange={updateTags}/>
           </div>
           <Link to="/pagina_teste">
           <div className='btnCriarAnotacao'>
-            <button>Criar Anotação</button>
+            <button onClick={criarPagina}>Criar Anotação</button>
           </div>
           </Link>
         </div>
