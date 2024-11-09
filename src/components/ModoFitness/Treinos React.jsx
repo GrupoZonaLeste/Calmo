@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './treinos.css';
+import './Treinos.css';
 
 const Treinos = () => {
   const initialWorkoutPlan = [
