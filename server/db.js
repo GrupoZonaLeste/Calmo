@@ -25,7 +25,14 @@ async function Bool_verifyAllItemsCollection(coll, param, item){
     if (result.length > 0) { return true } else { return false }
 }
 
+async function getAllCollection(coll){
+    const db = await connect()
+    let result = await db.collection(coll).find({}).toArray()
+    if (result.length > 0) { return result } else { return [] }
+}
+
 module.exports = {
     insert,
-    Bool_verifyAllItemsCollection
+    Bool_verifyAllItemsCollection,
+    getAllCollection
 }
