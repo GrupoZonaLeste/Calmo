@@ -1,4 +1,5 @@
 require("dotenv").config()
+const { query } = require("express");
 const { MongoClient } = require('mongodb');
 
 let db
@@ -31,8 +32,28 @@ async function getAllCollection(coll){
     if (result.length > 0) { return result } else { return [] }
 }
 
+async function deleteItem(coll, param, item){
+    const db = await connect()
+    let query = {}
+    query[param] = item
+    await db.collection(coll).deleteOne(query)
+}
+
+async function updateContent(coll, item, newContent) {
+    const db = await connect()
+    await db.collection(coll).updateOne(item, {$set: newContent})
+}
+
+async function getEspecificItem(coll, item = {}){
+    const db = await connect()
+    return await db.collection(coll).find(item)
+}
+
 module.exports = {
     insert,
     Bool_verifyAllItemsCollection,
-    getAllCollection
+    getAllCollection,
+    deleteItem,
+    updateContent,
+    getEspecificItem
 }

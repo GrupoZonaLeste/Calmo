@@ -1,7 +1,6 @@
 const express = require("express")
 const app = express()
 const db = require("./db")
-const bcrypt = require("bcryptjs")
 
 const cors = require('cors');
 
@@ -19,14 +18,11 @@ app.post("/cadastrar", (req, res) => {
 
 app.post("/criar_pagina", async (req,res) => {
     let verificarTitulos = await db.Bool_verifyAllItemsCollection("anotacoes","titulo", req.body.titulo)
-
-    let mystr = await bcrypt.hash(req.body.titulo, 8)
-    
-    mystr.toString()
-    let anotacao = {}
-    anotacao[mystr] = {
+    let anotacao = {
         titulo: req.body.titulo,
-        tags: req.body.tags
+        tags: req.body.tags,
+        criacao: req.body.criacao,
+        conteudo: ""
     }
 
     if (verificarTitulos) {
@@ -44,12 +40,10 @@ app.get("/pagina/:idpagina", async (req, res) => {
     let retornarDados = async () => {
         let dadosPagina = {}
         for (const element of await coll){
-            if (await bcrypt.compare(nomePag, Object.keys(element)[1])){
-                console.log("achamos a pagina")
-                dadosPagina = element[Object.keys(element)[1]]
+            if (element["titulo"] == nomePag){
+                dadosPagina = element
             }
         }
-        console.log(dadosPagina)
         return dadosPagina
     } 
 
@@ -60,6 +54,28 @@ app.get("/pagina/:idpagina", async (req, res) => {
         res.json(data)
     }
     
+})
+
+app.get("/anotacoes", async (req, res) => {
+    let paginas = await db.getAllCollection("anotacoes")
+    res.json(paginas)
+})
+
+app.delete("/deletar_pagina/:idpagina", async (req, res) => {
+    let nomePag = req.params.idpagina
+    try {
+        await db.deleteItem("anotacoes", "titulo", nomePag)
+        res.json({"status": "pagina deletada"})
+    } catch {   
+        res.json({"status": "erro ao deletar"})
+    }
+})
+
+app.post("/adicionar_anotacoes", async (req, res) => {
+    let nomePag = req.body.titulo
+    let conteudo = req.body.conteudo
+    db.updateContent("anotacoes", {"titulo": nomePag}, {"conteudo": conteudo})
+    res.json({"status": "conteudo alterado"})
 })
 
 
