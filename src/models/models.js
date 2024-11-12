@@ -13,4 +13,5 @@ function criarUser(nome, email, telefone, senha, foto, tokenspotify, tokengoogle
     return user
 }
 
+
 export default criarUser

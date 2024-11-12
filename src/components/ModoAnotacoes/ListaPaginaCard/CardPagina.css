@@ -5,6 +5,7 @@
     margin: 0.8vw;
     height: max-content;
     transition: all 0.2s;
+    width: 88%;
 }
 
 .cardPagina {

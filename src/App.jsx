@@ -25,7 +25,6 @@ function App() {
         <Route path="login" element={<FormLogin />} />
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="esqueci_senha" element={<EsqueceuSenha />} />
-        
         {/* Rotas protegidas */}
         <Route element={<ProtectedRoutes />}>
           <Route path="home" element={<Home />} />
@@ -36,7 +35,7 @@ function App() {
           <Route path="meus_grifos" element={<Grifos />} />
           <Route path="fitness" element={<Fitness />} />
           <Route path="agenda" element={<Agenda />} />
-          <Route path="pagina_teste" element={<PaginaAnotacoes />} />
+          <Route path="pagina/:idpagina" element={<PaginaAnotacoes/>}/>
           <Route path="dieta" element={<DietaPage />} />
           <Route path="rotinas" element={<RotinaPage />} />
           <Route path="treinos" element={<TreinoPage />} />

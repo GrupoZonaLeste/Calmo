@@ -45,7 +45,6 @@ const FormCadastro = () => {
       Swal.fire("Erro", "As senhas não coincidem!", "error");
       return;
     }
-
     showLoadingAlert(); // Mostrar carregamento
 
     try {
@@ -56,7 +55,6 @@ const FormCadastro = () => {
       Swal.fire("Erro", error.message, "error");
     }
   };
-
   return (
     <div className="container-Cadastro">
       <Link to={"/login"}> 

@@ -12,6 +12,9 @@
     height: 65vh;
     border-radius: 1vw;
     overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .ListaPaginas::-webkit-scrollbar {
@@ -25,6 +28,11 @@
 
 .ListaPaginas::-webkit-scrollbar-track {
     background: transparent; 
+}
+
+.comeceanotacoes {
+    color: #f9f9f9;
+    font-style: italic;
 }
 
 @media (max-width: 768px) {

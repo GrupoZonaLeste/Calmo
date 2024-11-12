@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Filtros.css'
 import Tag from './Tags/Tag'
 
