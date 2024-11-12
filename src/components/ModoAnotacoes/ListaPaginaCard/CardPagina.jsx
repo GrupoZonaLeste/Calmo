@@ -56,14 +56,6 @@ const CardPagina = (props) => {
                 }) : <li>Nenhuma tag inserida.</li>}
               </ul>
           </div>
-            <div>
-              <h3>Sub-Páginas</h3>
-              <ul>
-                <li>SubPagina1</li>
-                <li>SubPagina2</li>
-                <li>SubPagina3</li>
-              </ul>
-            </div>
         </div>
           <button onClick={deletarPagina}>Excluir Página</button>
       </div>

@@ -26,7 +26,7 @@ const Titulo = () => {
   }
   function updateTags(){
     setDataNovaPagina(previousState => {
-      return { ...previousState, tags: event.target.value.split(" ")}
+      return { ...previousState, tags: event.target.value.split(" ").filter(item => item !== "")}
     });
   }
   

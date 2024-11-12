@@ -48,7 +48,6 @@ const PaginaAnotacoes = () => {
                         </Link>
                         <h1 className='titulo-anotacoes' style={{margin: 0}}>{ tituloPagina() }</h1>
                     </div>
-                    <button id="btn_novaAnotacao">+</button>
                 </div>
                 <div className='containerSubPaginas'>
                     <p className='subtitulo-anotacoes' style={{margin: 0, marginLeft: "2vw", textDecoration: "none"}}>Tags:</p>
