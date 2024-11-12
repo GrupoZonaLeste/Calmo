@@ -1,3 +1,4 @@
+<script src="http://localhost:8097"></script>
 import React from 'react'
 import './LandingPage.css'
 import Header from "../../components/LandingPage/Header"
