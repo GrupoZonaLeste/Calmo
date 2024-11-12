@@ -91,6 +91,7 @@
     text-decoration: underline;
 }
 .google-login-button {
+    display: inline-flex;
     margin-top: 1vh;
     align-items: center;
     padding: 10px 15px;
