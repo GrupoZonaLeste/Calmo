@@ -43,7 +43,7 @@
 }
 
 /* Botão Entrar */
-.login-box button {
+.button-entrar {
     width: 129px; /* Largura especificada */
     height: 56px; /* Altura especificada */
     background-color: #1e90ff;
@@ -56,7 +56,7 @@
     margin: 20px 0 20px 0; /* Margem superior e inferior para separação */
 }
 
-.login-box button:hover {
+.button-entrar:hover {
     background-color: #1c86ee;
 }
 
@@ -90,3 +90,28 @@
 .login-box a:hover {
     text-decoration: underline;
 }
+.google-login-button {
+    margin-top: 1vh;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    color: #2d2d2d;
+    font-size: 16px;
+    font-weight: 500;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .google-login-button:hover {
+    background-color: #262626;
+    color: #ffffff;
+  }
+  
+  .google-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
