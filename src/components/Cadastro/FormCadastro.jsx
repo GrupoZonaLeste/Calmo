@@ -20,7 +20,7 @@ const FormCadastro = () => {
     }
     await Axios.request({
       method: "POST",
-      url: "http://localhost:5000/cadastrar",
+      url: `${import.meta.env.VITE_URL_SERVER}/cadastrar`,
       data: dataUser
     })
       alert("cadastro feito com sucesso!")
