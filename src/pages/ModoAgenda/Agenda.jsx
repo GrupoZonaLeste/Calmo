@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 import Calendar from 'react-calendar';
-import SideBar from '../../components/Sidebar/SideBar'
+import SideBar from '../../components/Sidebar/SideBar';
 import './Agenda.css';
 
 const CLIENT_ID = '573382000184-nuldqho0u8fhc88fliue1ce1othuj244.apps.googleusercontent.com';
@@ -87,7 +87,19 @@ const Agenda = () => {
     });
   };
 
-  const handleDoubleClick = (value) => {
+  const deleteEvent = (eventId) => {
+    gapi.client.calendar.events.delete({
+      calendarId: 'primary',
+      eventId: eventId,
+    }).then(() => {
+      listUpcomingEvents(); // Atualiza a lista de eventos após a exclusão
+    }).catch(error => {
+      console.error("Erro ao excluir evento: ", error);
+      alert("Erro ao excluir evento.");
+    });
+  };
+
+  const handleDateClick = (value) => {
     setSelectedDate(value);
     setModalVisible(true);
   };
@@ -99,31 +111,36 @@ const Agenda = () => {
         <h1>Modo Agenda</h1>
         <p>Se organize na sua agenda Google!</p>
         <div className="agenda-container">
-          {!isSignedIn ? (
+          {isSignedIn ? (
             <div className='mainAgenda'>
               <div>
-              <h2 className='agenda-titulos'>Próximos eventos:</h2>
-              <ul className="event-list">
-                {events.length > 0 ? (
-                  events.map((event, index) => (
-                    <li key={index}>
-                      {event.summary} - {new Date(event.start.dateTime).toLocaleString()}
-                    </li>
-                  ))
-                ) : <p style={{color: "#f9f9f9"}}>Sem eventos</p>}
-              </ul>
-                </div>
+                <h2 className='agenda-titulos'>Próximos eventos:</h2>
+                <ul className="event-list">
+                  {events.length > 0 ? (
+                    events.map((event, index) => (
+                      <li key={index} className="event-item">
+                        <span>{event.summary} - {new Date(event.start.dateTime).toLocaleString()}</span>
+                        <button 
+                          className="delete-button" 
+                          onClick={() => deleteEvent(event.id)}>
+                          Excluir
+                        </button>
+                      </li>
+                    ))
+                  ) : <p style={{ color: "#f9f9f9" }}>Sem eventos</p>}
+                </ul>
+              </div>
               
               <div>
-              <h2 className='agenda-titulos'>Calendário</h2>
-              <Calendar
-                onChange={setSelectedDate}
-                value={selectedDate}
-                className="custom-calendar"
-                onDoubleClickDay={handleDoubleClick}
+                <h2 className='agenda-titulos'>Calendário</h2>
+                <Calendar
+                  onChange={setSelectedDate}
+                  value={selectedDate}
+                  className="custom-calendar"
+                  onClickDay={handleDateClick}
                 />
                 <button className="sign-out-button" onClick={handleSignOutClick}>Fazer Logout do Google</button>
-                </div>
+              </div>
 
               {modalVisible && (
                 <div className="modal">
