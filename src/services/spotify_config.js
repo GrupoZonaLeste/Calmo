@@ -9,7 +9,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", "http://localhost:5173/musicas");
-    params.append("scope", "user-read-private user-read-email");
+    params.append("scope", "user-read-private user-read-email user-top-read");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -26,17 +26,14 @@ export async function getAccessToken(clientId, code) {
     params.append("redirect_uri", "http://localhost:5173/musicas");
     params.append("code_verifier", verifier);
 
-    let result = {}
-    await fetch("https://accounts.spotify.com/api/token", {
+    
+    const result = await fetch("https://accounts.spotify.com/api/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params
-    }).then(response => response.json()).then(response => {
-        console.log(response)
     })
-    console.log(result)
 
-    const { access_token } = await result;
+    const { access_token } = await result.json();
     return access_token;
 }
 
