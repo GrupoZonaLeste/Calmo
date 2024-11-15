@@ -21,79 +21,50 @@ const PreviewLivro = () => {
     setIsModalOpen(false);
   }
 
-  
-  useEffect(() => {
-    const fetchLivros = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/api/obter-livros');
-            if (!response.ok) {
-                throw new Error('Erro ao buscar livros');
-            }
-            const data = await response.json();
-            setLivros(data);  // Supondo que os livros retornem com a URL da capa
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
-
-    fetchLivros();
-}, []);
-
-const handleLivroClick = (livroId) => {
-  // Aqui, ao clicar no livro, buscamos o PDF correspondente
-  fetch(`http://localhost:5000/api/livro/${livroId}`)
-    .then(response => response.blob())
-    .then(pdfBlob => {
-      setSelectedPdf(URL.createObjectURL(pdfBlob));
-      OpenModal(); // Abrir modal para visualizar o PDF
-    })
-    .catch(error => console.error('Erro ao abrir o PDF:', error));
-};
-
   //Funções do PDF
   const fileChange = async (e) => {
     const file = e.target.files[0];
     console.log("Arquivo selecionado:", file);
 
-    if (file && file.type === "application/pdf"){
-      setPdfFile(file); //armazena no estado o pdf selecionado
+    if (file && file.type === "application/pdf") {
+        setPdfFile(file); // armazena o pdf selecionado
 
-      const fileReader = new FileReader();
+        const fileReader = new FileReader();
 
-      fileReader.onload = async () => {
-        const pdfData = new Uint8Array(fileReader.result);
-        console.log("Dados do PDF carregados:", pdfData);
+        fileReader.onload = async () => {
+            const pdfData = new Uint8Array(fileReader.result);
+            console.log("Dados do PDF carregados:", pdfData);
 
-        try{
-          //Carregar pdf
-          const pdf = await pdfjsLib.getDocument(pdfData).promise;
-          console.log("Documento PDF carregado: ", pdf)
+            try {
+                // Carregar o PDF
+                const pdf = await pdfjsLib.getDocument(pdfData).promise;
+                console.log("Documento PDF carregado: ", pdf);
 
-          const page = await pdf.getPage(1);
-          console.log("Página do PDF carregado:", page)
+                const page = await pdf.getPage(1);
+                console.log("Página do PDF carregada:", page);
 
-          //config do canvas para renderizar a capa
-          const viewport = page.getViewport({scale: 1.5});
-          const canvas = document.createElement('canvas');
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          const context = canvas.getContext('2d');
+                // Configuração do canvas para renderizar a capa
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                const context = canvas.getContext('2d');
 
-          await page.render({ canvasContext: context, viewport }).promise;
-          const imgUrl = canvas.toDataURL();
-          console.log("Imagem de capa do PDF: ", imgUrl);
-          
-          setPdfCover(imgUrl);
-        } catch (error) {
-          console.error("Erro ao renderizar PDF: ", error)
-        }  
-      };
+                await page.render({ canvasContext: context, viewport }).promise;
+                const imgUrl = canvas.toDataURL();
+                console.log("Imagem de capa do PDF: ", imgUrl);
 
-      fileReader.readAsArrayBuffer(file);
+                setPdfCover(imgUrl);
+            } catch (error) {
+                console.error("Erro ao renderizar PDF: ", error);
+            }
+        };
+
+        fileReader.readAsArrayBuffer(file);
     } else {
-      console.warn("Arquivo selecionado não é um PDF válido:");
+        console.warn("Arquivo selecionado não é um PDF válido.");
     }
-  };
+};
 
   const adicionarLivro = () => {
     const titulo = document.querySelector('.input_tituloLivro').value;
@@ -132,6 +103,34 @@ const handleLivroClick = (livroId) => {
     .finally(() => setLoading(false));
   };
 
+    
+  useEffect(() => {
+    const fetchLivros = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/obter-livros');
+            if (!response.ok) {
+                throw new Error('Erro ao buscar livros');
+            }
+            const data = await response.json();
+            setLivros(data);  // Supondo que os livros retornem com a URL da capa
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    fetchLivros();
+}, []);
+
+const handleLivroClick = (livroId) => {
+  // Aqui, ao clicar no livro, buscamos o PDF correspondente
+  fetch(`http://localhost:5000/api/livro/${livroId}`)
+    .then(response => response.blob())
+    .then(pdfBlob => {
+      setSelectedPdf(URL.createObjectURL(pdfBlob));
+      OpenModal(); // Abrir modal para visualizar o PDF
+    })
+    .catch(error => console.error('Erro ao abrir o PDF:', error));
+};
   return (
     <div className='container_Preview'>
       <p>Adicione os Seus Livros PDF’s ou PUB’s:</p>
