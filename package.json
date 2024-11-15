@@ -12,21 +12,30 @@
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
+    "canvas": "^3.0.0-rc2",
     "concurrently": "^9.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "firebase": "^11.0.1",
     "gapi-script": "^1.2.0",
+    "gridfs-stream": "^1.1.0",
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.10.0",
+    "mongoose": "^5.9.10",
+    "multer": "^1.4.4",
+    "multer-gridfs-storage": "^5.0.2",
     "node": "^22.11.0",
-    "pdfjs-dist": "^4.7.76",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.8.69",
+    "puppeteer": "^23.8.0",
     "react": "^18.3.1",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-firebase-hooks": "^5.1.1",
-    "sweetalert2": "^11.14.5"
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -40,6 +49,6 @@
     "globals": "^15.9.0",
     "nodemon": "^3.1.7",
     "react-router-dom": "^6.28.0",
-    "vite": "^5.4.1"
+    "vite": "^5.4.11"
   }
 }

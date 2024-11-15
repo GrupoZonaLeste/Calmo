@@ -166,6 +166,38 @@
     opacity: 0.3;
 }
 
+.livros_carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .livro_card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+  
+  .livro_capa {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .livro_titulo {
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .livro_autor {
+    color: #555;
+    font-size: 14px;
+  }
+
 @media (max-width: 768px) {
     .BtnAdd_leitura {
         height: 10vw;
