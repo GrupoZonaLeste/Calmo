@@ -33,7 +33,7 @@ export async function getAccessToken(clientId, code) {
         body: params
     })
 
-    const { access_token } = await result.json();
+    const access_token = await result.json();
     return access_token;
 }
 

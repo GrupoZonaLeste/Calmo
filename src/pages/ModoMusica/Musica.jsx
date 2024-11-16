@@ -6,65 +6,90 @@ import SemanaMusica from '../../components/ModoMusica/SemanaMusica'
 import EscutarAgora from '../../components/ModoMusica/EscutarAgora'
 import { redirectToAuthCodeFlow, getAccessToken } from "../../services/spotify_config";
 
+//import { firestoreDB } from '../../services/firebase_config'
+//import { collection, updateDoc, getDocs, doc } from "firebase/firestore"; 
 
-const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID
-const params = new URLSearchParams(window.location.search)
-let code = params.get("code")
-let profile =  {}
+let codeSession = null
+let profile = null
+let topArtistas = []
 
 const Musica = () => {
-const [loginSpotify, setLoginSpotify] = useState(false)
-const [token, setToken] = useState(false)
-
-function logoutSpotify(){
-  code = ""
-  localStorage.clear()
-  setLoginSpotify(false)
-}
-
-useEffect(() => {
-  async function LogarSpotify(){
-    if (code) {
-      const accessToken = await getAccessToken(clientId, code);
-      profile = await fetchProfile(accessToken)
-      setLoginSpotify(true)
-    }
+  const [loginSpotify, setLoginSpotify] = useState(false)
+  const [token, setToken] = useState("")
+  function logoutSpotify() {
+    codeSession = null
+    window.location = "http://localhost:5173/musicas"
+    localStorage.clear()
+    setLoginSpotify(false)
   }
-  LogarSpotify()
-})
 
-function abrirLoginSpotify(){
-  redirectToAuthCodeFlow(clientId);
-}
-
-async function fetchProfile(code){
-  const result = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET", headers: { Authorization: `Bearer ${code}` }
-  });
-
+  // const querySnapshot = await getDocs(collection(firestoreDB, "users"));
+  // querySnapshot.forEach(element => {
+  //     if(element.data()["email"] == sessionStorage.getItem("emailuserid")){
+  //       const userFirestore = doc(firestoreDB, 'users', element.id);
+  //       updateDoc(userFirestore, {"tokensapi.tokenspotify": accessToken || null});
+  //     }
+  // })
   
-  return await result.json();
-}
+  async function fetchProfile(code) {
+    const result = await fetch("https://api.spotify.com/v1/me", {
+      method: "GET", headers: { Authorization: `Bearer ${code}` }
+    })
+    return result.json();
+  }
 
-    return (
+  useEffect(() => {
+    let verificarSession = async () => {
+      if(token == ""){
+        const accessToken = await getAccessToken(import.meta.env.VITE_SPOTIFY_CLIENT_ID, codeSession);
+        setToken(accessToken.access_token)
+        console.log("teste: ",[accessToken, profile])
+        profile = profile != null ? profile : await fetchProfile(accessToken['access_token']);
+        console.log([accessToken, profile])
+        setLoginSpotify(true)
+      }
+    }
+    const params = new URLSearchParams(window.location.search);
+    codeSession = params.get("code")
+    if(codeSession && !loginSpotify && !profile) {
+      verificarSession()
+    }
+  }, [])
+  
+  async function AbrirloginSpotify() {
+    redirectToAuthCodeFlow(import.meta.env.VITE_SPOTIFY_CLIENT_ID);
+  }
+  
+  async function testeArtistas(code) {
+    const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+      headers: { Authorization: `Bearer ${code}` }
+    })
+    console.log(code)
+    console.log(await result.json())
+  }
+  
+  return (
     <div className='container_modos'>
-        <SideBar/>
-          {loginSpotify ?
+      <SideBar />
+      {loginSpotify ?
         <div className='DivCentral'>
-            <Titulo funcOnClick={logoutSpotify}/>
-            <div className='mainModoMusica'>
-              <SemanaMusica/>
-              <EscutarAgora/>
-            </div>
-        </div> : 
+          <Titulo funcOnClick={logoutSpotify} />
+          <div className='mainModoMusica'>
+          <button className='loginComSpotifyButton' onClick={() => testeArtistas(token)}>teste</button>
+
+            <SemanaMusica artistas={topArtistas}/>
+            <EscutarAgora />
+          </div>
+        </div> :
         <div className='loginComSpotifyDiv'>
           <h1>Modo Música</h1>
           <p>Escute e curta suas músicas!</p>
-          <button className='loginComSpotifyButton' onClick={abrirLoginSpotify}>Login com Spotify</button>
+          <button className='loginComSpotifyButton' onClick={AbrirloginSpotify}>Login com Spotify</button>
         </div>
-          }
+      }
     </div>
   )
 }
+
 
 export default Musica

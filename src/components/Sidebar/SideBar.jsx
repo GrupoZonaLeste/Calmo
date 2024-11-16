@@ -27,19 +27,21 @@ const SideBar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title: 'Carregando...',
-          text: 'Desconectando...',
+          title: 'Fazendo Logout...',
+          text: 'Carregando...',
           didOpen: () => {
               Swal.showLoading();
           }
-      });
+        });
+        Swal.close()
         signOut(auth).then(() => {
+          sessionStorage.clear()
           navigate("/")
+
         }).catch((error) => {
-          // An error happened.
         });
       }
-    });
+    })
   }
     return (
     <nav className='navClass'>

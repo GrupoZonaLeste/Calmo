@@ -1,9 +1,8 @@
-function criarUser(nome, email, telefone, senha, foto, tokenspotify, tokengoogle){
+function criarUser(nome, email, telefone, foto, tokenspotify, tokengoogle){
     let user = {
         "nome":nome,
         "email":email,
         "telefone":telefone,
-        "senha":senha,
         "foto":foto,
         "tokensapi": {
             "tokenspotify":tokenspotify,

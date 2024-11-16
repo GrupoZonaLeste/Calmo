@@ -7,6 +7,9 @@ import { useAuthState } from 'react-firebase-hooks/auth'; // Importante para aut
 import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
 
+import { firestoreDB } from '../../services/firebase_config'
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
+ 
 function FormLogin() {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [authUser, authLoading] = useAuthState(auth); // Verifica o estado de autenticação do usuário
@@ -19,6 +22,19 @@ function FormLogin() {
         }
     }, [authUser, navigate]);
 
+    async function AddCollectionVerificar(coll, key, valor, add){
+    const querySnapshot = await getDocs(collection(firestoreDB, coll));
+        let userUnico = false
+        querySnapshot.forEach(element => {
+            if(element.data()[key] == valor){
+                userUnico = true
+            }
+        })
+        if(!userUnico){
+            await addDoc(collection(firestoreDB, coll), add);
+        }
+    }
+
     const handleGoogleLogin = async () => {
         const provider = new GoogleAuthProvider();
         try {
@@ -26,6 +42,21 @@ function FormLogin() {
             const user = result.user;
             console.log("Usuário autenticado com Google:", user);
 
+            AddCollectionVerificar("anotacoes", "user", user.email, {
+                itens: [],
+                user: user.email
+            })
+            AddCollectionVerificar("users", "email", user.email, {
+                "nome": user.displayName,
+                "email": user.email,
+                "telefone": "",
+                "foto": "",
+                "tokensapi": {
+                    "tokenspotify":"",
+                    "tokengoogle": ""
+                }
+            })
+            sessionStorage.setItem("emailuserid", user.email)
             Swal.fire("Sucesso", "Login realizado com sucesso com o Google!", "success");
             navigate('/home');
         } catch (error) {
@@ -33,7 +64,7 @@ function FormLogin() {
             Swal.fire("Erro", error.message, "error");
         }
     };
-
+    
     const handleEmailLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -52,7 +83,7 @@ function FormLogin() {
             });
         }
     }, [loading]);
-     //Quando der tudo certo
+    //Quando der tudo certo
     useEffect(() => {
         if (user) {
             Swal.fire("Sucesso", "Login realizado com sucesso!", "success");
@@ -65,7 +96,7 @@ function FormLogin() {
             Swal.fire("Algo está errado!","Erro no login, Verifique suas credenciais", "error")
         }
     }, [error]);
-
+    
     return (
         <div className="login-box">
             <Link to={"/"}><div className="back-button-login">←</div></Link>
