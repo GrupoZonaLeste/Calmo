@@ -5,6 +5,19 @@ const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
 
+const { v4, uuidv4 } = require("uuid");
+
+// Log para verificar o valor de __dirname
+console.log(`__dirname: ${__dirname}`);
+const uploadDir = path.join(__dirname, 'uploads');
+console.log(`uploadDir: ${uploadDir}`);
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+  console.log("Pasta 'uploads' criada com sucesso.");
+} else {
+  console.log("Pasta 'uploads' já existe.");
+}
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, path.join(__dirname, 'uploads')); // Pasta para armazenar as imagens
@@ -79,20 +92,79 @@ const salvarLivro = async (req, res) => {
     }
   };
 
-  const obterLivros = async (req, res) => {
+  const salvarPDFtemp = (pdfBase64) => {
+    return new Promise((resolve, reject) => {
+
+      const pdfBuffer = Buffer.from(pdfBase64, 'base64');
+
+      const tempPdfPath = path.join(uploadDir, `temp_${Date.now()}.pdf`);
+      
+      console.log(`Salvando PDF temporário em: ${tempPdfPath}`);
+      
+      fs.writeFile(tempPdfPath, pdfBuffer, (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(tempPdfPath); // Retorna o caminho onde o PDF foi salvo
+      });
+  });
+  };
+
+  const deleteTempPdf = (tempPdfPath) => {
+    return new Promise((resolve, reject) => {
+      fs.unlink(tempPdfPath, (err) => {
+        if (err) {
+          reject(err);
+          console.error("Erro ao deletar o PDF temporário", err);
+        } else { 
+          resolve();
+          console.log("PDF temporário deletado com sucesso");
+        }
+      });
+    });
+  };
+
+  // Rota para obter todos os livros
+const obterLivros = async (req, res) => {
+  try {
+      const livros = await Livro.find({});  // Buscando todos os livros
+      res.status(200).json(livros);  // Retornando a lista de livros
+  } catch (error) {
+      console.error("Erro ao obter os livros:", error);
+      res.status(500).json({ message: "Erro ao obter os livros" });
+  }
+};
+
+  const obterPdfLivro = async (req, res) => {
     try{
-        const livros = await Livro.find();
-        const livrosComCapa = livros.map((livro) => ({
-            titulo: livro.titulo,
-            autor: livro.autor,
-            capa: livro.pdf.toString('base64'),
-        }));
-        res.status(200).json(livrosComCapa);
+        const livroId = req.params.id;
+        const livro = await Livro.findById(livroId);
+        console.log("Id do livro:", livroId)
+        console.log("Livro buscado no BD:", livro)
+
+
+        if(!livro){
+          return res.status(404).json({message:'Livro não encontrado'});
+        }
+
+        const pdfBase64 = livro.pdf.toString('base64');
+
+        const tempPdfPath = await salvarPDFtemp(pdfBase64);
+
+        console.log(`PDF temporário criado: ${tempPdfPath}`);
+
+        console.log(tempPdfPath);
+        res.status(200).json({
+          pdfUrl: `/uploads/${path.basename(tempPdfPath)}`,
+        });
+       // setTimeout(() => {
+         // deleteTempPdf(tempPdfPath);
+      //}, 30000);
     } catch (error) {
         console.error("Erro ao obter os livros:", error);
-        res.status(500).json({message:"Erro ao obter os livros"});
+        res.status(500).json({message:"Erro ao obter os livro"});
     }
   };
 
 
-module.exports = { connectDB, salvarLivro, obterLivros, upload};
+module.exports = { connectDB, salvarLivro, obterLivros, obterPdfLivro, upload};

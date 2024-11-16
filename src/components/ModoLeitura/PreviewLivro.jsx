@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import btnAdd from './../../assets/images/+.png'
 import * as pdfjsLib from 'pdfjs-dist'
 import "./PreviewLivro.css"
+import { Worker, Viewer } from '@react-pdf-viewer/core'
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.mjs';
+
 
 const PreviewLivro = () => {
 
@@ -12,6 +16,11 @@ const PreviewLivro = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [livros, setLivros] = useState([]); 
+
+
+  const [selectedPdf, setSelectedPdf] = useState(null);
+  const canvasRef = useRef(null);  // Referência para o canvas
+  const [pageNumber, setPageNumber] = useState(1); // Número da página
 
   const OpenModal = () => {
     setIsModalOpen(true);
@@ -107,11 +116,13 @@ const PreviewLivro = () => {
   useEffect(() => {
     const fetchLivros = async () => {
         try {
+          console.log("Buscando livros...");
             const response = await fetch('http://localhost:5000/api/obter-livros');
             if (!response.ok) {
                 throw new Error('Erro ao buscar livros');
             }
             const data = await response.json();
+            console.log("Livros recebidos:", data);
             setLivros(data);  // Supondo que os livros retornem com a URL da capa
         } catch (error) {
             console.error(error.message);
@@ -122,18 +133,75 @@ const PreviewLivro = () => {
 }, []);
 
 const handleLivroClick = (livroId) => {
+
+  console.log("Livro clicado:", livroId);
   // Aqui, ao clicar no livro, buscamos o PDF correspondente
-  fetch(`http://localhost:5000/api/livro/${livroId}`)
-    .then(response => response.blob())
-    .then(pdfBlob => {
-      setSelectedPdf(URL.createObjectURL(pdfBlob));
-      OpenModal(); // Abrir modal para visualizar o PDF
-    })
-    .catch(error => console.error('Erro ao abrir o PDF:', error));
+  fetch(`http://localhost:5000/api/obter-pdf/${livroId}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar PDF: ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    const pdfUrl = data.pdfUrl;
+    console.log('URL do PDF recebido:', pdfUrl);
+    setSelectedPdf(`http://localhost:5000${pdfUrl}`);
+  })
+  .catch(error => console.error('Erro ao abrir o PDF:', error));
 };
+
+const renderPdf = async (pdfUrl) => {
+  // Carregar o PDF
+  const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+
+  // Obter a página
+  const page = await pdf.getPage(pageNumber);
+
+  // Configurar o contexto do canvas
+  const canvas = canvasRef.current;
+  const context = canvas.getContext('2d');
+
+  // Definir a escala de renderização
+  const scale = 1.5; // Tamanho da página
+  const viewport = page.getViewport({ scale });
+
+  // Definir as dimensões do canvas
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+
+  // Renderizar a página no canvas
+  await page.render({
+    canvasContext: context,
+    viewport: viewport
+  }).promise;
+};
+
+// Carregar e renderizar o PDF sempre que a URL mudar
+useEffect(() => {
+  if (selectedPdf) {
+    renderPdf(selectedPdf);
+  }
+}, [selectedPdf, pageNumber]);
+
+const handleClosePdf = () => {
+  fetch('http:/localhost:5000/api/livro/deletar-pdf', {
+    method:'DELETE',
+    headers:{
+      'Content-Type':'application/json',
+    },
+    body: JSON.stringify({ filePath: selectedPdf}),
+  })
+  .then(response => response.json())
+  .then(() => {
+    setSelectedPdf(null);
+  })
+  .catch(error => console.error('Erro ao deletar o arquivo PDF:', error));
+};
+
   return (
     <div className='container_Preview'>
-      <p>Adicione os Seus Livros PDF’s ou PUB’s:</p>
+      <p>Adicione os Seus Livros PDF’s:</p>
         <button className='BtnAdd_leitura' onClick={OpenModal}>
           <img src={btnAdd} alt="botão +" className='btnAdd_leitura' />
         </button>
@@ -145,11 +213,12 @@ const handleLivroClick = (livroId) => {
           </p>
         ) : (
           <div className="livros_carousel">
-            {livros.map((livro, index) => (
+            {livros.map((livro) => (
               <div
-                key={livro.id || livro.titulo} onClick={() => handleLivroClick(livro.id)}>
+                key={livro._id || livro.titulo} 
+                onClick={() => handleLivroClick(livro._id)}>
                 <img
-                  src={`data:image/jpeg;base64,${livro.capa}`}
+                  src={livro.capa ? `data:image/jpeg;base64,${livro.capa}` : btnAdd}
                   alt={livro.titulo}
                   className="livro_capa"
                 />
@@ -160,6 +229,21 @@ const handleLivroClick = (livroId) => {
           </div>
         )}
       </div>
+
+      {selectedPdf && (
+        <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+          <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }}></canvas>
+          {/* Botões para navegar entre as páginas */}
+          <div>
+            <button onClick={() => setPageNumber(pageNumber - 1)} disabled={pageNumber <= 1}>
+              Página Anterior
+            </button>
+            <button onClick={() => setPageNumber(pageNumber + 1)}>
+              Próxima Página
+            </button>
+          </div>
+        </div>
+      )}
 
       {isModalOpen && (
         <div className="modalAddLivro_bg">

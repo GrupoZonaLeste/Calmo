@@ -4,7 +4,7 @@ const db = require("./db");
 const path = require("path");
 
 const cors = require('cors');
-const { salvarLivro, obterLivros, upload, connectDB } = require("./pdfController");
+const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB } = require("./pdfController");
 
 app.use(cors({
     origin: "*",  
@@ -80,10 +80,18 @@ app.post("/adicionar_anotacoes", async (req, res) => {
     res.json({ "status": "conteudo alterado" });
 });
 
-// Rotas para salvar e obter o livro (PDF)
+// Rotas para o pdfController
 app.post("/api/salvar-livro", upload.single('pdf'), salvarLivro);
 app.get("/api/obter-livros", obterLivros);
+app.get("/api/obter-pdf/:id", obterPdfLivro);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.delete('/api/livro/deletar-pdf', (req,res) => {
+    const { filepath } = req.body;
 
+    deleteTempPdf(filepath)
+    .then(() => res.status(200).json({message : 'Arquivo deletado com sucesso'}))
+    .catch((err) => res.status(500).json({message: 'Erro ao deletar o arquivo', error: err}));
+});
 
 connectDB().then(() => {
     app.listen(5000, () => {
