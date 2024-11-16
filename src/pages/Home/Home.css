@@ -10,6 +10,7 @@
     flex-direction: column;
     width: 80%;
     padding-left: 3vw;
+    justify-content: space-around;
 }
 
 .titleUsuario{
