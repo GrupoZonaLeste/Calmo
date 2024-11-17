@@ -5,6 +5,7 @@ import Iagenda from '../../assets/images/agenda.png'
 import Isair from '../../assets/images/sair.png'
 import Ianotacao from '../../assets/images/anotacao.png'
 import BtnSideBar from './botoesNavegacao/BtnSideBar'
+import IHome from '../../assets/images/icon-logo.png'
 import './SideBar.css'
 
 import { useNavigate } from 'react-router-dom';
@@ -46,6 +47,7 @@ const SideBar = () => {
     return (
     <nav className='navClass'>
         <ul className='ulClass'>
+            <BtnSideBar rotaPagina='/home' imgIcone={IHome} btnTexto="Home"/>
             <BtnSideBar rotaPagina='/anotacoes' imgIcone={Ianotacao} btnTexto="Anotações"/>
             <BtnSideBar rotaPagina='/musicas' imgIcone={Imusica} btnTexto="Músicas"/>
             <BtnSideBar rotaPagina='/leitura' imgIcone={Ileitura} btnTexto="Leitura"/>

@@ -1,84 +1,112 @@
-const express = require("express")
-const app = express()
-const db = require("./db")
+const express = require("express");
+const app = express();
+const db = require("./db");
+const path = require("path");
 
 const cors = require('cors');
+const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB, deleteTempPdf, deletarLivro } = require("./pdfController");
 
 app.use(cors({
-    origin: "*"
+    origin: "*",  
+    methods: "*",  
+    allowedHeaders: "*",  
 }));
 
 app.use(express.json());
 
-
 app.post("/cadastrar", (req, res) => {
-    db.insert("usuarios", req.body)
-    res.json({"status": "cadastrado"})
-})
+    db.insert("usuarios", req.body);
+    res.json({ "status": "cadastrado" });
+});
 
-app.post("/criar_pagina", async (req,res) => {
-    let verificarTitulos = await db.Bool_verifyAllItemsCollection("anotacoes","titulo", req.body.titulo)
+app.post("/criar_pagina", async (req, res) => {
+    let verificarTitulos = await db.Bool_verifyAllItemsCollection("anotacoes", "titulo", req.body.titulo);
     let anotacao = {
         titulo: req.body.titulo,
         tags: req.body.tags,
         criacao: req.body.criacao,
         conteudo: ""
-    }
+    };
 
     if (verificarTitulos) {
-        res.json({"status": "pagina ja existente"})
+        res.json({ "status": "pagina ja existente" });
     } else {
-        await db.insert("anotacoes", anotacao)
-        res.json({"status": "pagina inserida"})
+        await db.insert("anotacoes", anotacao);
+        res.json({ "status": "pagina inserida" });
     }
-})
+});
 
 app.get("/pagina/:idpagina", async (req, res) => {
-    let nomePag = req.params.idpagina
-    let coll = await db.getAllCollection("anotacoes")
-    
+    let nomePag = req.params.idpagina;
+    let coll = await db.getAllCollection("anotacoes");
+
     let retornarDados = async () => {
-        let dadosPagina = {}
-        for (const element of await coll){
-            if (element["titulo"] == nomePag){
-                dadosPagina = element
+        let dadosPagina = {};
+        for (const element of await coll) {
+            if (element["titulo"] == nomePag) {
+                dadosPagina = element;
             }
         }
-        return dadosPagina
-    } 
+        return dadosPagina;
+    };
 
-    let data = await retornarDados()
+    let data = await retornarDados();
     if (Object.keys(data).length < 0) {
-        res.json({"erro": "not found"})
+        res.json({ "erro": "not found" });
     } else {
-        res.json(data)
+        res.json(data);
     }
-    
-})
+});
 
 app.get("/anotacoes", async (req, res) => {
-    let paginas = await db.getAllCollection("anotacoes")
-    res.json(paginas)
-})
+    let paginas = await db.getAllCollection("anotacoes");
+    res.json(paginas);
+});
 
 app.delete("/deletar_pagina/:idpagina", async (req, res) => {
-    let nomePag = req.params.idpagina
+    let nomePag = req.params.idpagina;
     try {
-        await db.deleteItem("anotacoes", "titulo", nomePag)
-        res.json({"status": "pagina deletada"})
+        await db.deleteItem("anotacoes", "titulo", nomePag);
+        res.json({ "status": "pagina deletada" });
     } catch {   
-        res.json({"status": "erro ao deletar"})
+        res.json({ "status": "erro ao deletar" });
     }
-})
+});
 
 app.post("/adicionar_anotacoes", async (req, res) => {
-    let nomePag = req.body.titulo
-    let conteudo = req.body.conteudo
-    db.updateContent("anotacoes", {"titulo": nomePag}, {"conteudo": conteudo})
-    res.json({"status": "conteudo alterado"})
-})
+    let nomePag = req.body.titulo;
+    let conteudo = req.body.conteudo;
+    db.updateContent("anotacoes", { "titulo": nomePag }, { "conteudo": conteudo });
+    res.json({ "status": "conteudo alterado" });
+});
 
+// Rotas para o pdfController
+app.post("/api/salvar-livro", upload.single('pdf'), salvarLivro);
+app.get("/api/obter-livros", obterLivros);
+app.get("/api/obter-pdf/:id", obterPdfLivro);
+app.delete('/api/deletar-livro/:id', deletarLivro);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.delete('/api/livro/deletar-pdf', (req,res) => {
+    const { filepath } = req.body;
+    console.log("Caminho recebido no backend:", filepath);
+    if (!filepath) {
+        return res.status(400).json({ message: 'Caminho do arquivo não fornecido' });
+    }
+    const absolutePath = path.resolve(filepath); // Gera caminho absoluto
+    console.log("Caminho absoluto gerado:", absolutePath);
+    deleteTempPdf(absolutePath)
+    .then(() => {
+        res.status(200).json({message : 'Arquivo deletado com sucesso'})
+        console.log("Arquivo deletado com sucesso:", absolutePath);
+    })
+    .catch((err) => {
+        console.error("Erro ao deletar o arquivo:", err);
+        res.status(500).json({message: 'Erro ao deletar o arquivo', error: err})
+    });
+});
 
-app.listen(5000 , () => {
-    console.log("servidor inicializado")
-})
+connectDB().then(() => {
+    app.listen(5000, () => {
+        console.log("Servidor inicializado");
+    });
+});

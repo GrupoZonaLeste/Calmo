@@ -35,9 +35,9 @@ const Form = () => {
   const [isEditableEmail, setIsEditableEmail] = useState(false);
   const [isEditableTel, setIsEditableTel] = useState(false);
 
-  const [nome, setNome] = useState('Nome do Usuário')
-  const [email, setEmail] = useState('UsuarioNovo@gmail.com');
-  const [telefone, setTelefone] = useState('+55 (11) 91919-1919');
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
 
   const toggleEditableNome = () =>{
     setIsEditableNome(true);
