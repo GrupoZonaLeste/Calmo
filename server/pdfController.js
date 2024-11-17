@@ -7,7 +7,7 @@ const crypto = require("crypto");
 
 const { v4, uuidv4 } = require("uuid");
 
-// Log para verificar o valor de __dirname
+
 console.log(`__dirname: ${__dirname}`);
 const uploadDir = path.join(__dirname, 'uploads');
 console.log(`uploadDir: ${uploadDir}`);
@@ -20,7 +20,7 @@ if (!fs.existsSync(uploadDir)) {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, 'uploads')); // Pasta para armazenar as imagens
+      cb(null, path.join(__dirname, 'uploads')); 
     },
     filename: (req, file, cb) => {
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // Nome único para o arquivo
@@ -57,7 +57,6 @@ const gerarHashPdf = (pdfBuffer) => {
     return hash.digest('hex');
 }
 
-// Rota para salvar o livro e seu arquivo PDF
 const salvarLivro = async (req, res) => {
     const { titulo, autor } = req.body;
     const pdfPath = path.join(__dirname, 'uploads', req.file.filename);
@@ -111,24 +110,24 @@ const salvarLivro = async (req, res) => {
   };
 
   const deleteTempPdf = (tempPdfPath) => {
+    console.log("Iniciando exclusão do arquivo:", tempPdfPath);
     return new Promise((resolve, reject) => {
       fs.unlink(tempPdfPath, (err) => {
         if (err) {
           reject(err);
-          console.error("Erro ao deletar o PDF temporário", err);
+          console.error("Erro ao tentar deletar o arquivo:", tempPdfPath, "Erro:", err);
         } else { 
           resolve();
-          console.log("PDF temporário deletado com sucesso");
+          console.log("PDF temporário deletado com sucesso:", tempPdfPath);
         }
       });
     });
   };
 
-  // Rota para obter todos os livros
 const obterLivros = async (req, res) => {
   try {
-      const livros = await Livro.find({});  // Buscando todos os livros
-      res.status(200).json(livros);  // Retornando a lista de livros
+      const livros = await Livro.find({});  
+      res.status(200).json(livros);  
   } catch (error) {
       console.error("Erro ao obter os livros:", error);
       res.status(500).json({ message: "Erro ao obter os livros" });
@@ -141,7 +140,6 @@ const obterLivros = async (req, res) => {
         const livro = await Livro.findById(livroId);
         console.log("Id do livro:", livroId)
         console.log("Livro buscado no BD:", livro)
-
 
         if(!livro){
           return res.status(404).json({message:'Livro não encontrado'});
@@ -157,9 +155,6 @@ const obterLivros = async (req, res) => {
         res.status(200).json({
           pdfUrl: `/uploads/${path.basename(tempPdfPath)}`,
         });
-       // setTimeout(() => {
-         // deleteTempPdf(tempPdfPath);
-      //}, 30000);
     } catch (error) {
         console.error("Erro ao obter os livros:", error);
         res.status(500).json({message:"Erro ao obter os livro"});
@@ -167,4 +162,4 @@ const obterLivros = async (req, res) => {
   };
 
 
-module.exports = { connectDB, salvarLivro, obterLivros, obterPdfLivro, upload};
+module.exports = { connectDB, salvarLivro, obterLivros, obterPdfLivro, deleteTempPdf, upload};

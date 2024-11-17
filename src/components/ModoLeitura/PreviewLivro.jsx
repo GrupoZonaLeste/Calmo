@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import btnAdd from './../../assets/images/+.png'
+import Ilivro from './../../assets/images/livro.png'
 import * as pdfjsLib from 'pdfjs-dist'
 import "./PreviewLivro.css"
-import { Worker, Viewer } from '@react-pdf-viewer/core'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.mjs';
-
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
 const PreviewLivro = () => {
 
@@ -98,12 +97,13 @@ const PreviewLivro = () => {
     .then(response => response.json())
     .then(data => {
       alert(data.status);
-            setPdfFile(null); // Limpar estado do arquivo PDF
-            setPdfCover(null); // Limpar visualização da capa
+            setPdfFile(null); 
+            setPdfCover(null); 
             document.querySelector('.input_tituloLivro').value = '';
             document.querySelector('.input_autorLivro').value = '';
             CloseModal(true);
             setLivros([...livros, { titulo, autor, capa: pdfCover }]);
+            location.reload();
     })
 
     .catch(error => {
@@ -123,7 +123,7 @@ const PreviewLivro = () => {
             }
             const data = await response.json();
             console.log("Livros recebidos:", data);
-            setLivros(data);  // Supondo que os livros retornem com a URL da capa
+            setLivros(data); 
         } catch (error) {
             console.error(error.message);
         }
@@ -135,7 +135,7 @@ const PreviewLivro = () => {
 const handleLivroClick = (livroId) => {
 
   console.log("Livro clicado:", livroId);
-  // Aqui, ao clicar no livro, buscamos o PDF correspondente
+  
   fetch(`http://localhost:5000/api/obter-pdf/${livroId}`)
   .then(response => {
     if (!response.ok) {
@@ -154,30 +154,22 @@ const handleLivroClick = (livroId) => {
 const renderPdf = async (pdfUrl) => {
   // Carregar o PDF
   const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
-
-  // Obter a página
   const page = await pdf.getPage(pageNumber);
 
-  // Configurar o contexto do canvas
   const canvas = canvasRef.current;
   const context = canvas.getContext('2d');
 
-  // Definir a escala de renderização
-  const scale = 1.5; // Tamanho da página
+  const scale = 1.5; 
   const viewport = page.getViewport({ scale });
-
-  // Definir as dimensões do canvas
   canvas.width = viewport.width;
   canvas.height = viewport.height;
 
-  // Renderizar a página no canvas
   await page.render({
     canvasContext: context,
     viewport: viewport
   }).promise;
 };
 
-// Carregar e renderizar o PDF sempre que a URL mudar
 useEffect(() => {
   if (selectedPdf) {
     renderPdf(selectedPdf);
@@ -185,16 +177,28 @@ useEffect(() => {
 }, [selectedPdf, pageNumber]);
 
 const handleClosePdf = () => {
-  fetch('http:/localhost:5000/api/livro/deletar-pdf', {
+  const relativePath = selectedPdf.replace('http://localhost:5000/', ''); 
+    console.log("Caminho relativo do PDF:", relativePath);
+
+
+  fetch('http://localhost:5000/api/livro/deletar-pdf', {
     method:'DELETE',
     headers:{
       'Content-Type':'application/json',
     },
-    body: JSON.stringify({ filePath: selectedPdf}),
+    body: JSON.stringify({ filepath: relativePath}),
   })
-  .then(response => response.json())
+
+  .then(response => {
+    console.log("Resposta do backend:", response);
+    if (!response.ok) {
+      throw new Error('Erro ao deletar o arquivo');
+    }
+    return response.json();
+  })
   .then(() => {
     setSelectedPdf(null);
+    console.log("PDF fechado e deletado com sucesso!");
   })
   .catch(error => console.error('Erro ao deletar o arquivo PDF:', error));
 };
@@ -216,9 +220,10 @@ const handleClosePdf = () => {
             {livros.map((livro) => (
               <div
                 key={livro._id || livro.titulo} 
-                onClick={() => handleLivroClick(livro._id)}>
+                onClick={() => handleLivroClick(livro._id)}
+                className='biblioteca'>
                 <img
-                  src={livro.capa ? `data:image/jpeg;base64,${livro.capa}` : btnAdd}
+                  src={livro.capa ? `data:image/jpeg;base64,${livro.capa}` : Ilivro}
                   alt={livro.titulo}
                   className="livro_capa"
                 />
@@ -231,19 +236,49 @@ const handleClosePdf = () => {
       </div>
 
       {selectedPdf && (
-        <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-          <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }}></canvas>
-          {/* Botões para navegar entre as páginas */}
-          <div>
-            <button onClick={() => setPageNumber(pageNumber - 1)} disabled={pageNumber <= 1}>
-              Página Anterior
-            </button>
-            <button onClick={() => setPageNumber(pageNumber + 1)}>
-              Próxima Página
-            </button>
-          </div>
-        </div>
-      )}
+  <div style={{ position: 'fixed', top: 0, left: 0, width: '100%',              
+    height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+    zIndex: 9999, display: 'flex', justifyContent: 'center',   
+    alignItems: 'center'        
+  }}>
+    <canvas
+      ref={canvasRef}
+      style={{
+        display: 'block', maxWidth: '90vw', maxHeight: '90vh',    
+        width: 'auto', height: 'auto'
+      }}
+    />
+
+    <div style={{
+      position: 'absolute', top: '50%', left: '5vw', 
+      transform: 'translateY(-50%)', zIndex: 10000
+    }}>
+      <button className='btn_pass' onClick={() => setPageNumber(pageNumber - 1)} disabled={pageNumber <= 1}>
+      <p> VOLTAR </p>
+      </button>
+    </div>
+    <div style={{
+      position: 'absolute', top: '50%', right: '5vw', 
+      transform: 'translateY(-50%)', zIndex: 10000
+    }}>
+      <button className='btn_pass' onClick={() => setPageNumber(pageNumber + 1)}>
+        <p > PRÓXIMO </p>
+      </button>
+    </div>
+    
+    <div style={{
+      position: 'absolute', top: '10px', right: '1vw', zIndex: 10000
+    }}>
+      <button className='btn_pass' onClick={handleClosePdf} 
+      style={{
+        width: '3vw',
+        height: '5vw'
+      }}>
+        <p style={{margin: '0'}}> X </p>
+      </button>
+    </div>
+  </div>
+)}
 
       {isModalOpen && (
         <div className="modalAddLivro_bg">

@@ -4,7 +4,7 @@ const db = require("./db");
 const path = require("path");
 
 const cors = require('cors');
-const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB } = require("./pdfController");
+const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB, deleteTempPdf } = require("./pdfController");
 
 app.use(cors({
     origin: "*",  
@@ -87,10 +87,21 @@ app.get("/api/obter-pdf/:id", obterPdfLivro);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.delete('/api/livro/deletar-pdf', (req,res) => {
     const { filepath } = req.body;
-
-    deleteTempPdf(filepath)
-    .then(() => res.status(200).json({message : 'Arquivo deletado com sucesso'}))
-    .catch((err) => res.status(500).json({message: 'Erro ao deletar o arquivo', error: err}));
+    console.log("Caminho recebido no backend:", filepath);
+    if (!filepath) {
+        return res.status(400).json({ message: 'Caminho do arquivo não fornecido' });
+    }
+    const absolutePath = path.resolve(filepath); // Gera caminho absoluto
+    console.log("Caminho absoluto gerado:", absolutePath);
+    deleteTempPdf(absolutePath)
+    .then(() => {
+        res.status(200).json({message : 'Arquivo deletado com sucesso'})
+        console.log("Arquivo deletado com sucesso:", absolutePath);
+    })
+    .catch((err) => {
+        console.error("Erro ao deletar o arquivo:", err);
+        res.status(500).json({message: 'Erro ao deletar o arquivo', error: err})
+    });
 });
 
 connectDB().then(() => {
