@@ -226,6 +226,33 @@
     background-color: #5daeff38;
   }
 
+  .btn_excluir_livro{
+    background-Color : transparent;
+    border:none;
+    height: 1.8vw; 
+    width:auto;
+    display:flex;
+    align-items:center; 
+    justify-content:center; 
+    border-radius:100%;
+    position: relative; 
+    bottom: 11vw;
+    right: 2vw;
+    transition: 0.1s all;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .btn_excluir_livro:hover{
+    box-shadow: 0px 0px 5px 5px red;
+    height: 2vw;
+  }
+
+  .img_excluir_livro{
+    width: 100%;
+    height: 100%;
+  }
+
 @media (max-width: 768px) {
     .BtnAdd_leitura {
         height: 10vw;

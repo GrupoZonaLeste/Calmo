@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import btnAdd from './../../assets/images/+.png'
 import Ilivro from './../../assets/images/livro.png'
+import Iexcluir from './../../assets/images/remove.png'
 import * as pdfjsLib from 'pdfjs-dist'
 import "./PreviewLivro.css"
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -112,6 +113,26 @@ const PreviewLivro = () => {
     .finally(() => setLoading(false));
   };
 
+  const excluirLivro = (livroId) => {
+    console.log('Excluindo livro com ID:', livroId);
+    if(window.confirm("Você tem certeza que deseja excluir este livro?")){
+      fetch(`http://localhost:5000/api/deletar-livro/${livroId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Livro Apagado com Sucesso");
+      // Atualiza a lista de livros após a exclusão
+      setLivros(livros.filter(livro => livro._id !== livroId));
+    })
+    .catch((error) => {
+      console.error('Erro ao excluir o livro:', error);
+    });
+  }
+};
     
   useEffect(() => {
     const fetchLivros = async () => {
@@ -229,6 +250,10 @@ const handleClosePdf = () => {
                 />
                 <p className="livro_titulo">{livro.titulo}</p>
                 <p className="livro_autor">{livro.autor}</p>
+                <button className='btn_excluir_livro'
+                onClick={(e) => { e.stopPropagation(); excluirLivro(livro._id);} }>
+                  <img src={Iexcluir} className='img_excluir_livro' />
+                </button>
               </div>
             ))}
           </div>

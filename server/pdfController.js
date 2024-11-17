@@ -134,6 +134,23 @@ const obterLivros = async (req, res) => {
   }
 };
 
+const deletarLivro = async(req,res) => {
+  const livroId = req.params.id;
+
+  try {
+    // Exclui o livro do banco de dados
+    const livro = await Livro.findByIdAndDelete(livroId);
+
+    if (!livro) {
+      return res.status(404).json({ status: 'Livro não encontrado!' });
+    }
+    res.status(200).json({ status: 'Livro excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir livro:', error);
+    res.status(500).json({ status: 'Erro ao excluir o livro!' });
+  }
+}
+
   const obterPdfLivro = async (req, res) => {
     try{
         const livroId = req.params.id;
@@ -162,4 +179,4 @@ const obterLivros = async (req, res) => {
   };
 
 
-module.exports = { connectDB, salvarLivro, obterLivros, obterPdfLivro, deleteTempPdf, upload};
+module.exports = { connectDB, salvarLivro, obterLivros, obterPdfLivro, deleteTempPdf, deletarLivro, upload};

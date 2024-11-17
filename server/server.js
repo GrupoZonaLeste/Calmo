@@ -4,7 +4,7 @@ const db = require("./db");
 const path = require("path");
 
 const cors = require('cors');
-const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB, deleteTempPdf } = require("./pdfController");
+const { salvarLivro, obterLivros, obterPdfLivro, upload, connectDB, deleteTempPdf, deletarLivro } = require("./pdfController");
 
 app.use(cors({
     origin: "*",  
@@ -84,6 +84,7 @@ app.post("/adicionar_anotacoes", async (req, res) => {
 app.post("/api/salvar-livro", upload.single('pdf'), salvarLivro);
 app.get("/api/obter-livros", obterLivros);
 app.get("/api/obter-pdf/:id", obterPdfLivro);
+app.delete('/api/deletar-livro/:id', deletarLivro);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.delete('/api/livro/deletar-pdf', (req,res) => {
     const { filepath } = req.body;
