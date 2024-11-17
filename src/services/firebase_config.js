@@ -1,10 +1,8 @@
-
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
-
-
+// Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCYKpzOWbUbpQ7JDouOGVsspY_9JT9c3AE",
   authDomain: "calmoapp.firebaseapp.com",
@@ -15,8 +13,10 @@ const firebaseConfig = {
   measurementId: "G-NDG0S80YXK"
 };
 
+// Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
+
+// Inicializa os serviços
 const auth = getAuth(app);
-const firestoreDB = getFirestore(app)
-export { auth };
-export { firestoreDB };
+const db = getFirestore(app); // Inicializa o Firestore
+export { auth, db };

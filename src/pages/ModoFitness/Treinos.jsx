@@ -1,7 +1,7 @@
 import React from 'react'
 import SideBar from '../../components/Sidebar/SideBar'
 import './Fitness.css'
-import Treinos from '../../components/ModoFitness/Treinos React'
+import Treinos from "../../components/ModoFitness/Treinos"
 
 const TreinosPage = () => {
   return (
