@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 const Treinos = () => {
   const navigate = useNavigate(); 
 
-  const { treinoId } = useParams(); 
+  const { treinoId } = useParams(); // Pega o ID do treino da URL
   const [nomeTreino, setNomeTreino] = useState('');
   const [diasDeTreino, setDiasDeTreino] = useState([
     { dia: 'Segunda-feira', exercicios: ['', '', '', '', ''] },
@@ -22,25 +22,26 @@ const Treinos = () => {
     { dia: 'Sábado', exercicios: ['', '', '', '', ''] },
     { dia: 'Domingo', exercicios: ['', '', '', '', ''] },
   ]);
-  const [user] = useAuthState(auth); 
+  const [user] = useAuthState(auth); // Obtém o usuário autenticado
+
+  // Carregar o treino do banco de dados
   useEffect(() => {
-    if (user && dietId) {
-      fetchTreinoData();    }
+    if (user && treinoId) {
+      fetchTreinoData();
+    }
   }, [user, treinoId]);
 
-  // Função para buscar os dados da dieta
-    
+  // Função para buscar os dados do treino
   const fetchTreinoData = async () => {
     try {
-      const docRef = doc(db, 'treino', treinoId); // Referência à dieta específica
+      const docRef = doc(db, 'treinos', treinoId); // Referência ao treino específico
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // Verifica se o usuário autenticado é o dono da dieta
-        const treinoOwnerId = docSnap.data().userId; // Supondo que você armazene o ID do usuário no documento da dieta
+        const treinoOwnerId = docSnap.data().userId; // ID do dono do treino
 
         if (treinoOwnerId !== user.uid) {
-          // Se a dieta não pertence ao usuário autenticado, redireciona ou exibe erro
+          // Se o treino não pertence ao usuário autenticado, exibe erro e redireciona
           const result = await Swal.fire({
             title: 'Acesso negado',
             text: 'Você não tem permissão para editar esse Treino.',
@@ -49,10 +50,25 @@ const Treinos = () => {
           });
 
           if (result.isConfirmed) {
-            // Redireciona para a página inicial
-            navigate(-1); // Redireciona para a página inicial após o usuário confirmar
+            navigate(-1); // Redireciona para a página anterior
+          }
+        } else {
+          // Carrega o nome do treino
+          setNomeTreino(docSnap.data().name);
+
+          // Buscar a subcoleção de exercícios
+          const exerciciosRef = collection(docRef, 'exercicios');
+          const exerciciosSnap = await getDocs(exerciciosRef);
+
+          if (!exerciciosSnap.empty) {
+            const exerciciosData = exerciciosSnap.docs[0].data().diasDeTreino;
+            setDiasDeTreino(exerciciosData);
+          } else {
+            // DEBUG: console.log("vazio")
           }
         }
+      } else {
+        Swal.fire('Erro', 'Treino não encontrado.', 'error');
       }
     } catch (error) {
       console.error('Erro ao buscar dados do treino:', error);
@@ -60,20 +76,18 @@ const Treinos = () => {
     }
   };
 
-
-
-  // Função para salvar os dados da dieta automaticamente após cada alteração
+  // Função para salvar os dados do treino automaticamente após cada alteração
   const saveTreinoData = async () => {
     try {
       const docRef = doc(db, 'treinos', treinoId); // Referência ao treino
       const exerciciosRef = collection(docRef, 'exercicios'); // Subcoleção de exercícios
       const exerciciosSnap = await getDocs(exerciciosRef);
 
-
       if (!exerciciosSnap.empty) {
-        const exerciciosDoc = exerciciosSnap.docs[0];
+        const exerciciosDoc = exerciciosSnap.docs[0]; // Supomos que há apenas um documento
         await setDoc(exerciciosDoc.ref, { diasDeTreino }, { merge: true });
       } else {
+        // Caso a subcoleção de exercícios não exista, cria-a
         await setDoc(doc(exerciciosRef), { diasDeTreino });
       }
     } catch (error) {
@@ -82,54 +96,54 @@ const Treinos = () => {
     }
   };
 
-   // Função para manipular mudanças nos exercícios
-   const handleExerciseChange = (diaIndex, exercicioIndex, value) => {
+  // Função para manipular mudanças nos exercícios
+  const handleExerciseChange = (diaIndex, exercicioIndex, value) => {
     const updatedDias = [...diasDeTreino];
     updatedDias[diaIndex].exercicios[exercicioIndex] = value;
     setDiasDeTreino(updatedDias);
 
     saveTreinoData();
   };
-  
+
   return (
     <div className="treinos-body">
-    <div className="treinos-container">
-      <div className="treinos-content">
-      <h1 className="treinos-h1">{nomeTreino || 'Plano Nutricional'}</h1>
-        <div className="treinos-table">
-          <table className="treinotable">
-            <thead>
-              <tr>
-                <th className="treino-thead-th">Dia da semana</th>
-                <th className="treino-thead-th">Refeição 1</th>
-                <th className="treino-thead-th">Refeição 2</th>
-                <th className="treino-thead-th">Refeição 3</th>
-                <th className="treino-thead-th">Refeição 4</th>
-                <th className="treino-thead-th">Refeição 5</th>
-              </tr>
-            </thead>
-            <tbody>
-              {diasDeTreino.map((dia, diaIndex) => (
-                <tr key={diaIndex}>
-                  <td className="treinos-tbody-td">{dia.dia}</td>
-                  {dia.exercicios.map((exercicio, exercicioIndex) => (
-                    <td key={exercicioIndex} className="treinos-tbody-td">
-                      <textarea
-                        className="textarea-treinos"
-                        value={exercicio}
-                        onChange={(e) =>
-                          handleExerciseChange(diaIndex, exercicioIndex, e.target.value)
-                        }
-                      />
-                    </td>
-                  ))}
+      <div className="treinos-container">
+        <div className="treinos-content">
+          <h1 className="treinos-h1">{nomeTreino || 'Plano de Treino'}</h1>
+          <div className="treinos-table">
+            <table className="treinotable">
+              <thead>
+                <tr>
+                  <th className="treino-thead-th">Dia da semana</th>
+                  <th className="treino-thead-th">Exercício 1</th>
+                  <th className="treino-thead-th">Exercício 2</th>
+                  <th className="treino-thead-th">Exercício 3</th>
+                  <th className="treino-thead-th">Exercício 4</th>
+                  <th className="treino-thead-th">Exercício 5</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {diasDeTreino.map((dia, diaIndex) => (
+                  <tr key={diaIndex}>
+                    <td className="treinos-tbody-td">{dia.dia}</td>
+                    {dia.exercicios.map((exercicio, exercicioIndex) => (
+                      <td key={exercicioIndex} className="treinos-tbody-td">
+                        <textarea
+                          className="textarea-treinos"
+                          value={exercicio}
+                          onChange={(e) =>
+                            handleExerciseChange(diaIndex, exercicioIndex, e.target.value)
+                          }
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

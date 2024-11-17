@@ -36,11 +36,12 @@ function App() {
           <Route path="fitness" element={<Fitness />} />
           <Route path="agenda" element={<Agenda />} />
           <Route path="pagina/:idpagina" element={<PaginaAnotacoes />} />
-          <Route path="treinos" element={<TreinoPage />} />
+          
           
           {/* Dietas e ModoFitness */}
           <Route path="/dietas/:dietId" element={<DietaPage />} />
           <Route path="/fitness" element={<Fitness />} />
+          <Route path="treinos/:treinoId" element={<TreinoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
