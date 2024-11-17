@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../ModoFitness/Modo Fitness Css.css';
+import '../ModoFitness/ModoFitness.css';
 import { db, auth } from '../../services/firebase_config'; // Configuração do Firebase
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
