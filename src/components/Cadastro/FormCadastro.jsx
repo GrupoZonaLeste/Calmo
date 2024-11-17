@@ -6,7 +6,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
 
-import { firestoreDB } from '../../services/firebase_config'
+import { db } from '../../services/firebase_config'
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
 const showLoadingAlert = () => {
@@ -33,7 +33,7 @@ const FormCadastro = () => {
   ] = useCreateUserWithEmailAndPassword(auth);
   
   async function AddCollectionVerificar(coll, key, valor, add){
-    const querySnapshot = await getDocs(collection(firestoreDB, coll));
+    const querySnapshot = await getDocs(collection(db, coll));
         let userUnico = false
         querySnapshot.forEach(element => {
             if(element.data()[key] == valor){
@@ -41,7 +41,7 @@ const FormCadastro = () => {
             }
         })
         if(!userUnico){
-            await addDoc(collection(firestoreDB, coll), add);
+            await addDoc(collection(db, coll), add);
         }
     }
   // Funções de atualização de estado (não estavam definidas)

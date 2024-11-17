@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'; // Importante para aut
 import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
 
-import { firestoreDB } from '../../services/firebase_config'
+import { db } from '../../services/firebase_config'
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
  
 function FormLogin() {
@@ -23,7 +23,7 @@ function FormLogin() {
     }, [authUser, navigate]);
 
     async function AddCollectionVerificar(coll, key, valor, add){
-    const querySnapshot = await getDocs(collection(firestoreDB, coll));
+    const querySnapshot = await getDocs(collection(db, coll));
         let userUnico = false
         querySnapshot.forEach(element => {
             if(element.data()[key] == valor){
@@ -31,7 +31,7 @@ function FormLogin() {
             }
         })
         if(!userUnico){
-            await addDoc(collection(firestoreDB, coll), add);
+            await addDoc(collection(db, coll), add);
         }
     }
 
