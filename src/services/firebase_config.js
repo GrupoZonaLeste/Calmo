@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore"; // Importa o Firestore
-
+import { getFirestore } from 'firebase/firestore';
+// https://firebase.google.com/docs/web/setup#available-libraries
 // Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCYKpzOWbUbpQ7JDouOGVsspY_9JT9c3AE",
@@ -19,5 +19,4 @@ const app = initializeApp(firebaseConfig);
 // Inicializa os serviços
 const auth = getAuth(app);
 const db = getFirestore(app); // Inicializa o Firestore
-
 export { auth, db };

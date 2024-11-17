@@ -1,18 +1,18 @@
 import React from 'react'
 import './SemanaMusica.css'
 
-const SemanaMusica = () => {
+const SemanaMusica = (props) => {
   return (
     <div className='semanamusica'>
-        <h2>Sua Semana</h2>
+        <h2>Seu Mês</h2>
         <div className='container_SemanaMusica'>
             <div className='row1Semanamusica'>
                 <div className='topArtistasSemana'>
                     <h3>Top Artistas</h3>
                     <ol>
-                        <li>Artista1</li>
-                        <li>Artista2</li>
-                        <li>Artista3</li>
+                        {props.artistas.map((element) => {
+                            return <li>{element}</li>
+                        })}
                     </ol>
                 </div>
                 <div className='topMusicasSemana'>
