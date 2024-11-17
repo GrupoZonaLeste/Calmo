@@ -5,8 +5,10 @@ import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'fireb
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Swal from 'sweetalert2'; // Para mensagens de sucesso/erro
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"; 
 
 const ModoFitness = () => {
+  const navigate = useNavigate();
   const [isModal_Dieta_Open, setIsModal_Dieta_Open] = useState(false);
   const [isModal_Treino_Open, setIsModal_Treino_Open] = useState(false);
   const [dietName, setDietName] = useState('');
@@ -19,6 +21,8 @@ const ModoFitness = () => {
   useEffect(() => {
     if (user) {
       fetchUserDiets();
+      fetchUserTreinos();
+
     }
   }, [user]);
 
@@ -49,6 +53,34 @@ const ModoFitness = () => {
       Swal.fire('Erro', 'Não foi possível carregar suas dietas.', 'error');
     }
   };
+  const fetchUserTreinos = async () => {
+    try {
+      const treinosRef = collection(db, 'treinos');
+      const q = query(treinosRef, where('userId', '==', user.uid));
+      const querySnapshot = await getDocs(q);
+  
+      const userTreinos = [];
+  
+      for (const doc of querySnapshot.docs) {
+        const treinoData = doc.data();
+        const exerciciosRef = collection(doc.ref, 'exercicios'); // Referência à subcoleção de exercícios
+        const exerciciosSnapshot = await getDocs(exerciciosRef);
+        const exerciciosData = exerciciosSnapshot.docs.map((doc) => doc.data());
+  
+        userTreinos.push({
+          id: doc.id,
+          ...treinoData,
+          exercicios: exerciciosData[0]?.diasDaSemana || [], // Pega a primeira (e única) entrada de exercício
+        });
+      }
+  
+      setTreinos(userTreinos);
+    } catch (error) {
+      console.error('Erro ao buscar treinos:', error);
+      Swal.fire('Erro', 'Não foi possível carregar seus treinos.', 'error');
+    }
+  };
+  
   // Modal das dietas
   const openModal_Dieta = (event) => {
     event.preventDefault();
@@ -166,6 +198,7 @@ const ModoFitness = () => {
   };
   const deleteDiet = async (dietId) => {
     try {
+      
       // Exibe o alerta de confirmação
       const result = await Swal.fire({
         title: 'Tem certeza?',
@@ -180,6 +213,7 @@ const ModoFitness = () => {
       // Se o usuário confirmar, exclui a dieta
       if (result.isConfirmed) {
         // Deleta a subcoleção de refeições
+        navigate(-1)
         const refeicoesRef = collection(db, 'dietas', dietId, 'refeicoes');
         const refeicoesSnapshot = await getDocs(refeicoesRef);
         for (const doc of refeicoesSnapshot.docs) {
@@ -204,6 +238,52 @@ const ModoFitness = () => {
       Swal.fire('Erro', 'Não foi possível excluir a dieta.', 'error');
     }
   };
+  const deleteTreino = async (treinoId) => {
+    navigate
+    try {
+      // Exibe o alerta de confirmação
+      const result = await Swal.fire({
+        title: 'Tem certeza?',
+        text: 'Você não poderá reverter essa ação!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+      });
+  
+      // Se o usuário confirmar, exclui o treino
+      if (result.isConfirmed) {
+        // Verifica se a subcoleção 'exercicios' existe e deleta os documentos se houver
+        const exerciciosRef = collection(db, 'treinos', treinoId, 'exercicios');
+        const exerciciosSnapshot = await getDocs(exerciciosRef);
+        
+        // Exclui os exercícios da subcoleção se existirem
+        if (!exerciciosSnapshot.empty) {
+          for (const doc of exerciciosSnapshot.docs) {
+            await deleteDoc(doc.ref);
+          }
+        }
+  
+        // Deleta o treino
+        const treinoDocRef = doc(db, 'treinos', treinoId);
+        await deleteDoc(treinoDocRef);
+  
+        // Remove o treino do estado
+        setTreinos(treino.filter((treino) => treino.id !== treinoId));
+  
+        // Exibe uma mensagem de sucesso
+        Swal.fire('Excluído!', 'O treino foi excluído com sucesso.', 'success');
+      } else {
+        // Exibe uma mensagem caso o usuário cancele
+        Swal.fire('Cancelado', 'O treino não foi excluído.', 'info');
+      }
+    } catch (error) {
+      console.error('Erro ao excluir treino:', error);
+      Swal.fire('Erro', 'Não foi possível excluir o treino.', 'error');
+    }
+  };
+  
 
   return (
     <div className="modofitness-body">
@@ -309,8 +389,26 @@ const ModoFitness = () => {
           <h2 className="modofitness-h2">Suas Rotinas:</h2>
           <div className="modofitness-routine-section">
             <div className="modofitness-routine-carousel" id="routineCarousel">
-              {diets.map((diet) => (
-                
+            
+            {treino.map((treino) => (
+                <Link key={treino.id} to={`/treinos/${treino.id}`} className="modofitness-routine-option">
+                  <div className="modofitness-routine-card">
+                    <p>{treino.name}</p>
+                  
+                  <div
+                      className="modofitness-delete-container"
+                      onClick={() => deleteTreino(treino.id)}
+                    >
+                      {/* Ícone de lixeira // NAO APAGAR*/}
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                      </svg>
+                      </div>
+                      </div> 
+                </Link>
+              ))}
+            
+              {diets.map((diet) => ( 
                 <Link key={diet.id} to={`/dietas/${diet.id}`} className="modofitness-routine-option">
                   <div className="modofitness-routine-card">
                     <p>{diet.name}</p>
@@ -328,7 +426,7 @@ const ModoFitness = () => {
               ))}
             </div>
           </div>
-        </div>
+          </div>
       </div>
     </div>
   );
