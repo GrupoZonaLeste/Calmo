@@ -2,47 +2,52 @@
 .treinos-body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #1E1E1E; /* Fundo escuro */
     color: white;
 }
 
 .treinos-container {
     display: flex;
     min-height: 100vh;
-    width: 70vw;
     overflow: hidden; /* Para evitar que o conteúdo transborde */
-    margin-left: 10vw;
 }
 
 /* Barra lateral */
+.treinos-sidebar {
+    width: 15%;
+    background-color: #2b2b2b; /* Fundo escuro da barra lateral */
+    padding: 20px;
+    box-sizing: border-box;
+}
 
 /* Conteúdo principal */
 .treinos-content {
-    width: 85%;
+    width: 100%;
     padding: 20px;
     text-align: center;
 }
 
 .treinos-h1 {
+    font-size: 3vw;
+    font-family: "montserrat-Bold";
+    color: #f9f9f9;
     margin-bottom: 20px;
 }
 
 /* Estilo da tabela */
-.treinos-workout-table {
-    height: calc(100vh - 60px); /* Faz a tabela ocupar quase toda a altura da tela */
-    display: flex;
+.treinos-table {
     justify-content: center;
-    align-items: center;
     overflow-x: auto; /* Rolagem horizontal */
 }
 
 .treinos-table {
-    width: 1200px; /* Tamanho maior para criar barra de rolagem */
-    height: 100%;
+    width: 80vw; /* Tamanho maior para criar barra de rolagem */
+    height: 90vh;
     border-collapse: collapse;
     table-layout: fixed; /* Mantém as colunas de tamanho fixo */
 }
 
-.treinos-thead th {
+.treinos-thead-th {
     background-color: #2b2b2b;
     color: white;
     padding: 10px;
@@ -51,34 +56,40 @@
     top: 0;
 }
 
-.treinos-tbody td {
+.treinos-tbody-td {
     background-color: #2b2b2b;
     padding: 20px;
     text-align: center;
-    border: #212121 1px solid;
+    color: #fff;
 }
 
-.treinos-table th, table td {
+.treinotable th, .treinotable td {
     border: 1px solid #2b2b2b;
 }
 
 /* Estilo da barra de rolagem */
-.treinos-workout-table::-webkit-scrollbar {
+.treinos-table::-webkit-scrollbar {
     height: 8px;
 }
 
-.treinos-workout-table::-webkit-scrollbar-thumb {
+.treinos-table::-webkit-scrollbar-thumb {
     background-color: #2b2b2b;
     border-radius: 4px;
 }
 
-.treinos-workout-table::-webkit-scrollbar-track {
+.treinos-table::-webkit-scrollbar-track {
     background-color: #2b2b2b;
 }
 
-.textarea-treinos{
-    background-color:#2b2b2b;
-    height: 1vh;
+.textarea-treinos {
+    background-color: #2b2b2b;
+    color: #fff;
+    border: 0px;
+    border-radius: 1px;
     resize: none;
-    
+    height: 5rem;
+}
+
+.treinos-body {
+    background-color: #212121;
 }

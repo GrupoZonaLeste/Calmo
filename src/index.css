@@ -56,8 +56,14 @@
 body { 
     background-color: #212121;
 }
-
 [vw] [vw-access-button] img {
     -webkit-margin-before: 0;
     width: auto;
 }
+.loading {
+    color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

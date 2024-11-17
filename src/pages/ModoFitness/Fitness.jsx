@@ -1,8 +1,7 @@
 import React from 'react'
 import SideBar from '../../components/Sidebar/SideBar'
 import './Fitness.css'
-import ModoFitness from '../../components/ModoFitness/Modo Fitness React'
-import Dieta from '../../components/ModoFitness/Dieta React'
+import ModoFitness from "../../components/ModoFitness/ModoFitness"
 
 const Fitness = () => {
   return (

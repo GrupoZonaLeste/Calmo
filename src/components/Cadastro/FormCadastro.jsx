@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './FormCadastro.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import criarUser from '../../models/models';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
+
+import { db } from '../../services/firebase_config'
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
 const showLoadingAlert = () => {
   Swal.fire({
@@ -20,37 +23,67 @@ const showLoadingAlert = () => {
 const FormCadastro = () => {
   const [dataUser, setDataUser] = useState(criarUser("", "", "", "", "", "", ""));
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const nav = useNavigate()
+  
   const [
     createUserWithEmailAndPassword,
     user,
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
-
+  
+  async function AddCollectionVerificar(coll, key, valor, add){
+    const querySnapshot = await getDocs(collection(db, coll));
+        let userUnico = false
+        querySnapshot.forEach(element => {
+            if(element.data()[key] == valor){
+                userUnico = true
+            }
+        })
+        if(!userUnico){
+            await addDoc(collection(db, coll), add);
+        }
+    }
   // Funções de atualização de estado (não estavam definidas)
   const updateNome = (e) => setDataUser({ ...dataUser, nome: e.target.value });
   const updateSobrenome = (e) => setDataUser({ ...dataUser, sobrenome: e.target.value });
   const updateTelefone = (e) => setDataUser({ ...dataUser, telefone: e.target.value });
-  const updateSenha = (e) => setPassword(e.target.value);
+  const updateSenha = () => setDataUser(previousState => {
+    return { ...previousState, password: event.target.value }
+  })
+  const updateEmail = () => setDataUser(previousState => {
+    return { ...previousState, email: event.target.value }
+  })
+
 
   // Função para lidar com o cadastro
   const handleCadastro = async (e) => {
     e.preventDefault();
-
+    
     // Verificar se as senhas coincidem antes de enviar ao Firebase
-    if (password !== confirmarSenha) {
+    if (dataUser.password !== confirmarSenha) {
       Swal.fire("Erro", "As senhas não coincidem!", "error");
       return;
     }
     showLoadingAlert(); // Mostrar carregamento
-
+    
     try {
-      await createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(dataUser['email'], dataUser['password']);
+      AddCollectionVerificar("users", "email", dataUser.email, {
+        "nome": dataUser.nome,
+        "email": dataUser.email,
+        "telefone": dataUser.telefone,
+        "foto": dataUser.foto,
+        "senha": dataUser.password,
+        "tokensapi": {
+            "tokenspotify":"",
+            "tokengoogle": ""
+        }
+      })
+      nav("/login")
       Swal.close(); // Fechar o alerta de carregamento após o cadastro
       Swal.fire("Sucesso!", "Usuário cadastrado com sucesso!", "success");
+      
     } catch (error) {
       Swal.fire("Erro", error.message, "error");
     }
@@ -76,7 +109,7 @@ const FormCadastro = () => {
           id="email-cadastro" 
           placeholder="Email" 
           className="input-field-cadastro" 
-          onChange={(e) => setEmail(e.target.value)} 
+          onChange={updateEmail} 
         />
 
         <label htmlFor="telefone" className="input-label-cadastro">Telefone</label>

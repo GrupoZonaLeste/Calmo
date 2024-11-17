@@ -3,6 +3,44 @@
     justify-content: space-around;
 }
 
+.loginComSpotifyDiv{
+    height: 100%;
+    color: #f9f9f9;
+  }
+
+  .loginComSpotifyDiv > h1 {
+    font-size: 3vw;
+    font-family: "montserrat-Bold";
+    color: #f9f9f9;
+    margin-bottom: 0;
+  }
+
+  .loginComSpotifyDiv > p {
+    margin-top: 0;
+    font-family: "montserrat-Thin";
+    font-style: italic;
+    color: #f9f9f9;
+  }
+
+
+
+.loginComSpotifyButton {
+    max-height: fit-content;
+    padding: 1vh 2vh;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 1vh;
+    transition: all 0.1s;
+}
+
+.loginComSpotifyButton:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.1s;
+    padding: 1.2vh 2.2vh;
+}
+
 @media (max-width: 768px) {
     .mainModoMusica {
         display: flex;
