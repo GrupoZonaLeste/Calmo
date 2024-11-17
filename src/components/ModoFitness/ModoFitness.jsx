@@ -239,7 +239,7 @@ const ModoFitness = () => {
     }
   };
   const deleteTreino = async (treinoId) => {
-    navigate
+    
     try {
       // Exibe o alerta de confirmação
       const result = await Swal.fire({
@@ -254,6 +254,7 @@ const ModoFitness = () => {
   
       // Se o usuário confirmar, exclui o treino
       if (result.isConfirmed) {
+        navigate(-1)
         // Verifica se a subcoleção 'exercicios' existe e deleta os documentos se houver
         const exerciciosRef = collection(db, 'treinos', treinoId, 'exercicios');
         const exerciciosSnapshot = await getDocs(exerciciosRef);
