@@ -16,7 +16,7 @@
   left: 10px;
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 4vw;
   cursor: pointer;
   color: #ffffff;
 }
@@ -30,18 +30,19 @@
 .form-cadastro {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .input-label-cadastro {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 1.3vw;
   color: #ffffff;
 }
 
 .input-field-cadastro {
   margin-bottom: 15px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 1.1vw;
   color: #ffffff;
   background-color: #3A3A3A;
   border: none;
@@ -49,7 +50,7 @@
 }
 
 .input-field-cadastro::placeholder {
-  color: #ffffff;
+  color: #aaaaaa;
 }
 
 .submit-button-cadastro {

@@ -13,7 +13,7 @@
     position: absolute;
     top: 10px; /* Ajuste a posição vertical se necessário */
     left: 10px; /* Ajuste a posição horizontal se necessário */
-    font-size: 20px;
+    font-size: 4vw;
     color: white;
     cursor: pointer;
 }
@@ -37,10 +37,7 @@
     margin-left: 10px; /* Adiciona uma margem à esquerda */
 }
 
-/* Espaço extra entre email e senha */
-.login-box input[type="password"] {
-    margin-top: 25px;
-}
+
 
 /* Botão Entrar */
 .button-entrar {

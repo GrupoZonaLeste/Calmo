@@ -102,7 +102,9 @@ function FormLogin() {
             <Link to={"/"}><div className="back-button-login">←</div></Link>
             <h1>LOGIN</h1>
             <form onSubmit={handleEmailLogin}>
+                <label style={{margin: '0', color:"#ffffff", display:'flex'}}>Nome:</label>
                 <input type="email" name="email" placeholder="Digite o seu email" required />
+                <label style={{margin: '0', color:"#ffffff", display:'flex', marginTop:'1vw'}} >Senha:</label>
                 <input type="password" name="password" placeholder="Digite a sua senha" required />
                 <button className="button-entrar" type="submit" disabled={loading}>
                     {loading ? "Carregando..." : "ENTRAR"}
@@ -110,6 +112,7 @@ function FormLogin() {
                 <div className="divider-login"></div>
                 <Link to={"/esqueci_senha"} className="red">Esqueceu a Senha? <span>CLIQUE AQUI</span></Link>
                 <Link to={"/cadastro"} className="blue">Não Possui Conta? <span>CLIQUE AQUI</span></Link>
+                <div className="divider-login"></div>
             </form>
             {/* Botão de login com Google */}
             <button className="google-login-button" onClick={handleGoogleLogin}>

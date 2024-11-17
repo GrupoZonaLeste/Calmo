@@ -97,32 +97,28 @@ const FormCadastro = () => {
       </Link>
       <h1 className="title-cadastro">Cadastro</h1>
       <form className="form-cadastro" onSubmit={handleCadastro}>
-        <label htmlFor="nome" className="input-label-cadastro">Nome</label>
-        <input type="text" id="nome-cadastro" placeholder="Nome" className="input-field-cadastro" onChange={updateNome} />
+        <label htmlFor="nome" className="input-label-cadastro">Nome:</label>
+        <input type="text" id="nome-cadastro" placeholder="Digite o seu nome..." className="input-field-cadastro" onChange={updateNome} />
 
-        <label htmlFor="sobrenome" className="input-label-cadastro">Sobrenome</label>
-        <input type="text" id="sobrenome-cadastro" placeholder="Sobrenome" className="input-field-cadastro" onChange={updateSobrenome} />
+        <label htmlFor="sobrenome" className="input-label-cadastro">Sobrenome:</label>
+        <input type="text" id="sobrenome-cadastro" placeholder="Digite o seu sobrenome..." className="input-field-cadastro" onChange={updateSobrenome} />
 
-        <label htmlFor="email" className="input-label-cadastro">Email</label>
-        <input 
-          type="email" 
-          id="email-cadastro" 
-          placeholder="Email" 
-          className="input-field-cadastro" 
-          onChange={updateEmail} 
+        <label htmlFor="email" className="input-label-cadastro">Email:</label>
+        <input type="email" id="email-cadastro" placeholder="Digite o seu email..." 
+          className="input-field-cadastro" onChange={updateEmail} 
         />
 
-        <label htmlFor="telefone" className="input-label-cadastro">Telefone</label>
-        <input type="tel" id="telefone-cadastro" placeholder="Telefone" className="input-field-cadastro" onChange={updateTelefone} />
+        <label htmlFor="telefone" className="input-label-cadastro">Telefone:</label>
+        <input type="tel" id="telefone-cadastro" placeholder="Digite o seu telefone..." className="input-field-cadastro" onChange={updateTelefone} />
 
-        <label htmlFor="senha" className="input-label-cadastro">Senha</label>
-        <input type="password" id="senha-cadastro" placeholder="Senha" className="input-field-cadastro" onChange={updateSenha} />
+        <label htmlFor="senha" className="input-label-cadastro">Senha:</label>
+        <input type="password" id="senha-cadastro" placeholder="Digite o sua senha..." className="input-field-cadastro" onChange={updateSenha} />
 
-        <label htmlFor="confirmarSenha" className="input-label-cadastro">Confirmar Senha</label>
+        <label htmlFor="confirmarSenha" className="input-label-cadastro">Confirmar Senha:</label>
         <input 
           type="password" 
           id="confirmarSenha-cadastro" 
-          placeholder="Confirmar Senha" 
+          placeholder="Confirme sua senha..." 
           className="input-field-cadastro" 
           onChange={(e) => setConfirmarSenha(e.target.value)} 
         />
