@@ -4,9 +4,8 @@ import Calendar from 'react-calendar';
 import SideBar from '../../components/Sidebar/SideBar';
 import './Agenda.css';
 
-const CLIENT_ID = '573382000184-nuldqho0u8fhc88fliue1ce1othuj244.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyAmWfonwqhNjLt1J89-mrv2DjeyfWvPV2Q';
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+const CLIENT_ID = '148422495751-mbk4lp0309bejnbrn3llerhg1p9kqdsi.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyAtoIxDQFY4kURwIUvifrXCBpOMKcmK6hI';
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
 const Agenda = () => {
@@ -18,23 +17,32 @@ const Agenda = () => {
 
   useEffect(() => {
     const start = () => {
-      gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES,
-      }).then(() => {
-        const authInstance = gapi.auth2.getAuthInstance();
-        setIsSignedIn(authInstance.isSignedIn.get());
-        authInstance.isSignedIn.listen(setIsSignedIn);
-        if (authInstance.isSignedIn.get()) {
-          listUpcomingEvents();
-        }
-      });
+      gapi.client
+        .init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          scope: SCOPES,
+        })
+        .then(() => {
+          const authInstance = gapi.auth2.getAuthInstance();
+          setIsSignedIn(authInstance.isSignedIn.get());
+          authInstance.isSignedIn.listen(setIsSignedIn);
+  
+          if (authInstance.isSignedIn.get()) {
+            // Carrega a API do Google Calendar antes de listar eventos
+            gapi.client.load('calendar', 'v3').then(() => {
+              listUpcomingEvents();
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Erro ao inicializar o cliente gapi:', error);
+        });
     };
-
+  
     gapi.load('client:auth2', start);
   }, []);
+  
 
   const handleAuthClick = () => {
     gapi.auth2.getAuthInstance().signIn();
@@ -46,16 +54,26 @@ const Agenda = () => {
   };
 
   const listUpcomingEvents = () => {
-    gapi.client.calendar.events.list({
-      calendarId: 'primary',
-      timeMin: (new Date()).toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 10,
-      orderBy: 'startTime',
-    }).then(response => {
-      setEvents(response.result.items);
-    });
+    if (!gapi.client.calendar) {
+      console.error("gapi.client.calendar não está disponível.");
+      return;
+    }
+
+    gapi.client.calendar.events
+      .list({
+        calendarId: 'primary',
+        timeMin: new Date().toISOString(),
+        showDeleted: false,
+        singleEvents: true,
+        maxResults: 10,
+        orderBy: 'startTime',
+      })
+      .then((response) => {
+        setEvents(response.result.items || []);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar eventos:", error);
+      });
   };
 
   const addEvent = () => {
@@ -74,29 +92,45 @@ const Agenda = () => {
       },
     };
 
-    gapi.client.calendar.events.insert({
-      calendarId: 'primary',
-      resource: event,
-    }).then(() => {
-      setNewEvent({ summary: '', startTime: '', endTime: '' });
-      listUpcomingEvents();
-      setModalVisible(false);
-    }).catch(error => {
-      console.error("Erro ao adicionar evento: ", error);
-      alert("Erro ao adicionar evento. Verifique os dados e tente novamente.");
-    });
+    if (!gapi.client.calendar) {
+      console.error("gapi.client.calendar não está disponível.");
+      return;
+    }
+
+    gapi.client.calendar.events
+      .insert({
+        calendarId: 'primary',
+        resource: event,
+      })
+      .then(() => {
+        alert("Evento adicionado com sucesso!");
+        listUpcomingEvents(); // Atualiza a lista de eventos
+        setModalVisible(false); // Fecha o modal
+        setNewEvent({ summary: '', startTime: '', endTime: '' }); // Limpa os campos do formulário
+      })
+      .catch((error) => {
+        console.error("Erro ao adicionar evento:", error);
+      });
   };
 
   const deleteEvent = (eventId) => {
-    gapi.client.calendar.events.delete({
-      calendarId: 'primary',
-      eventId: eventId,
-    }).then(() => {
-      listUpcomingEvents(); // Atualiza a lista de eventos após a exclusão
-    }).catch(error => {
-      console.error("Erro ao excluir evento: ", error);
-      alert("Erro ao excluir evento.");
-    });
+    if (!gapi.client.calendar) {
+      console.error("gapi.client.calendar não está disponível.");
+      return;
+    }
+
+    gapi.client.calendar.events
+      .delete({
+        calendarId: 'primary',
+        eventId: eventId,
+      })
+      .then(() => {
+        listUpcomingEvents();
+      })
+      .catch((error) => {
+        console.error("Erro ao excluir evento:", error);
+        alert("Erro ao excluir evento.");
+      });
   };
 
   const handleDateClick = (value) => {
