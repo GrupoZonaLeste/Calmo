@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 import Calendar from 'react-calendar';
 import SideBar from '../../components/Sidebar/SideBar';
+import Swal from 'sweetalert2';
 import './Agenda.css';
 
 const CLIENT_ID = '148422495751-mbk4lp0309bejnbrn3llerhg1p9kqdsi.apps.googleusercontent.com';
@@ -78,10 +79,14 @@ const Agenda = () => {
 
   const addEvent = () => {
     if (!newEvent.summary || !newEvent.startTime || !newEvent.endTime) {
-      alert("Por favor, preencha todos os campos do evento.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Campos incompletos',
+        text: 'Por favor, preencha todos os campos do evento.',
+      });
       return;
     }
-
+  
     const event = {
       summary: newEvent.summary,
       start: {
@@ -91,47 +96,86 @@ const Agenda = () => {
         dateTime: new Date(`${selectedDate.toISOString().split('T')[0]}T${newEvent.endTime}:00`).toISOString(),
       },
     };
-
+  
     if (!gapi.client.calendar) {
-      console.error("gapi.client.calendar não está disponível.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'A API do Google Calendar não está disponível.',
+      });
       return;
     }
-
+  
     gapi.client.calendar.events
       .insert({
         calendarId: 'primary',
         resource: event,
       })
       .then(() => {
-        alert("Evento adicionado com sucesso!");
-        listUpcomingEvents(); // Atualiza a lista de eventos
-        setModalVisible(false); // Fecha o modal
-        setNewEvent({ summary: '', startTime: '', endTime: '' }); // Limpa os campos do formulário
+        Swal.fire({
+          icon: 'success',
+          title: 'Evento Adicionado!',
+          text: 'O evento foi adicionado com sucesso.',
+        });
+        listUpcomingEvents();
+        setModalVisible(false);
+        setNewEvent({ summary: '', startTime: '', endTime: '' });
       })
       .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao Adicionar Evento',
+          text: 'Houve um problema ao adicionar o evento.',
+        });
         console.error("Erro ao adicionar evento:", error);
       });
   };
-
+  
   const deleteEvent = (eventId) => {
     if (!gapi.client.calendar) {
-      console.error("gapi.client.calendar não está disponível.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'A API do Google Calendar não está disponível.',
+      });
       return;
     }
-
-    gapi.client.calendar.events
-      .delete({
-        calendarId: 'primary',
-        eventId: eventId,
-      })
-      .then(() => {
-        listUpcomingEvents();
-      })
-      .catch((error) => {
-        console.error("Erro ao excluir evento:", error);
-        alert("Erro ao excluir evento.");
-      });
+  
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você realmente deseja excluir este evento?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, excluir!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        gapi.client.calendar.events
+          .delete({
+            calendarId: 'primary',
+            eventId: eventId,
+          })
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Evento Excluído',
+              text: 'O evento foi excluído com sucesso.',
+            });
+            listUpcomingEvents();
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro ao Excluir Evento',
+              text: 'Não foi possível excluir o evento.',
+            });
+            console.error("Erro ao excluir evento:", error);
+          });
+      }
+    });
   };
+  
 
   const handleDateClick = (value) => {
     setSelectedDate(value);

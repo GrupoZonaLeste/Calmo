@@ -284,6 +284,7 @@
 
 /* Estilo do botão de excluir evento */
 .delete-button {
+  margin-left: 2vw;
   padding: 6px 12px;
   font-size: 14px;
   color: #f44336;
