@@ -5,9 +5,8 @@ import criarUser from '../../models/models';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
-
 import { db } from '../../services/firebase_config'
-import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import axios from 'axios';
 
 const showLoadingAlert = () => {
@@ -33,35 +32,38 @@ const FormCadastro = () => {
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
   
-  async function AddCollectionVerificar(coll, key, valor, add){
-    const querySnapshot = await getDocs(collection(db, coll));
-        let userUnico = false
-        querySnapshot.forEach(element => {
-            if(element.data()[key] == valor){
-                userUnico = true
-            }
-        })
-        if(!userUnico){
-            await addDoc(collection(db, coll), add);
-        }
-
-      await axios.request({
-        method: "POST",
-        url: `${import.meta.env.VITE_URL_SERVER}/cadastrar`,
-        data: add
-      })
-    }
-  // Funções de atualização de estado (não estavam definidas)
+  // Funções de atualização de estado
   const updateNome = (e) => setDataUser({ ...dataUser, nome: e.target.value });
   const updateSobrenome = (e) => setDataUser({ ...dataUser, sobrenome: e.target.value });
   const updateTelefone = (e) => setDataUser({ ...dataUser, telefone: e.target.value });
-  const updateSenha = () => setDataUser(previousState => {
-    return { ...previousState, password: event.target.value }
+  const updateSenha = (e) => setDataUser(previousState => {
+    return { ...previousState, password: e.target.value }
   })
-  const updateEmail = () => setDataUser(previousState => {
-    return { ...previousState, email: event.target.value }
+  const updateEmail = (e) => setDataUser(previousState => {
+    return { ...previousState, email: e.target.value }
   })
 
+  // Função para adicionar dados do usuário no Firestore
+  const AddUserToFirestore = async (user) => {
+    try {
+      // Usando o UID como ID do documento
+      const userDocRef = doc(db, 'users', user.uid); // 'users' é sua coleção e user.uid é o ID do documento
+      await setDoc(userDocRef, {
+        nome: dataUser.nome,
+        email: dataUser.email,
+        telefone: dataUser.telefone,
+        foto: dataUser.foto || "", // Optional
+        senha: dataUser.password,
+        tokensapi: {
+          tokenspotify: "",
+          tokengoogle: ""
+        }
+      });
+    } catch (error) {
+      console.error("Erro ao adicionar o usuário ao Firestore: ", error);
+      Swal.fire("Erro", "Ocorreu um erro ao cadastrar o usuário no Firestore.", "error");
+    }
+  }
 
   // Função para lidar com o cadastro
   const handleCadastro = async (e) => {
@@ -75,27 +77,23 @@ const FormCadastro = () => {
     showLoadingAlert(); // Mostrar carregamento
     
     try {
-      await createUserWithEmailAndPassword(dataUser['email'], dataUser['password']);
-      AddCollectionVerificar("users", "email", dataUser.email, {
-        "nome": dataUser.nome,
-        "email": dataUser.email,
-        "telefone": dataUser.telefone,
-        "foto": dataUser.foto,
-        "senha": dataUser.password,
-        "tokensapi": {
-            "tokenspotify":"",
-            "tokengoogle": ""
-        }
-      })
-      sessionStorage.setItem("emailuserid", dataUser.email)
-      nav("/login")
+      // Criar o usuário com Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(dataUser.email, dataUser.password);
+      const user = userCredential.user; // Aqui está o objeto user com o uid
+
+      // Adicionar o usuário ao Firestore usando o UID como ID do documento
+      await AddUserToFirestore(user); 
+
+      sessionStorage.setItem("emailuserid", dataUser.email);
+      nav("/login");
       Swal.close(); // Fechar o alerta de carregamento após o cadastro
       Swal.fire("Sucesso!", "Usuário cadastrado com sucesso!", "success");
-      
+
     } catch (error) {
       Swal.fire("Erro", error.message, "error");
     }
   };
+
   return (
     <div className="container-Cadastro">
       <Link to={"/login"}> 

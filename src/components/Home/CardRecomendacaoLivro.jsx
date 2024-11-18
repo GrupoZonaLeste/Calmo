@@ -12,4 +12,4 @@ const CardRecomendacaoLivro = () => {
   )
 }
 
-export default CardRecomendacaoLivro
+export default CardRecomendacaoLivro;
