@@ -17,7 +17,7 @@ const Paginas = () => {
     let getData = async () => {
       let response = await Axios.request({
         method: "GET",
-        url: `${import.meta.env.VITE_URL_SERVER}/anotacoes`,
+        url: `${import.meta.env.VITE_URL_SERVER}/anotacoes/${sessionStorage.getItem("emailuserid")}`,
       })
       setPaginas(response.data)
       let tags = []

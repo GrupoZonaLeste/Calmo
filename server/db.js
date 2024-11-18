@@ -14,34 +14,42 @@ async function connect(){
 }
 
 async function insert(coll, obj) {
-    const db = await connect()
-    return db.collection(coll).insertOne(obj)
+        const db = await connect()
+        return db.collection(coll).insertOne(obj)
+}
+async function insertAnotacao(coll, obj, id) {
+        const db = await connect()
+        return db.collection(coll).updateOne(
+            {user : id }, 
+            { $push: { "itens": obj }}
+        )
 }
 
-async function Bool_verifyAllItemsCollection(coll, param, item){
+async function Bool_verifyAllItemsCollection(coll, param, item, user){
     const db = await connect()
     let query = {}
     query[param] = item
+    query["user"] = user
     let result = await db.collection(coll).find(query).toArray()
     if (result.length > 0) { return true } else { return false }
 }
 
-async function getAllCollection(coll){
+async function getAllCollection(coll, id){
     const db = await connect()
-    let result = await db.collection(coll).find({}).toArray()
+    let result = await db.collection(coll).find({user: id}).toArray()
     if (result.length > 0) { return result } else { return [] }
 }
 
-async function deleteItem(coll, param, item){
+async function deleteItem(coll, item, user){
     const db = await connect()
     let query = {}
-    query[param] = item
-    await db.collection(coll).deleteOne(query)
+    query["user"] = user
+    await db.collection(coll).updateOne(query, { $pull: { itens: { titulo: item }  } })
 }
 
-async function updateContent(coll, item, newContent) {
+async function updateContent(coll,item, newContent) {
     const db = await connect()
-    await db.collection(coll).updateOne(item, {$set: newContent})
+    await db.collection(coll).updateOne(item, newContent)
 }
 
 async function getEspecificItem(coll, item = {}){
@@ -55,5 +63,6 @@ module.exports = {
     getAllCollection,
     deleteItem,
     updateContent,
-    getEspecificItem
+    getEspecificItem,
+    insertAnotacao
 }

@@ -52,7 +52,22 @@
     color: #f9f9f9;
     text-decoration: none;
 }
-
+.resetLinks > button {
+    background-color: #6ABDF5;
+    border: none;
+    height: 4vh;
+    width: max-content;
+    font-weight: bold;
+    border-radius: 1vw;
+    transition: all 0.1s;
+    margin-top: 5vh;
+}
+.resetLinks > button:hover {
+    border: 1px solid #f9f9f9;
+    cursor: pointer;
+    font-size: 90%;
+    transition: all 0.2s;
+}
 body { 
     background-color: #212121;
 }

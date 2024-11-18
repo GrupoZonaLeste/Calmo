@@ -24,7 +24,7 @@ const CardPagina = (props) => {
     async function deletarPagina(){
       await axios.request({
         method: "DELETE",
-        url: `${import.meta.env.VITE_URL_SERVER}/deletar_pagina/${props.titulo}`
+        url: `${import.meta.env.VITE_URL_SERVER}/deletar_pagina/${props.titulo}/${sessionStorage.getItem("emailuserid")}`
       })
       setPaginaDeletada(true)
     }

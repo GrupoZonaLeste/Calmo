@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Titulo.css'
 import './ModalNovaAnotacao.css'
 import { Link } from 'react-router-dom'
-import Axios from 'axios'
+import axios from 'axios'
 
 const Titulo = () => {
   const [statusModal, setstatusModal] = useState(true)
@@ -11,6 +11,10 @@ const Titulo = () => {
   const [pagCriada, setPagCriada] = useState(false)
   function abrirFecharModal(){
     setstatusModal(!statusModal)
+    let hoje = new Date()
+    setDataNovaPagina(previousState => {
+      return { ...previousState, criacao: hoje.toLocaleDateString()}
+    });
     setdisplayModal(statusModal ? "flex" : "none")
   }
   
@@ -19,31 +23,27 @@ const Titulo = () => {
     setDataNovaPagina(previousState => {
       return { ...previousState, titulo: event.target.value }
     });
-    let hoje = new Date()
-    setDataNovaPagina(previousState => {
-      return { ...previousState, criacao: hoje.toLocaleDateString()}
-    });
   }
   function updateTags(){
     setDataNovaPagina(previousState => {
       return { ...previousState, tags: event.target.value.split(" ").filter(item => item !== "")}
     });
   }
-  
-  async function criarPagina(){
-    if (dataNovaPagina.titulo == ""){
-      alert("Preencha os campos")
-      setPagCriada(false)
-      return
-    }
 
-    await Axios.request({
-      method: "POST",
-      url: `${import.meta.env.VITE_URL_SERVER}/criar_pagina`,
-      data: dataNovaPagina
-    })
-    setPagCriada(true)
+   async function criarPagina(){
+     setPagCriada(true)
+     if (dataNovaPagina.titulo == ""){
+       alert("Preencha os campos")
+       setPagCriada(false)
+       return
+      }
+      await axios.request({
+        method: "POST",
+        url: `${import.meta.env.VITE_URL_SERVER}/criar_pagina/${sessionStorage.getItem("emailuserid")}`,
+        data: dataNovaPagina,
+      })
   }
+
   return (
     <>
       <div className='bg-modalNovaAnotacao' style={{ display: displayModal }}>
@@ -58,11 +58,11 @@ const Titulo = () => {
             <h3>Tags<span>(separadas por espaço)</span></h3>
             <input onChange={updateTags}/>
           </div>
-          <Link to={pagCriada ? `/pagina/${dataNovaPagina.titulo}`: ""}>
           <div className='btnCriarAnotacao'>
-            <button onClick={criarPagina}>Criar Anotação</button>
-          </div>
+          <Link to={pagCriada ? `/pagina/${dataNovaPagina.titulo}`: ""} className='resetLinks'>
+            <button onClick={pagCriada ? () => {} : criarPagina}>Criar Anotação</button>
           </Link>
+          </div>
         </div>
       </div>
 

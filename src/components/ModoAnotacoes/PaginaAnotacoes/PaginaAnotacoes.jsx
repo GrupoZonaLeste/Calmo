@@ -17,7 +17,7 @@ const PaginaAnotacoes = () => {
     async function addConteudo() {
         await axios.request({
             method: "POST",
-            url: `${import.meta.env.VITE_URL_SERVER}/adicionar_anotacoes`,
+            url: `${import.meta.env.VITE_URL_SERVER}/adicionar_anotacoes/${sessionStorage.getItem("emailuserid")}`,
             data: {
                 titulo: tituloPagina(),
                 conteudo: dados
@@ -29,7 +29,7 @@ const PaginaAnotacoes = () => {
         const pegarDados = async () => {   
             let resposta = await axios.request({
                 method: "GET",
-                url: `${import.meta.env.VITE_URL_SERVER}/pagina/${tituloPagina()}`
+                url: `${import.meta.env.VITE_URL_SERVER}/pagina/${tituloPagina()}/${sessionStorage.getItem("emailuserid")}`
             })
             setDados(resposta.data.conteudo);
             setTags(resposta.data.tags);

@@ -65,7 +65,7 @@ function FormLogin() {
         }
     };
     
-    const handleEmailLogin = (e) => {
+    const handleEmailLogin = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;

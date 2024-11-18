@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 import { db } from '../../services/firebase_config'
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import axios from 'axios';
 
 const showLoadingAlert = () => {
   Swal.fire({
@@ -43,6 +44,12 @@ const FormCadastro = () => {
         if(!userUnico){
             await addDoc(collection(db, coll), add);
         }
+
+      await axios.request({
+        method: "POST",
+        url: `${import.meta.env.VITE_URL_SERVER}/cadastrar`,
+        data: add
+      })
     }
   // Funções de atualização de estado (não estavam definidas)
   const updateNome = (e) => setDataUser({ ...dataUser, nome: e.target.value });
@@ -80,6 +87,7 @@ const FormCadastro = () => {
             "tokengoogle": ""
         }
       })
+      sessionStorage.setItem("emailuserid", dataUser.email)
       nav("/login")
       Swal.close(); // Fechar o alerta de carregamento após o cadastro
       Swal.fire("Sucesso!", "Usuário cadastrado com sucesso!", "success");

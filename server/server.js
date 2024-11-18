@@ -17,10 +17,14 @@ app.use(express.json());
 app.post("/cadastrar", (req, res) => {
     db.insert("usuarios", req.body);
     res.json({ "status": "cadastrado" });
+    db.insert("anotacoes", {
+        itens: [],
+        user: req.body.email
+    })
 });
 
-app.post("/criar_pagina", async (req, res) => {
-    let verificarTitulos = await db.Bool_verifyAllItemsCollection("anotacoes", "titulo", req.body.titulo);
+app.post("/criar_pagina/:iduser", async (req, res) => {
+    let verificarTitulos = await db.Bool_verifyAllItemsCollection("anotacoes", "titulo", req.body.titulo, req.params.iduser);
     let anotacao = {
         titulo: req.body.titulo,
         tags: req.body.tags,
@@ -31,21 +35,25 @@ app.post("/criar_pagina", async (req, res) => {
     if (verificarTitulos) {
         res.json({ "status": "pagina ja existente" });
     } else {
-        await db.insert("anotacoes", anotacao);
+        await db.insertAnotacao("anotacoes", anotacao, req.params.iduser);
         res.json({ "status": "pagina inserida" });
     }
 });
 
-app.get("/pagina/:idpagina", async (req, res) => {
+app.get("/pagina/:idpagina/:iduser", async (req, res) => {
     let nomePag = req.params.idpagina;
-    let coll = await db.getAllCollection("anotacoes");
+    let nomeUser = req.params.iduser;
+    let coll = await db.getAllCollection("anotacoes", nomeUser);
 
     let retornarDados = async () => {
         let dadosPagina = {};
         for (const element of await coll) {
-            if (element["titulo"] == nomePag) {
-                dadosPagina = element;
-            }
+            element["itens"].forEach(element => {
+                if (element["titulo"] == nomePag) {
+                    dadosPagina = element;
+                }
+            });
+            
         }
         return dadosPagina;
     };
@@ -58,25 +66,31 @@ app.get("/pagina/:idpagina", async (req, res) => {
     }
 });
 
-app.get("/anotacoes", async (req, res) => {
-    let paginas = await db.getAllCollection("anotacoes");
-    res.json(paginas);
+app.get("/anotacoes/:iduser", async (req, res) => {
+    let paginas = await db.getAllCollection("anotacoes", req.params.iduser);
+    if(paginas.length > 0){
+        res.json(paginas[0].itens);
+    }else {
+        res.json(paginas);
+    }
 });
 
-app.delete("/deletar_pagina/:idpagina", async (req, res) => {
+app.delete("/deletar_pagina/:idpagina/:iduser", async (req, res) => {
     let nomePag = req.params.idpagina;
+    let nomeUser = req.params.iduser;
     try {
-        await db.deleteItem("anotacoes", "titulo", nomePag);
+        await db.deleteItem("anotacoes", nomePag, nomeUser);
         res.json({ "status": "pagina deletada" });
     } catch {   
         res.json({ "status": "erro ao deletar" });
     }
 });
 
-app.post("/adicionar_anotacoes", async (req, res) => {
+app.post("/adicionar_anotacoes/:iduser", async (req, res) => {
     let nomePag = req.body.titulo;
     let conteudo = req.body.conteudo;
-    db.updateContent("anotacoes", { "titulo": nomePag }, { "conteudo": conteudo });
+    let nomeUser = req.params.iduser;
+    db.updateContent("anotacoes", { user: nomeUser, "itens.titulo": nomePag }, { $set: { "itens.$.conteudo": conteudo } });
     res.json({ "status": "conteudo alterado" });
 });
 
