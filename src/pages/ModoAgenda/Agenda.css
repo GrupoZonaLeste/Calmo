@@ -54,6 +54,12 @@
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  color: #f9f9f9;;
+  background-color: #5daeff; 
+}
+
+.button-agenda:hover {
+  background-color: #0e6fcf; 
 }
 
 /* Estilos específicos dos botões */
@@ -75,21 +81,19 @@
 }
 
 .login-button {
-  background-color: rgba(0, 0, 0, 0.139);  /* Mesmo estilo do botão de logout */
-  border: 1px solid rgb(245, 106, 106);   /* Mesma borda */
-  color: rgb(245, 106, 106);              /* Mesma cor de texto */
+  background-color: #4285F4;  /* Mesmo estilo do botão de logout */
+  border: 1px solid #F9F9F9;   /* Mesma borda */
+  color: #F9F9F9;              /* Mesma cor de texto */
   border-radius: 0.5vw;
   padding: 0.5vw;
-  margin-top: 3vh;
   font-family: "Roboto", sans-serif;
 }
 
 .login-button:hover {
-  cursor: pointer;
-  border: 2px solid rgb(243, 25, 25);   /* Alteração na borda ao passar o mouse */
-  color: rgb(243, 25, 25);               /* Cor do texto ao passar o mouse */
-  font-weight: bolder;                   /* Negrito no hover */
-  transition: all 0.1s;                  /* Transição suave */
+  cursor: pointer;             /* Cor do texto ao passar o mouse */
+  transition: all 0.1s;
+  opacity: 0.6;
+  padding: 0.7vw;                  /* Transição suave */
 }
 
 .cancel-button {
@@ -134,6 +138,8 @@
   width: 100%;
   background-color: #2a2a2a;
   border: none;
+  padding: 1vw;
+  border-radius: 1vh;
 }
 
 .react-calendar__navigation {

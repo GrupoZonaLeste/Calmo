@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'; // Para mensagens de sucesso/erro
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"; 
 
-const ModoFitness = () => {
+const ModoFitness = (props) => {
   const navigate = useNavigate();
   const [isModal_Dieta_Open, setIsModal_Dieta_Open] = useState(false);
   const [isModal_Treino_Open, setIsModal_Treino_Open] = useState(false);
@@ -287,22 +287,22 @@ const ModoFitness = () => {
   
 
   return (
-    <div className="modofitness-body">
+    <div className="modofitness-body" style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}: null}>
       <div className="modofitness-container">
         <div className="modofitness-content">
           <h1 className="modofitness-h1">Modo Fitness</h1>
 
           <div className="modofitness-create-routine">
             <h2 className="modofitness-h2">Criar Rotina:</h2>
-            <div className="modofitness-routine-options">
-              <a href="#" className="modofitness-routine-option" onClick={openModal_Dieta}>
+            <div className="modofitness-routine-options" >
+              <a href="#" className="modofitness-routine-option" onClick={openModal_Dieta} style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121", boxShadow: "10px 10px 41px -26px rgba(33,33,33,1)"}: null}>
                 <p>Planilha de Dieta</p>
                 <div className="modofitness-plus-container">
                   <div className="modofitness-plus-sign">+</div>
                 </div>
               </a>
-              <a href="#" className="modofitness-routine-option" onClick={openModal_Treino}>
-                <p className="texto-link">Agenda de Treino</p>
+              <a href="#" className="modofitness-routine-option" onClick={openModal_Treino} style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121", boxShadow: "10px 10px 41px -26px rgba(33,33,33,1)"}: null}>
+                <p className="texto-link" style={!props.lightmode ? {color: "#212121"}: null}>Agenda de Treino</p>
                 <div className="modofitness-plus-container">
                   <div className="modofitness-plus-sign">+</div>
                 </div>
@@ -392,8 +392,8 @@ const ModoFitness = () => {
             <div className="modofitness-routine-carousel" id="routineCarousel">
             
             {treino.map((treino) => (
-                <Link key={treino.id} to={`/treinos/${treino.id}`} className="modofitness-routine-option">
-                  <div className="modofitness-routine-card">
+                <Link key={treino.id} to={`/treinos/${treino.id}`} className="modofitness-routine-option" style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121", boxShadow: "10px 10px 41px -26px rgba(33,33,33,1)"}: null}>
+                  <div className="modofitness-routine-card" style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}: null}>
                     <p>{treino.name}</p>
                   
                   <div
@@ -410,8 +410,8 @@ const ModoFitness = () => {
               ))}
             
               {diets.map((diet) => ( 
-                <Link key={diet.id} to={`/dietas/${diet.id}`} className="modofitness-routine-option">
-                  <div className="modofitness-routine-card">
+                <Link key={diet.id} to={`/dietas/${diet.id}`} className="modofitness-routine-option"  style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121", boxShadow: "10px 10px 41px -26px rgba(33,33,33,1)"}: null}>
+                  <div className="modofitness-routine-card"  style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}: null}>
                     <p>{diet.name}</p>
                     <div
                       className="modofitness-delete-container"

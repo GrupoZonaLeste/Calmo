@@ -20,7 +20,7 @@ const showLoadingAlert = () => {
   });
 };
 
-const FormCadastro = () => {
+const FormCadastro = (props) => {
   const [dataUser, setDataUser] = useState(criarUser("", "", "", "", "", "", ""));
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const nav = useNavigate()
@@ -95,38 +95,39 @@ const FormCadastro = () => {
   };
 
   return (
-    <div className="container-Cadastro">
+    <div className="container-Cadastro" style={!props.lightmode ? {backgroundColor: "#ffffff", color: "#212121"}: null}>
       <Link to={"/login"}> 
-        <button className="back-button-cadastro">
+        <button className="back-button-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>
           &#8592;
         </button>
       </Link>
-      <h1 className="title-cadastro">Cadastro</h1>
+      <h1 className="title-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Cadastro</h1>
       <form className="form-cadastro" onSubmit={handleCadastro}>
-        <label htmlFor="nome" className="input-label-cadastro">Nome:</label>
-        <input type="text" id="nome-cadastro" placeholder="Digite o seu nome..." className="input-field-cadastro" onChange={updateNome} />
+        <label htmlFor="nome" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Nome:</label>
+        <input type="text" id="nome-cadastro" placeholder="Digite o seu nome..." className="input-field-cadastro" onChange={updateNome}  style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null} />
 
-        <label htmlFor="sobrenome" className="input-label-cadastro">Sobrenome:</label>
-        <input type="text" id="sobrenome-cadastro" placeholder="Digite o seu sobrenome..." className="input-field-cadastro" onChange={updateSobrenome} />
+        <label htmlFor="sobrenome" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Sobrenome:</label>
+        <input type="text" id="sobrenome-cadastro" placeholder="Digite o seu sobrenome..." className="input-field-cadastro" onChange={updateSobrenome}  style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null} />
 
-        <label htmlFor="email" className="input-label-cadastro">Email:</label>
+        <label htmlFor="email" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Email:</label>
         <input type="email" id="email-cadastro" placeholder="Digite o seu email..." 
           className="input-field-cadastro" onChange={updateEmail} 
-        />
+         style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null} />
 
-        <label htmlFor="telefone" className="input-label-cadastro">Telefone:</label>
-        <input type="tel" id="telefone-cadastro" placeholder="Digite o seu telefone..." className="input-field-cadastro" onChange={updateTelefone} />
+        <label htmlFor="telefone" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Telefone:</label>
+        <input type="tel" id="telefone-cadastro" placeholder="Digite o seu telefone..." className="input-field-cadastro" onChange={updateTelefone}  style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null} />
 
-        <label htmlFor="senha" className="input-label-cadastro">Senha:</label>
-        <input type="password" id="senha-cadastro" placeholder="Digite o sua senha..." className="input-field-cadastro" onChange={updateSenha} />
+        <label htmlFor="senha" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Senha:</label>
+        <input type="password" id="senha-cadastro" placeholder="Digite o sua senha..." className="input-field-cadastro" onChange={updateSenha}  style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null} />
 
-        <label htmlFor="confirmarSenha" className="input-label-cadastro">Confirmar Senha:</label>
+        <label htmlFor="confirmarSenha" className="input-label-cadastro" style={!props.lightmode ? {color: "#212121"}:null}>Confirmar Senha:</label>
         <input 
           type="password" 
           id="confirmarSenha-cadastro" 
           placeholder="Confirme sua senha..." 
           className="input-field-cadastro" 
           onChange={(e) => setConfirmarSenha(e.target.value)} 
+          style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null}
         />
 
         <button type="submit" className="submit-button-cadastro">

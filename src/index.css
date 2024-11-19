@@ -81,4 +81,36 @@ body {
     justify-content: center;
     align-items: center;
 }
+.btnDarkLight {
+    border: none;
+    border-radius: 1vh;
+    padding: 1vh;
+    margin-left: 2vw;
+    transition: all 0.1s;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    width: 5vw !important;
+}
+.btnDarkLight:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.1s;
+}
 
+.btnDarkLightOK {
+    width: 5vw;
+    position: sticky;
+    border: none;
+    border-radius: 1vh;
+    padding: 1vh;
+    margin-left: 2vw;
+    transition: all 0.1s;
+    font-weight: bold;
+    background-color: #212121;
+    color: #c9c9c9
+}
+.btnDarkLightOK:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.1s;
+}

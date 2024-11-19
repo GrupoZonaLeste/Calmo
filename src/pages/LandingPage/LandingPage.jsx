@@ -6,14 +6,14 @@ import DivHero from "../../components/LandingPage/DivHero"
 import DivSobre from "../../components/LandingPage/DivSobre"
 import Footer from "../../components/LandingPage/Footer"
 
-const LandingPage = () => {
+const LandingPage = (props) => {
     return (
         <>
         <div className='body_landing'>
-            <Header/>
-            <DivHero />
-            <DivSobre/>
-            <Footer/>
+            <Header lightmode={props.lightmode}/>
+            <DivHero lightmode={props.lightmode}/>
+            <DivSobre lightmode={props.lightmode}/>
+            <Footer lightmode={props.lightmode}/>
         </div>
         </>
     )

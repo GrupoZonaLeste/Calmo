@@ -8,7 +8,7 @@ import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 
-const Dieta = () => {
+const Dieta = (props) => {
   const navigate = useNavigate();
   const { dietId } = useParams(); // Pega o ID da dieta da URL
   const [nomeDieta, setNomeDieta] = useState(''); // Estado para armazenar o nome da dieta
@@ -112,9 +112,9 @@ const fetchDietData = async () => {
   };
   
   return (
-    <div className="dieta-container">
+    <div className="dieta-container" >
       <div className="dieta-content">
-      <h1 className="dieta-h1">{nomeDieta || 'Plano Nutricional'}</h1>
+      <h1 className="dieta-h1" style={!props.lightmode ? {color: "#212121"}: null}>{nomeDieta || 'Plano Nutricional'}</h1>
         <div className="dieta-table">
           <table className="dietatable">
             <thead>

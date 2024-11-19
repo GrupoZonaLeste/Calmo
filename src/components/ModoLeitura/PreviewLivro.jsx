@@ -9,7 +9,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
-const PreviewLivro = () => {
+const PreviewLivro = (props) => {
 
   const [pdfCover, setPdfCover] = useState(null);
   const [pdfFile, setPdfFile] = useState(null);
@@ -226,12 +226,12 @@ const handleClosePdf = () => {
 
   return (
     <div className='container_Preview'>
-      <p>Adicione os Seus Livros PDF’s:</p>
-        <button className='BtnAdd_leitura' onClick={OpenModal}>
-          <img src={btnAdd} alt="botão +" className='btnAdd_leitura' />
+      <p style={!props.lightmode ? {color: "#212121"}: null}>Adicione os Seus Livros PDF’s:</p>
+        <button className='BtnAdd_leitura' onClick={OpenModal} style={!props.lightmode ? {color: "#212121", border: "solid 0.1vw #212121"}: null}>
+          <img src={btnAdd} alt="botão +" className='btnAdd_leitura' style={!props.lightmode ? {filter: "invert(1)"}:null} />
         </button>
-      <p>Sua Biblioteca:</p>
-      <div className='Livros_Adicionados'>
+      <p style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}: null}>Sua Biblioteca:</p>
+      <div className='Livros_Adicionados'  style={!props.lightmode ? {color: "#212121", border: "solid 0.1vw #212121"}: null}>
       {livros.length === 0 ? (
           <p style={{ fontStyle: 'italic' }}>
             Sem livros adicionados até o momento, adicione livros na sua biblioteca e comece a sua Jornada no Universo da Leitura!
@@ -308,7 +308,7 @@ const handleClosePdf = () => {
       {isModalOpen && (
         <div className="modalAddLivro_bg">
           <div className="modalAddLivro_conteudo">
-            <button className='BtnFechar_modalAddLivro' onClick={CloseModal}>X</button>
+            <button className='BtnFechar_modalAddLivro' onClick={CloseModal} >X</button>
             <div className="conteudo_Livro">
               <h1 className='title_addLivro'>CLIQUE PARA ADICIONAR O LIVRO</h1>
               <label className='Label_AddLivro'>

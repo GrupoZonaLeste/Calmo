@@ -8,7 +8,7 @@ import { auth } from '../../services/firebase_config';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 
-const Treinos = () => {
+const Treinos = (props) => {
   const navigate = useNavigate(); 
 
   const { treinoId } = useParams(); // Pega o ID do treino da URL
@@ -106,10 +106,10 @@ const Treinos = () => {
   };
 
   return (
-    <div className="treinos-body">
+    <div className="treinos-body" style={!props.lightmode ? {backgroundColor: "#f2f2f2",color: "#212121"}: null}>
       <div className="treinos-container">
         <div className="treinos-content">
-          <h1 className="treinos-h1">{nomeTreino || 'Plano de Treino'}</h1>
+          <h1 className="treinos-h1" style={!props.lightmode ? {color: "#212121"}: null}>{nomeTreino || 'Plano de Treino'}</h1>
           <div className="treinos-table">
             <table className="treinotable">
               <thead>

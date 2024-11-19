@@ -9,7 +9,7 @@ const CLIENT_ID = '148422495751-mbk4lp0309bejnbrn3llerhg1p9kqdsi.apps.googleuser
 const API_KEY = 'AIzaSyAtoIxDQFY4kURwIUvifrXCBpOMKcmK6hI';
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-const Agenda = () => {
+const Agenda = (props) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -183,21 +183,21 @@ const Agenda = () => {
   };
 
   return (
-    <div className='container_modos'>
-      <SideBar />
+    <div className='container_modos' style={!props.lightmode ? {backgroundColor: "#f2f2f2",color: "#212121"}: null}>
+      <SideBar lightmode={props.lightmode}/>
       <div className='modoagenda'>
-        <h1>Modo Agenda</h1>
-        <p>Se organize na sua agenda Google!</p>
+        <h1 style={!props.lightmode ? {color: "#212121"}: null}>Modo Agenda</h1>
+        <p style={!props.lightmode ? {color: "#212121"}: null}>Se organize na sua agenda Google!</p>
         <div className="agenda-container">
           {isSignedIn ? (
             <div className='mainAgenda'>
               <div>
-                <h2 className='agenda-titulos'>Próximos eventos:</h2>
+                <h2 className='agenda-titulos' style={!props.lightmode ? {color: "#212121"}: null}>Próximos eventos:</h2>
                 <ul className="event-list">
                   {events.length > 0 ? (
                     events.map((event, index) => (
                       <li key={index} className="event-item">
-                        <span>{event.summary} - {new Date(event.start.dateTime).toLocaleString()}</span>
+                        <span style={!props.lightmode ? {color: "#212121"}: null}>{event.summary} - {new Date(event.start.dateTime).toLocaleString()}</span>
                         <button 
                           className="delete-button" 
                           onClick={() => deleteEvent(event.id)}>
@@ -210,7 +210,7 @@ const Agenda = () => {
               </div>
               
               <div>
-                <h2 className='agenda-titulos'>Calendário</h2>
+                <h2 className='agenda-titulos' style={!props.lightmode ? {color: "#212121"}: null}>Calendário</h2>
                 <Calendar
                   onChange={setSelectedDate}
                   value={selectedDate}

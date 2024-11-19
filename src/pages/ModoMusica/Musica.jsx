@@ -13,7 +13,7 @@ let codeSession = null
 let profile = null
 let topArtistas = []
 
-const Musica = () => {
+const Musica = (props) => {
   const [loginSpotify, setLoginSpotify] = useState(false)
   const [token, setToken] = useState("")
   function logoutSpotify() {
@@ -69,11 +69,11 @@ const Musica = () => {
   }
   
   return (
-    <div className='container_modos'>
-      <SideBar />
+    <div className='container_modos' style={!props.lightmode ? {backgroundColor: "#f2f2f2", color: "#212121"}:null}>
+      <SideBar lightmode={props.lightmode} />
       {loginSpotify ?
         <div className='DivCentral'>
-          <Titulo funcOnClick={logoutSpotify} />
+          <Titulo funcOnClick={logoutSpotify} lightmode={props.lightmode} />
           <div className='mainModoMusica'>
           <button className='loginComSpotifyButton' onClick={() => testeArtistas(token)}>teste</button>
 

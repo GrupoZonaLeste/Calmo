@@ -6,6 +6,7 @@ import Isair from '../../assets/images/sair.png'
 import Ianotacao from '../../assets/images/anotacao.png'
 import BtnSideBar from './botoesNavegacao/BtnSideBar'
 import IHome from '../../assets/images/icon-logo.png'
+import IHomeBlack from '../../assets/images/Icon-logo-black.png'
 import './SideBar.css'
 
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2'
 import { getAuth, signOut } from "firebase/auth";
 
 
-const SideBar = () => {
+const SideBar = (props) => {
   const navigate = useNavigate();
   let logout = () => {
     const auth = getAuth();
@@ -45,14 +46,14 @@ const SideBar = () => {
     })
   }
     return (
-    <nav className='navClass'>
+    <nav className='navClass' style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121", boxShadow: "10px 10px 41px -26px rgba(33,33,33,1)"}:null}>
         <ul className='ulClass'>
-            <BtnSideBar rotaPagina='/home' imgIcone={IHome} btnTexto="Home"/>
-            <BtnSideBar rotaPagina='/anotacoes' imgIcone={Ianotacao} btnTexto="Anotações"/>
-            <BtnSideBar rotaPagina='/musicas' imgIcone={Imusica} btnTexto="Músicas"/>
-            <BtnSideBar rotaPagina='/leitura' imgIcone={Ileitura} btnTexto="Leitura"/>
-            <BtnSideBar rotaPagina='/fitness' imgIcone={Ifitness} btnTexto="Fitness"/>
-            <BtnSideBar rotaPagina='/agenda' imgIcone={Iagenda} btnTexto="Agenda"/>
+            <BtnSideBar rotaPagina='/home' imgIcone={props.lightmode ? IHome : IHomeBlack} btnTexto="Home" lightmode={props.lightmode} imgBlack={true}/>
+            <BtnSideBar rotaPagina='/anotacoes' imgIcone={Ianotacao} btnTexto="Anotações" lightmode={props.lightmode}/>
+            <BtnSideBar rotaPagina='/musicas' imgIcone={Imusica} btnTexto="Músicas" lightmode={props.lightmode}/>
+            <BtnSideBar rotaPagina='/leitura' imgIcone={Ileitura} btnTexto="Leitura" lightmode={props.lightmode}/>
+            <BtnSideBar rotaPagina='/fitness' imgIcone={Ifitness} btnTexto="Fitness" lightmode={props.lightmode}/>
+            <BtnSideBar rotaPagina='/agenda' imgIcone={Iagenda} btnTexto="Agenda" lightmode={props.lightmode}/>
             <li className='liClass' onClick={logout}>
                 <img className='imgClass'src={Isair} alt="Icon Sair" />
                 <p className='pSair'>Sair</p>

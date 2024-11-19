@@ -34,6 +34,15 @@ async function Bool_verifyAllItemsCollection(coll, param, item, user){
     if (result.length > 0) { return true } else { return false }
 }
 
+async function Bool_verifyUserAnotacoes(coll, user){
+    const db = await connect()
+    let query = {}
+    query["user"] = user
+    let result = await db.collection(coll).find(query).toArray()
+    if (result.length > 0) { return true } else { return false }
+
+}
+
 async function getAllCollection(coll, id){
     const db = await connect()
     let result = await db.collection(coll).find({user: id}).toArray()
@@ -64,5 +73,6 @@ module.exports = {
     deleteItem,
     updateContent,
     getEspecificItem,
-    insertAnotacao
+    insertAnotacao,
+    Bool_verifyUserAnotacoes
 }

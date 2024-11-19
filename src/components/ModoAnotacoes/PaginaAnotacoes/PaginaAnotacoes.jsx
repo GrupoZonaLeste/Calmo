@@ -4,7 +4,7 @@ import SideBar from '../../Sidebar/SideBar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const PaginaAnotacoes = () => {
+const PaginaAnotacoes = (props) => {
     const [dados, setDados] = useState("")
     const [tags, setTags] = useState([])
 
@@ -38,15 +38,15 @@ const PaginaAnotacoes = () => {
     }, [])
 
     return (
-        <div className='container_modos'>
-            <SideBar />
-            <div className='container_Pagina'>
+        <div className='container_modos' style={!props.lightmode ? {backgroundColor: "#f9f9f9", color: "#212121"}:null}>
+            <SideBar lightmode={props.lightmode} />
+            <div className='container_Pagina' >
                 <div className='containerTituloAnotacaoes' style={{margin: 0}}>
                     <div style={{display: "flex", alignItems: "center"}}>
                         <Link to="/anotacoes">
-                            <h1 className='setaVoltar'>←</h1>   
+                            <h1 className='setaVoltar' style={!props.lightmode ? {color: "#212121"}: null}>←</h1>   
                         </Link>
-                        <h1 className='titulo-anotacoes' style={{margin: 0}}>{ tituloPagina() }</h1>
+                        <h1 className='titulo-anotacoes' style={!props.lightmode ? {color: "#212121", margin: 0}: {margin: 0}}>{ tituloPagina() }</h1>
                     </div>
                 </div>
                 <div className='containerSubPaginas'>
@@ -55,7 +55,13 @@ const PaginaAnotacoes = () => {
                         return <p style={{textDecoration: "underline"}}>{element}</p>
                     })}
                 </div>
-                <textarea className='textAreaAnotacao' placeholder='Faça suas anotações...' value={dados} onChange={(e) => {setDados(e.target.value), addConteudo()}}></textarea>
+                <textarea 
+                className='textAreaAnotacao' 
+                placeholder='Faça suas anotações...' 
+                value={dados} 
+                onChange={(e) => {setDados(e.target.value), addConteudo()}}
+                style={!props.lightmode ? {color: "#212121"}: null}
+                ></textarea>
             </div>
         </div>
     )

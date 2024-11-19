@@ -14,13 +14,18 @@ app.use(cors({
 
 app.use(express.json());
 
-app.post("/cadastrar", (req, res) => {
-    db.insert("usuarios", req.body);
-    res.json({ "status": "cadastrado" });
-    db.insert("anotacoes", {
-        itens: [],
-        user: req.body.email
-    })
+app.post("/cadastrar", async (req, res) => {
+    //db.insert("usuarios", req.body);
+    //res.json({ "status": "cadastrado" });
+    let verificarUser = await db.Bool_verifyUserAnotacoes("anotacoes", req.body.user);
+    if(verificarUser){
+        res.json({"status": "usuario ja existente"})
+    } else {    
+        db.insert("anotacoes", {
+            itens: [],
+            user: req.body.user
+        })
+    }
 });
 
 app.post("/criar_pagina/:iduser", async (req, res) => {

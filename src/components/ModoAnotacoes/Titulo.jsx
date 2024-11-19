@@ -4,7 +4,7 @@ import './ModalNovaAnotacao.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const Titulo = () => {
+const Titulo = (props) => {
   const [statusModal, setstatusModal] = useState(true)
   const [displayModal, setdisplayModal] = useState("none")
   const [dataNovaPagina, setDataNovaPagina] = useState ({titulo: "", tags: [], criacao: ""})
@@ -67,11 +67,11 @@ const Titulo = () => {
       </div>
 
       <div className='containerTituloAnotacaoes'>
-        <div>
-          <h1 className='titulo-anotacoes'>Modo Anotações</h1>
-          <p className='subtitulo-anotacoes'>Faça suas anotações de forma fácil e rápida, em um só lugar!</p>
+        <div >
+          <h1 className='titulo-anotacoes' style={!props.lightmode ? {color: "#212121"}: null}>Modo Anotações</h1>
+          <p className='subtitulo-anotacoes' style={!props.lightmode ? {color: "#212121"}: null}>Faça suas anotações de forma fácil e rápida, em um só lugar!</p>
         </div>
-        <button onClick={abrirFecharModal} id="btn_novaAnotacao">+</button>
+        <button onClick={abrirFecharModal} id="btn_novaAnotacao" style={!props.lightmode ? {color: "#212121", border: "1px solid #212121"}: null}>+</button>
       </div>
     </>
   )

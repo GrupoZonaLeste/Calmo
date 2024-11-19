@@ -1,10 +1,10 @@
 import React from 'react'
 import './Footer.css'
 
-const Footer = () => {
+const Footer = (props) => {
     return (
         <>
-            <footer className='footerLandingPage'>
+            <footer className='footerLandingPage'  style={!props.lightmode ? {color: "#212121", border: "0.1em solid black" }: null}>
                 <h1>Equipe de desenvolvedores</h1>
                 <div id='equipeNomes'>
                     <p>Breno Ribeiro</p>
