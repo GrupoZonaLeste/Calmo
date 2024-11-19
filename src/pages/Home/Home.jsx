@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { db } from '../../services/firebase_config'; // Importando a configuração do Firebase
-import { doc, getDoc } from 'firebase/firestore'; // Funções do Firestore
+import { db } from '../../services/firebase_config'; 
+import { doc, getDoc } from 'firebase/firestore'; 
 import SideBar from '../../components/Sidebar/SideBar';
 import CardTopo from '../../components/Home/CardInicialSuperior';
 import CardMusica from '../../components/Home/CardRecomendacaoMusica';
@@ -19,19 +19,17 @@ const Home = (props) => {
       if (user) {
         console.log(user.email)
         try {
-          // Buscar o nome do usuário no Firestore com base no UID do usuário autenticado
-          const userDocRef = doc(db, 'users', user.uid); // Referência ao documento do usuário
+          const userDocRef = doc(db, 'users', user.uid); 
           const docSnap = await getDoc(userDocRef);
           if (docSnap.exists()) {
             const userData = docSnap.data();
-            setUserName(userData.nome || 'Usuário');
+            setUserName(userData.nome || user.displayName || 'teste')
           } else {
+            setUserName(user.displayName)
             console.log('Usuário não encontrado no Firestore');
-            setUserName('Usuário');
           }
         } catch (error) {
           console.error('Erro ao buscar dados do usuário: ', error);
-          setUserName('Usuário');
         }
         await axios.request({
           method: "POST",
@@ -42,11 +40,10 @@ const Home = (props) => {
           }
         })
       } else {
-        setUserName('Usuário');
+        
       }
     });
-
-    () => unsubscribe(); // Cleanup do listener quando o componente for desmontado
+    return () => unsubscribe(); 
   }, []);
 
   return (

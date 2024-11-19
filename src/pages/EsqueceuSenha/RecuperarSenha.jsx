@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import AlterarSenha from "../../components/EsqueceuSenha/AlterarSenha"
-import Codigo from "../../components/EsqueceuSenha/Codigo"
 import EsqueceuSenha from "../../components/EsqueceuSenha/EsqueceuSenha"
 import './RecuperarSenha.css'
 
