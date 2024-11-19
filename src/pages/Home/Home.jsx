@@ -40,7 +40,7 @@ const Home = (props) => {
           }
         })
       } else {
-        
+        setUserName('Usuário');
       }
     });
     return () => unsubscribe(); 
